@@ -111,6 +111,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/libdrmutils.so:vendor/lib64/libdrmutils.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libgpu_tonemapper.so:vendor/lib64/libgpu_tonemapper.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libgrallocutils.so:vendor/lib64/libgrallocutils.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libgpustats.so:vendor/lib64/libgpustats.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libllvm-glnext.so:vendor/lib64/libllvm-glnext.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libqdMetaData.so:vendor/lib64/libqdMetaData.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libqdutils.so:vendor/lib64/libqdutils.so \
@@ -122,6 +123,8 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/libsdmcore.so:vendor/lib64/libsdmcore.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libsdmextension.so:vendor/lib64/libsdmextension.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libsdmutils.so:vendor/lib64/libsdmutils.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libgpustats.so:vendor/lib/libgpustats.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libsdm-disp-vndapis.so:vendor/lib/libsdm-disp-vndapis.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/vendor.display.color@1.0_vendor.so:vendor/lib64/vendor.display.color@1.0_vendor.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/vendor.zte.covolution.assertdisplay.vendorad@1.0_vendor.so:vendor/lib64/vendor.zte.covolution.assertdisplay.vendorad@1.0_vendor.so \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/vendor.display.color@1.0-service:vendor/bin/hw/vendor.display.color@1.0-service \
