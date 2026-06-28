@@ -12,6 +12,9 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.target.rc:vendor/etc/init/hw/init.target.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.vendor.rc:vendor/etc/init/hw/init.vendor.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.vendor.usb.rc:vendor/etc/init/hw/init.vendor.usb.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/com.qualcomm.qti.wifidisplayhal@1.0-service.rc:vendor/etc/init/com.qualcomm.qti.wifidisplayhal@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/vendor.display.color@1.0-service.rc:vendor/etc/init/vendor.display.color@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc:vendor/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.bluetooth.xml:vendor/etc/permissions/android.hardware.bluetooth.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.bluetooth_le.xml:vendor/etc/permissions/android.hardware.bluetooth_le.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.location.gps.xml:vendor/etc/permissions/android.hardware.location.gps.xml \
@@ -49,6 +52,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/bin/init.qcom.usb.sh:vendor/bin/init.qcom.usb.sh \
     vendor/zte/fujisan/proprietary/vendor/bin/init.vendor.usb.sh:vendor/bin/init.vendor.usb.sh \
     vendor/zte/fujisan/proprietary/vendor/bin/ipacm:vendor/bin/ipacm \
+    vendor/zte/fujisan/proprietary/vendor/bin/irsc_util:vendor/bin/irsc_util \
     vendor/zte/fujisan/proprietary/vendor/bin/msm_irqbalance:vendor/bin/msm_irqbalance \
     vendor/zte/fujisan/proprietary/vendor/bin/netmgrd:vendor/bin/netmgrd \
     vendor/zte/fujisan/proprietary/vendor/bin/pm-proxy:vendor/bin/pm-proxy \
@@ -59,6 +63,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/bin/ssr_setup:vendor/bin/ssr_setup \
     vendor/zte/fujisan/proprietary/vendor/bin/subsystem_ramdump:vendor/bin/subsystem_ramdump \
     vendor/zte/fujisan/proprietary/vendor/bin/thermal-engine:vendor/bin/thermal-engine \
+    vendor/zte/fujisan/proprietary/vendor/bin/wifidisplayhalservice:vendor/bin/wifidisplayhalservice \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.gatekeeper@1.0-service.rc:vendor/etc/init/android.hardware.gatekeeper@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.keymaster@3.0-service.rc:vendor/etc/init/android.hardware.keymaster@3.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/bin/qseecomd:vendor/bin/qseecomd \
@@ -96,6 +101,9 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/egl/libQTapGLES.so:vendor/lib64/egl/libQTapGLES.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/egl/libq3dtools_adreno.so:vendor/lib64/egl/libq3dtools_adreno.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/egl/libq3dtools_esx.so:vendor/lib64/egl/libq3dtools_esx.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/com.qualcomm.qti.wifidisplayhal@1.0-halimpl.so:vendor/lib64/com.qualcomm.qti.wifidisplayhal@1.0-halimpl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/com.qualcomm.qti.wifidisplayhal@1.0-impl.so:vendor/lib64/com.qualcomm.qti.wifidisplayhal@1.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/com.qualcomm.qti.wifidisplayhal@1.0_vendor.so:vendor/lib64/com.qualcomm.qti.wifidisplayhal@1.0_vendor.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libCB.so:vendor/lib64/libCB.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libOpenCL.so:vendor/lib64/libOpenCL.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libRSDriver_adreno.so:vendor/lib64/libRSDriver_adreno.so \
@@ -114,6 +122,10 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/libsdmcore.so:vendor/lib64/libsdmcore.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libsdmextension.so:vendor/lib64/libsdmextension.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libsdmutils.so:vendor/lib64/libsdmutils.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/vendor.display.color@1.0_vendor.so:vendor/lib64/vendor.display.color@1.0_vendor.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/vendor.zte.covolution.assertdisplay.vendorad@1.0_vendor.so:vendor/lib64/vendor.zte.covolution.assertdisplay.vendorad@1.0_vendor.so \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/vendor.display.color@1.0-service:vendor/bin/hw/vendor.display.color@1.0-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service:vendor/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.health@1.0-service.rc:vendor/etc/init/android.hardware.health@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.light@2.0-service.rc:vendor/etc/init/android.hardware.light@2.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.memtrack@1.0-service.rc:vendor/etc/init/android.hardware.memtrack@1.0-service.rc \
@@ -150,8 +162,14 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@2.0-impl.so:vendor/lib64/hw/android.hardware.audio.effect@2.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/etc/audio/audio_policy_configuration.xml:vendor/etc/audio/audio_policy_configuration.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/audio_platform_info.xml:vendor/etc/audio_platform_info.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/media_codecs.xml:vendor/etc/media_codecs.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/media_codecs_performance.xml:vendor/etc/media_codecs_performance.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/media_codecs_vendor_audio.xml:vendor/etc/media_codecs_vendor_audio.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/mixer_paths_tasha.xml:vendor/etc/mixer_paths_tasha.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/msm_irqbalance.conf:vendor/etc/msm_irqbalance.conf \
+    vendor/zte/fujisan/proprietary/vendor/etc/sec_config:vendor/etc/sec_config \
     vendor/zte/fujisan/proprietary/vendor/etc/sound_trigger_platform_info.xml:vendor/etc/sound_trigger_platform_info.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/thermal-engine.conf:vendor/etc/thermal-engine.conf \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc:vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.wifi@1.0-service.rc:vendor/etc/init/android.hardware.wifi@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti:vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti \
