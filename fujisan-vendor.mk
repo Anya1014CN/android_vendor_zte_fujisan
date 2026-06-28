@@ -1,6 +1,13 @@
 # Auto-generated vendor makefile for fujisan.
 
 PRODUCT_COPY_FILES += \
+    vendor/zte/fujisan/proprietary/vendor/manifest.xml:vendor/manifest.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/vndservicemanager.rc:vendor/etc/init/vndservicemanager.rc \
+    vendor/zte/fujisan/proprietary/vendor/bin/vndservicemanager:vendor/bin/vndservicemanager \
+    vendor/zte/fujisan/proprietary/vendor/bin/cnss-daemon:vendor/bin/cnss-daemon \
+    vendor/zte/fujisan/proprietary/vendor/bin/hostapd:vendor/bin/hostapd \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.gatekeeper@1.0-service.rc:vendor/etc/init/android.hardware.gatekeeper@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.keymaster@3.0-service.rc:vendor/etc/init/android.hardware.keymaster@3.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/bin/qseecomd:vendor/bin/qseecomd \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.gatekeeper@1.0-service:vendor/bin/hw/android.hardware.gatekeeper@1.0-service \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.keymaster@3.0-service:vendor/bin/hw/android.hardware.keymaster@3.0-service \
@@ -18,11 +25,31 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.keymaster@3.0-impl.so:vendor/lib64/hw/android.hardware.keymaster@3.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/gatekeeper.msm8996.so:vendor/lib64/hw/gatekeeper.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/keystore.msm8996.so:vendor/lib64/hw/keystore.msm8996.so \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.graphics.allocator@2.0-service.rc:vendor/etc/init/android.hardware.graphics.allocator@2.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.graphics.composer@2.1-service.rc:vendor/etc/init/android.hardware.graphics.composer@2.1-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc:vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.graphics.allocator@2.0-service:vendor/bin/hw/android.hardware.graphics.allocator@2.0-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.graphics.composer@2.1-service:vendor/bin/hw/android.hardware.graphics.composer@2.1-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti:vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/gralloc.msm8996.so:vendor/lib64/hw/gralloc.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/hwcomposer.msm8996.so:vendor/lib64/hw/hwcomposer.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.graphics.allocator@2.0-impl.so:vendor/lib64/hw/android.hardware.graphics.allocator@2.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.graphics.composer@2.1-impl.so:vendor/lib64/hw/android.hardware.graphics.composer@2.1-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so:vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.health@1.0-service.rc:vendor/etc/init/android.hardware.health@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.light@2.0-service.rc:vendor/etc/init/android.hardware.light@2.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.memtrack@1.0-service.rc:vendor/etc/init/android.hardware.memtrack@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.power@1.0-service.rc:vendor/etc/init/android.hardware.power@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.sensors@1.0-service.rc:vendor/etc/init/android.hardware.sensors@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.thermal@1.0-service.rc:vendor/etc/init/android.hardware.thermal@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.vibrator@1.0-service.rc:vendor/etc/init/android.hardware.vibrator@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.health@1.0-service:vendor/bin/hw/android.hardware.health@1.0-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.light@2.0-service:vendor/bin/hw/android.hardware.light@2.0-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.memtrack@1.0-service:vendor/bin/hw/android.hardware.memtrack@1.0-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.power@1.0-service:vendor/bin/hw/android.hardware.power@1.0-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.sensors@1.0-service:vendor/bin/hw/android.hardware.sensors@1.0-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.thermal@1.0-service:vendor/bin/hw/android.hardware.thermal@1.0-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.vibrator@1.0-service:vendor/bin/hw/android.hardware.vibrator@1.0-service \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/lights.msm8996.so:vendor/lib64/hw/lights.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/memtrack.msm8996.so:vendor/lib64/hw/memtrack.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/power.qcom.so:vendor/lib64/hw/power.qcom.so \
@@ -35,10 +62,22 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.sensors@1.0-impl.so:vendor/lib64/hw/android.hardware.sensors@1.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.thermal@1.0-impl.so:vendor/lib64/hw/android.hardware.thermal@1.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.vibrator@1.0-impl.so:vendor/lib64/hw/android.hardware.vibrator@1.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/etc/sensors/hals.conf:vendor/etc/sensors/hals.conf \
+    vendor/zte/fujisan/proprietary/vendor/etc/sensors/sensor_def_qcomdev.conf:vendor/etc/sensors/sensor_def_qcomdev.conf \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.audio@2.0-service.rc:vendor/etc/init/android.hardware.audio@2.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.audio@2.0-service:vendor/bin/hw/android.hardware.audio@2.0-service \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/audio.primary.msm8996.so:vendor/lib64/hw/audio.primary.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/sound_trigger.primary.msm8996.so:vendor/lib64/hw/sound_trigger.primary.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.audio@2.0-impl.so:vendor/lib64/hw/android.hardware.audio@2.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.audio.effect@2.0-impl.so:vendor/lib64/hw/android.hardware.audio.effect@2.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/etc/audio/audio_policy_configuration.xml:vendor/etc/audio/audio_policy_configuration.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/audio_platform_info.xml:vendor/etc/audio_platform_info.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/mixer_paths_tasha.xml:vendor/etc/mixer_paths_tasha.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/sound_trigger_platform_info.xml:vendor/etc/sound_trigger_platform_info.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc:vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.wifi@1.0-service.rc:vendor/etc/init/android.hardware.wifi@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti:vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.wifi@1.0-service:vendor/bin/hw/android.hardware.wifi@1.0-service \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so:vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so \
     vendor/zte/fujisan/proprietary/vendor/etc/wifi/WCNSS_qcom_cfg.ini:vendor/etc/wifi/WCNSS_qcom_cfg.ini \
     vendor/zte/fujisan/proprietary/vendor/etc/wifi/wpa_supplicant.conf:vendor/etc/wifi/wpa_supplicant.conf \
