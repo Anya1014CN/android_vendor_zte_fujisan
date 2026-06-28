@@ -2,10 +2,63 @@
 
 PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/manifest.xml:vendor/manifest.xml \
+    vendor/zte/fujisan/proprietary/vendor/ueventd.rc:vendor/ueventd.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/fstab.qcom:vendor/etc/fstab.qcom \
     vendor/zte/fujisan/proprietary/vendor/etc/init/vndservicemanager.rc:vendor/etc/init/vndservicemanager.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.msm.usb.configfs.rc:vendor/etc/init/hw/init.msm.usb.configfs.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.qcom.factory.rc:vendor/etc/init/hw/init.qcom.factory.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.qcom.rc:vendor/etc/init/hw/init.qcom.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.qcom.usb.rc:vendor/etc/init/hw/init.qcom.usb.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.target.rc:vendor/etc/init/hw/init.target.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.vendor.rc:vendor/etc/init/hw/init.vendor.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.vendor.usb.rc:vendor/etc/init/hw/init.vendor.usb.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.bluetooth.xml:vendor/etc/permissions/android.hardware.bluetooth.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.bluetooth_le.xml:vendor/etc/permissions/android.hardware.bluetooth_le.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.location.gps.xml:vendor/etc/permissions/android.hardware.location.gps.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.opengles.aep.xml:vendor/etc/permissions/android.hardware.opengles.aep.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.sensor.accelerometer.xml:vendor/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.sensor.compass.xml:vendor/etc/permissions/android.hardware.sensor.compass.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.sensor.gyroscope.xml:vendor/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.sensor.light.xml:vendor/etc/permissions/android.hardware.sensor.light.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.sensor.proximity.xml:vendor/etc/permissions/android.hardware.sensor.proximity.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.sensor.stepcounter.xml:vendor/etc/permissions/android.hardware.sensor.stepcounter.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.sensor.stepdetector.xml:vendor/etc/permissions/android.hardware.sensor.stepdetector.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.telephony.cdma.xml:vendor/etc/permissions/android.hardware.telephony.cdma.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.telephony.gsm.xml:vendor/etc/permissions/android.hardware.telephony.gsm.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml:vendor/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.usb.accessory.xml:vendor/etc/permissions/android.hardware.usb.accessory.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.usb.host.xml:vendor/etc/permissions/android.hardware.usb.host.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.vulkan.compute-0.xml:vendor/etc/permissions/android.hardware.vulkan.compute-0.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.vulkan.level-0.xml:vendor/etc/permissions/android.hardware.vulkan.level-0.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.vulkan.version-1_0_3.xml:vendor/etc/permissions/android.hardware.vulkan.version-1_0_3.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.wifi.direct.xml:vendor/etc/permissions/android.hardware.wifi.direct.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.wifi.passpoint.xml:vendor/etc/permissions/android.hardware.wifi.passpoint.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.wifi.xml:vendor/etc/permissions/android.hardware.wifi.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.software.midi.xml:vendor/etc/permissions/android.software.midi.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/handheld_core_hardware.xml:vendor/etc/permissions/handheld_core_hardware.xml \
     vendor/zte/fujisan/proprietary/vendor/bin/vndservicemanager:vendor/bin/vndservicemanager \
     vendor/zte/fujisan/proprietary/vendor/bin/cnss-daemon:vendor/bin/cnss-daemon \
     vendor/zte/fujisan/proprietary/vendor/bin/hostapd:vendor/bin/hostapd \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.class_main.sh:vendor/bin/init.class_main.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.crda.sh:vendor/bin/init.crda.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.qcom.class_core.sh:vendor/bin/init.qcom.class_core.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.qcom.post_boot.sh:vendor/bin/init.qcom.post_boot.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.qcom.sdio.sh:vendor/bin/init.qcom.sdio.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.qcom.sensors.sh:vendor/bin/init.qcom.sensors.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.qcom.sh:vendor/bin/init.qcom.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.qcom.usb.sh:vendor/bin/init.qcom.usb.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.vendor.usb.sh:vendor/bin/init.vendor.usb.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/ipacm:vendor/bin/ipacm \
+    vendor/zte/fujisan/proprietary/vendor/bin/msm_irqbalance:vendor/bin/msm_irqbalance \
+    vendor/zte/fujisan/proprietary/vendor/bin/netmgrd:vendor/bin/netmgrd \
+    vendor/zte/fujisan/proprietary/vendor/bin/pm-proxy:vendor/bin/pm-proxy \
+    vendor/zte/fujisan/proprietary/vendor/bin/pm-service:vendor/bin/pm-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/qcom-system-daemon:vendor/bin/qcom-system-daemon \
+    vendor/zte/fujisan/proprietary/vendor/bin/rmt_storage:vendor/bin/rmt_storage \
+    vendor/zte/fujisan/proprietary/vendor/bin/sensors.qcom:vendor/bin/sensors.qcom \
+    vendor/zte/fujisan/proprietary/vendor/bin/ssr_setup:vendor/bin/ssr_setup \
+    vendor/zte/fujisan/proprietary/vendor/bin/subsystem_ramdump:vendor/bin/subsystem_ramdump \
+    vendor/zte/fujisan/proprietary/vendor/bin/thermal-engine:vendor/bin/thermal-engine \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.gatekeeper@1.0-service.rc:vendor/etc/init/android.hardware.gatekeeper@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.keymaster@3.0-service.rc:vendor/etc/init/android.hardware.keymaster@3.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/bin/qseecomd:vendor/bin/qseecomd \
@@ -36,6 +89,31 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.graphics.allocator@2.0-impl.so:vendor/lib64/hw/android.hardware.graphics.allocator@2.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.graphics.composer@2.1-impl.so:vendor/lib64/hw/android.hardware.graphics.composer@2.1-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so:vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/egl/eglSubDriverAndroid.so:vendor/lib64/egl/eglSubDriverAndroid.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/egl/libEGL_adreno.so:vendor/lib64/egl/libEGL_adreno.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/egl/libGLESv1_CM_adreno.so:vendor/lib64/egl/libGLESv1_CM_adreno.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/egl/libGLESv2_adreno.so:vendor/lib64/egl/libGLESv2_adreno.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/egl/libQTapGLES.so:vendor/lib64/egl/libQTapGLES.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/egl/libq3dtools_adreno.so:vendor/lib64/egl/libq3dtools_adreno.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/egl/libq3dtools_esx.so:vendor/lib64/egl/libq3dtools_esx.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libCB.so:vendor/lib64/libCB.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libOpenCL.so:vendor/lib64/libOpenCL.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libRSDriver_adreno.so:vendor/lib64/libRSDriver_adreno.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libadreno_utils.so:vendor/lib64/libadreno_utils.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libdrmutils.so:vendor/lib64/libdrmutils.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libgpu_tonemapper.so:vendor/lib64/libgpu_tonemapper.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libgrallocutils.so:vendor/lib64/libgrallocutils.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libllvm-glnext.so:vendor/lib64/libllvm-glnext.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libqdMetaData.so:vendor/lib64/libqdMetaData.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libqdutils.so:vendor/lib64/libqdutils.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libqservice.so:vendor/lib64/libqservice.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/librs_adreno.so:vendor/lib64/librs_adreno.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/librs_adreno_sha1.so:vendor/lib64/librs_adreno_sha1.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libsdm-color.so:vendor/lib64/libsdm-color.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libsdm-disp-vndapis.so:vendor/lib64/libsdm-disp-vndapis.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libsdmcore.so:vendor/lib64/libsdmcore.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libsdmextension.so:vendor/lib64/libsdmextension.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libsdmutils.so:vendor/lib64/libsdmutils.so \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.health@1.0-service.rc:vendor/etc/init/android.hardware.health@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.light@2.0-service.rc:vendor/etc/init/android.hardware.light@2.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.memtrack@1.0-service.rc:vendor/etc/init/android.hardware.memtrack@1.0-service.rc \
@@ -78,7 +156,17 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.wifi@1.0-service.rc:vendor/etc/init/android.hardware.wifi@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti:vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.wifi@1.0-service:vendor/bin/hw/android.hardware.wifi@1.0-service \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/wpa_supplicant:vendor/bin/hw/wpa_supplicant \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so:vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libcld80211.so:vendor/lib64/libcld80211.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libkeystore-engine-wifi-hidl.so:vendor/lib64/libkeystore-engine-wifi-hidl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libkeystore-wifi-hidl.so:vendor/lib64/libkeystore-wifi-hidl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/liblowi_wifihal.so:vendor/lib64/liblowi_wifihal.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libnetmgr.so:vendor/lib64/libnetmgr.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libwifi-hal-qcom.so:vendor/lib64/libwifi-hal-qcom.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libwifi-hal.so:vendor/lib64/libwifi-hal.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libwpa_client.so:vendor/lib64/libwpa_client.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libxtwifi_ulp_adaptor.so:vendor/lib64/libxtwifi_ulp_adaptor.so \
     vendor/zte/fujisan/proprietary/vendor/etc/wifi/WCNSS_qcom_cfg.ini:vendor/etc/wifi/WCNSS_qcom_cfg.ini \
     vendor/zte/fujisan/proprietary/vendor/etc/wifi/wpa_supplicant.conf:vendor/etc/wifi/wpa_supplicant.conf \
     vendor/zte/fujisan/proprietary/vendor/etc/wifi/wpa_supplicant_overlay.conf:vendor/etc/wifi/wpa_supplicant_overlay.conf \
