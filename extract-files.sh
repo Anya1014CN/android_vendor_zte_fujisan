@@ -1,37 +1,81 @@
 #!/bin/bash
+#
+# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017-2020 The LineageOS Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
 
 set -e
 
 DEVICE=fujisan
 VENDOR=zte
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DEVICE_TREE_DIR="${ROOT_DIR}/../android_device_zte_fujisan"
-PROP_LIST="${DEVICE_TREE_DIR}/proprietary-files.txt"
-DEST_DIR="${ROOT_DIR}/proprietary"
 
-if [ ! -f "${PROP_LIST}" ]; then
-    echo "Missing proprietary-files.txt at ${PROP_LIST}" >&2
+MY_DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="${PWD}"; fi
+
+ANDROID_ROOT="${MY_DIR}/../../.."
+
+HELPER="${ANDROID_ROOT}/tools/extract-utils/extract_utils.sh"
+if [ ! -f "${HELPER}" ]; then
+    echo "Unable to find helper script at ${HELPER}"
     exit 1
 fi
+source "${HELPER}"
 
-while IFS= read -r raw; do
-    file="${raw%%#*}"
-    file="${file#"${file%%[![:space:]]*}"}"
-    file="${file%"${file##*[![:space:]]}"}"
-    [ -z "${file}" ] && continue
+CLEAN_VENDOR=true
 
-    src="/system/${file}"
-    if adb shell "[ -e '${src}' ]" </dev/null >/dev/null 2>&1; then
-        :
-    elif adb shell "[ -e '/${file}' ]" </dev/null >/dev/null 2>&1; then
-        src="/${file}"
-    else
-        echo "Missing on device: ${file}" >&2
-        continue
-    fi
+KANG=
+SECTION=
 
-    mkdir -p "${DEST_DIR}/$(dirname "${file}")"
-    adb pull "${src}" "${DEST_DIR}/${file}" </dev/null
-done < "${PROP_LIST}"
+while [ "${#}" -gt 0 ]; do
+    case "${1}" in
+        -n|--no-cleanup )
+            CLEAN_VENDOR=false
+            ;;
+        -k|--kang )
+            KANG="--kang"
+            ;;
+        -s|--section )
+            SECTION="${2}"; shift
+            CLEAN_VENDOR=false
+            ;;
+        * )
+            SRC="${1}"
+            ;;
+    esac
+    shift
+done
 
-"${ROOT_DIR}/setup-makefiles.sh"
+if [ -z "${SRC}" ]; then
+    SRC="adb"
+fi
+
+function blob_fixup() {
+    case "${1}" in
+        vendor/etc/data/dsi_config.xml|vendor/etc/data/netmgr_config.xml)
+            python3 - "${2}" <<'PY'
+from pathlib import Path
+import sys
+p = Path(sys.argv[1])
+data = p.read_text(encoding='utf-8')
+marker = '<?xml version="1.0" encoding="UTF-8"?>'
+idx = data.find(marker)
+if idx > 0:
+    before = data[:idx].strip('\n')
+    after = data[idx + len(marker):].lstrip('\n')
+    new = marker + '\n'
+    if before:
+        new += before + '\n\n'
+    new += after
+    p.write_text(new, encoding='utf-8')
+PY
+            ;;
+    esac
+}
+
+setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"
+
+extract "${ANDROID_ROOT}/device/${VENDOR}/${DEVICE}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
+
+"${MY_DIR}/setup-makefiles.sh"

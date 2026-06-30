@@ -1,36 +1,30 @@
 #!/bin/bash
+#
+# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017-2020 The LineageOS Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
 
 set -e
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DEVICE_TREE_DIR="${ROOT_DIR}/../android_device_zte_fujisan"
-PROP_LIST="${DEVICE_TREE_DIR}/proprietary-files.txt"
+DEVICE=fujisan
+VENDOR=zte
 
-cat > "${ROOT_DIR}/fujisan-vendor.mk" <<'EOF_VENDOR_MK'
-# Auto-generated vendor makefile for fujisan.
+MY_DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="${PWD}"; fi
 
-PRODUCT_COPY_FILES += \
-EOF_VENDOR_MK
+ANDROID_ROOT="${MY_DIR}/../../.."
 
-first=1
-while IFS= read -r raw; do
-    file="${raw%%#*}"
-    file="${file#"${file%%[![:space:]]*}"}"
-    file="${file%"${file##*[![:space:]]}"}"
-    [ -z "${file}" ] && continue
+HELPER="${ANDROID_ROOT}/tools/extract-utils/extract_utils.sh"
+if [ ! -f "${HELPER}" ]; then
+    echo "Unable to find helper script at ${HELPER}"
+    exit 1
+fi
+source "${HELPER}"
 
-    if [ ${first} -eq 0 ]; then
-        printf " \\\\\n" >> "${ROOT_DIR}/fujisan-vendor.mk"
-    fi
-    printf "    vendor/zte/fujisan/proprietary/%s:%s" "${file}" "${file}" >> "${ROOT_DIR}/fujisan-vendor.mk"
-    first=0
-done < "${PROP_LIST}"
-printf "\n" >> "${ROOT_DIR}/fujisan-vendor.mk"
+setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}"
 
-cat > "${ROOT_DIR}/fujisan-vendor-blobs.mk" <<'EOF_BLOBS_MK'
-LOCAL_PATH := vendor/zte/fujisan
-EOF_BLOBS_MK
-
-cat > "${ROOT_DIR}/fujisan-vendor-board.mk" <<'EOF_BOARD_MK'
-include vendor/zte/fujisan/BoardConfigVendor.mk
-EOF_BOARD_MK
+write_headers
+write_makefiles "${ANDROID_ROOT}/device/${VENDOR}/${DEVICE}/proprietary-files.txt" true
+write_footers
