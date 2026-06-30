@@ -13,6 +13,5 @@ PRODUCT_PACKAGES += \
     Perfdump \
     SVIService \
     SecProtect \
-    SysuiDarkThemeOverlay \
     TimeService \
     colorservice
