@@ -8,6 +8,9 @@ chmod 0777 "$OUT"
     echo "los-bootlog start $(date)"
     echo "cmdline: $(cat /proc/cmdline 2>/dev/null)"
     getprop
+    ls -ld /vendor /system/vendor 2>/dev/null || true
+    ls -l /vendor/firmware/a530_zap.* /vendor/firmware/a530_pm4.fw /vendor/lib64/libscalar.so 2>/dev/null || true
+    ls -l /system/vendor/firmware/a530_zap.* /system/vendor/firmware/a530_pm4.fw /system/vendor/lib64/libscalar.so 2>/dev/null || true
 ) > "$OUT/props-start.txt" 2>&1
 
 /system/bin/logcat -b all -v threadtime -f "$OUT/logcat.txt" -r 4096 -n 4 >/dev/null 2>&1 &
