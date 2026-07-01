@@ -38,6 +38,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/bin/init.vendor.usb.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.vendor.usb.sh \
     vendor/zte/fujisan/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
     vendor/zte/fujisan/proprietary/vendor/bin/irsc_util:$(TARGET_COPY_OUT_VENDOR)/bin/irsc_util \
+    vendor/zte/fujisan/proprietary/vendor/bin/los-bootlog.sh:$(TARGET_COPY_OUT_VENDOR)/bin/los-bootlog.sh \
     vendor/zte/fujisan/proprietary/vendor/bin/msm_irqbalance:$(TARGET_COPY_OUT_VENDOR)/bin/msm_irqbalance \
     vendor/zte/fujisan/proprietary/vendor/bin/netmgrd:$(TARGET_COPY_OUT_VENDOR)/bin/netmgrd \
     vendor/zte/fujisan/proprietary/vendor/bin/pm-proxy:$(TARGET_COPY_OUT_VENDOR)/bin/pm-proxy \
@@ -76,6 +77,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.vendor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.vendor.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/hw/init.vendor.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.vendor.usb.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/los-bootlog.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/los-bootlog.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/vendor.display.color@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.display.color@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc \

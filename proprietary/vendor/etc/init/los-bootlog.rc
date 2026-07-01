@@ -1,0 +1,8 @@
+service los-bootlog /vendor/bin/los-bootlog.sh
+    class late_start
+    user root
+    group root log readproc system
+    oneshot
+
+on post-fs-data
+    start los-bootlog
