@@ -198,3 +198,52 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/vendor.zte.covolution.assertdisplay.vendorad@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.zte.covolution.assertdisplay.vendorad@1.0_vendor.so \
     vendor/zte/fujisan/proprietary/vendor/manifest.xml:$(TARGET_COPY_OUT_VENDOR)/manifest.xml \
     vendor/zte/fujisan/proprietary/vendor/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
+
+PRODUCT_COPY_FILES += \
+    vendor/zte/fujisan/proprietary/system/bin/app6939:$(TARGET_COPY_OUT_SYSTEM)/bin/app6939 \
+    vendor/zte/fujisan/proprietary/system/bin/bt_logger:$(TARGET_COPY_OUT_SYSTEM)/bin/bt_logger \
+    vendor/zte/fujisan/proprietary/system/bin/diag_socket_log.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/diag_socket_log.sh \
+    vendor/zte/fujisan/proprietary/system/bin/drmserver:$(TARGET_COPY_OUT_SYSTEM)/bin/drmserver \
+    vendor/zte/fujisan/proprietary/system/bin/dun-server:$(TARGET_COPY_OUT_SYSTEM)/bin/dun-server \
+    vendor/zte/fujisan/proprietary/system/bin/fgchargerdumper:$(TARGET_COPY_OUT_SYSTEM)/bin/fgchargerdumper \
+    vendor/zte/fujisan/proprietary/system/bin/tloc_daemon:$(TARGET_COPY_OUT_SYSTEM)/bin/tloc_daemon \
+    vendor/zte/fujisan/proprietary/system/bin/usbconfig:$(TARGET_COPY_OUT_SYSTEM)/bin/usbconfig \
+    vendor/zte/fujisan/proprietary/vendor/bin/ATFWD-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/ATFWD-daemon \
+    vendor/zte/fujisan/proprietary/vendor/bin/LKCore:$(TARGET_COPY_OUT_VENDOR)/bin/LKCore \
+    vendor/zte/fujisan/proprietary/vendor/bin/adsprpcd:$(TARGET_COPY_OUT_VENDOR)/bin/adsprpcd \
+    vendor/zte/fujisan/proprietary/vendor/bin/cnd:$(TARGET_COPY_OUT_VENDOR)/bin/cnd \
+    vendor/zte/fujisan/proprietary/vendor/bin/cnss_diag:$(TARGET_COPY_OUT_VENDOR)/bin/cnss_diag \
+    vendor/zte/fujisan/proprietary/vendor/bin/copypartnerapp:$(TARGET_COPY_OUT_VENDOR)/bin/copypartnerapp \
+    vendor/zte/fujisan/proprietary/vendor/bin/diag_mdlog:$(TARGET_COPY_OUT_VENDOR)/bin/diag_mdlog \
+    vendor/zte/fujisan/proprietary/vendor/bin/dpmQmiMgr:$(TARGET_COPY_OUT_VENDOR)/bin/dpmQmiMgr \
+    vendor/zte/fujisan/proprietary/vendor/bin/energy-awareness:$(TARGET_COPY_OUT_VENDOR)/bin/energy-awareness \
+    vendor/zte/fujisan/proprietary/vendor/bin/event_record_softlink.sh:$(TARGET_COPY_OUT_VENDOR)/bin/event_record_softlink.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/gamed:$(TARGET_COPY_OUT_VENDOR)/bin/gamed \
+    vendor/zte/fujisan/proprietary/vendor/bin/hvdcp_opti:$(TARGET_COPY_OUT_VENDOR)/bin/hvdcp_opti \
+    vendor/zte/fujisan/proprietary/vendor/bin/ims_rtp_daemon:$(TARGET_COPY_OUT_VENDOR)/bin/ims_rtp_daemon \
+    vendor/zte/fujisan/proprietary/vendor/bin/imsdatadaemon:$(TARGET_COPY_OUT_VENDOR)/bin/imsdatadaemon \
+    vendor/zte/fujisan/proprietary/vendor/bin/imsqmidaemon:$(TARGET_COPY_OUT_VENDOR)/bin/imsqmidaemon \
+    vendor/zte/fujisan/proprietary/vendor/bin/imsrcsd:$(TARGET_COPY_OUT_VENDOR)/bin/imsrcsd \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.qcom.crashdata.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.crashdata.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/init.qcom.early_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.early_boot.sh \
+    vendor/zte/fujisan/proprietary/vendor/bin/ipacm-diag:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm-diag \
+    vendor/zte/fujisan/proprietary/vendor/bin/loc_launcher:$(TARGET_COPY_OUT_VENDOR)/bin/loc_launcher \
+    vendor/zte/fujisan/proprietary/vendor/bin/mlid:$(TARGET_COPY_OUT_VENDOR)/bin/mlid \
+    vendor/zte/fujisan/proprietary/vendor/bin/mm-pp-dpps:$(TARGET_COPY_OUT_VENDOR)/bin/mm-pp-dpps \
+    vendor/zte/fujisan/proprietary/vendor/bin/mm-qcamera-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/mm-qcamera-daemon \
+    vendor/zte/fujisan/proprietary/vendor/bin/mmi:$(TARGET_COPY_OUT_VENDOR)/bin/mmi \
+    vendor/zte/fujisan/proprietary/vendor/bin/port-bridge:$(TARGET_COPY_OUT_VENDOR)/bin/port-bridge \
+    vendor/zte/fujisan/proprietary/vendor/bin/power_off_alarm:$(TARGET_COPY_OUT_VENDOR)/bin/power_off_alarm \
+    vendor/zte/fujisan/proprietary/vendor/bin/qti:$(TARGET_COPY_OUT_VENDOR)/bin/qti \
+    vendor/zte/fujisan/proprietary/vendor/bin/qvop-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/qvop-daemon \
+    vendor/zte/fujisan/proprietary/vendor/bin/ssr_diag:$(TARGET_COPY_OUT_VENDOR)/bin/ssr_diag \
+    vendor/zte/fujisan/proprietary/vendor/bin/tftp_server:$(TARGET_COPY_OUT_VENDOR)/bin/tftp_server \
+    vendor/zte/fujisan/proprietary/vendor/bin/time_daemon:$(TARGET_COPY_OUT_VENDOR)/bin/time_daemon \
+    vendor/zte/fujisan/proprietary/vendor/bin/wcnss_filter:$(TARGET_COPY_OUT_VENDOR)/bin/wcnss_filter \
+    vendor/zte/fujisan/proprietary/vendor/bin/wigighalsvc:$(TARGET_COPY_OUT_VENDOR)/bin/wigighalsvc \
+    vendor/zte/fujisan/proprietary/vendor/bin/wigignpt:$(TARGET_COPY_OUT_VENDOR)/bin/wigignpt \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/rild:$(TARGET_COPY_OUT_VENDOR)/bin/hw/rild \
+    vendor/zte/fujisan/proprietary/vendor/etc/wifi/aoa_cldb_falcon.bin:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/aoa_cldb_falcon.bin \
+    vendor/zte/fujisan/proprietary/vendor/etc/wifi/aoa_cldb_swl14.bin:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/aoa_cldb_swl14.bin \
+    vendor/zte/fujisan/proprietary/vendor/etc/wifi/wigig_p2p_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wigig_p2p_supplicant.conf \
+    vendor/zte/fujisan/proprietary/vendor/etc/wifi/wigig_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wigig_supplicant.conf
