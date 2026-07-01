@@ -217,7 +217,6 @@ case "$target" in
                 setprop ro.sf.lcd_density 560
                 ;;
         esac
-        setprop persist.sys.force_sw_gles 1
         ;;
     "msm8937" | "msm8940")
         # Set ro.opengles.version based on chip id.
