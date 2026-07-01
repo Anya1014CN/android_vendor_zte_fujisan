@@ -1,6 +1,6 @@
 #!/system/bin/sh
 
-OUT=/data/local/tmp/los-bootlog
+OUT=/cache/los-bootlog
 mkdir -p "$OUT"
 chmod 0777 "$OUT"
 
