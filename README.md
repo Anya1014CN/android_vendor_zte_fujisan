@@ -15,3 +15,6 @@ Notes:
   present on the live Oreo system image. The only missing rc-referenced
   executable that does exist on stock is `vendor/bin/sh`, so it is included for
   bring-up while the unused service stanzas stay untouched.
+- `libkeymaster_staging.so` is copied into `vendor/lib64` even though stock
+  stores it in `system/lib64`; the stock keymaster 3.0 HAL is loaded through
+  the vendor namespace and otherwise cannot resolve that dependency.
