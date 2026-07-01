@@ -390,7 +390,7 @@ on property:init.svc.surfaceflinger=stopped
     stop ppd
 
 on property:init.svc.surfaceflinger=running
-    start ppd
+    # Disabled during bring-up: mm-pp-dpps crashes after SurfaceFlinger starts.
 
 on property:init.svc.surfaceflinger=restarting
     stop ppd
@@ -399,7 +399,7 @@ on property:init.svc.zygote=stopped
     stop ppd
 
 on property:init.svc.zygote=running
-    start ppd
+    # Disabled during bring-up: mm-pp-dpps crashes after SurfaceFlinger starts.
 
 on property:init.svc.zygote=restarting
     stop ppd
@@ -455,4 +455,3 @@ on property:sensor.zte.restart=1
     write /sys/bus/msm_subsys/devices/subsys4/restart_level related
     write /sys/kernel/debug/msm_subsys/slpi restart
     write /sys/bus/msm_subsys/devices/subsys4/restart_level SYSTEM
-
