@@ -1,0 +1,12 @@
+service fujisan-display-setup /vendor/bin/init.fujisan.display.sh
+    class core
+    user root
+    group root graphics input system
+    disabled
+    oneshot
+
+on early-boot
+    start fujisan-display-setup
+
+on property:init.svc.surfaceflinger=running
+    start fujisan-display-setup
