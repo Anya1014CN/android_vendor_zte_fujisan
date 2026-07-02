@@ -73,6 +73,7 @@ case "$baseband" in
         start ril-daemon3
     fi
 
+    use_data_netmgrd=`getprop ro.use_data_netmgrd`
     case "$datamode" in
         "tethered")
             start qti
@@ -80,11 +81,15 @@ case "$baseband" in
             ;;
         "concurrent")
             start qti
-            start netmgrd
+            if [ "$use_data_netmgrd" != "false" ]; then
+                start netmgrd
+            fi
             start port-bridge
             ;;
         *)
-            start netmgrd
+            if [ "$use_data_netmgrd" != "false" ]; then
+                start netmgrd
+            fi
             ;;
     esac
 esac
