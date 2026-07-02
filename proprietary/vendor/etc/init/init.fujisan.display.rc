@@ -1,5 +1,6 @@
 service fujisan-display-setup /vendor/bin/init.fujisan.display.sh
     class core
+    seclabel u:r:init:s0
     user root
     group root graphics input system
     disabled
