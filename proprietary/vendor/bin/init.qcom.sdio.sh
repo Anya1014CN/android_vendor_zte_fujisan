@@ -35,13 +35,6 @@
 arg=$1
 target=`getprop ro.board.platform`
 
-if [ "$target" = "msm8996" ]; then
-    if ! grep -q '^wlan ' /proc/modules 2>/dev/null; then
-        insmod /vendor/lib/modules/wlan.ko
-    fi
-    exit 0
-fi
-
 case "$target" in
     "msm7627_6x")
         echo 1 > /sys/devices/platform/msm_sdcc.1/polling

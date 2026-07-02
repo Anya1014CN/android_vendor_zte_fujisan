@@ -1,8 +1,5 @@
-on property:sys.boot_completed=1
-    start wifi-sdio-on
-
 service wifi_hal_legacy /vendor/bin/hw/android.hardware.wifi@1.0-service
     class hal
-    user wifi
+    user root
     group wifi gps inet net_admin net_raw
     capabilities NET_ADMIN NET_RAW SYS_MODULE
