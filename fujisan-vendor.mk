@@ -119,6 +119,8 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/bin/wifidisplayhalservice:$(TARGET_COPY_OUT_VENDOR)/bin/wifidisplayhalservice \
     vendor/zte/fujisan/proprietary/vendor/bin/copypartnerapp:$(TARGET_COPY_OUT_VENDOR)/bin/copypartnerapp \
     vendor/zte/fujisan/proprietary/vendor/bin/qvop-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/qvop-daemon \
+    vendor/zte/fujisan/proprietary/vendor/lib/modules/wlan.ko:$(TARGET_COPY_OUT_VENDOR)/lib/modules/wlan.ko \
+    vendor/zte/fujisan/proprietary/vendor/lib/modules/qca_cld/qca_cld_wlan.ko:$(TARGET_COPY_OUT_VENDOR)/lib/modules/qca_cld/qca_cld_wlan.ko \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/rild:$(TARGET_COPY_OUT_VENDOR)/bin/hw/rild \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.camera.provider@2.4-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.camera.provider@2.4-service \
     vendor/zte/fujisan/proprietary/system/bin/app6939:$(TARGET_COPY_OUT_SYSTEM)/bin/app6939 \
