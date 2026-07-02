@@ -500,6 +500,7 @@ on property:persist.debug.trace=1
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
+    stop hostapd
 
 on property:bluetooth.sap.status=running
     start bt-sap
@@ -835,12 +836,14 @@ on property:wifi.ftmd.load=true
 
 service cnss_diag /system/vendor/bin/cnss_diag -q -f
     class main
+    seclabel u:r:wcnss_service:s0
     user system
     group system wifi inet net_admin sdcard_rw media_rw diag
     oneshot
 
 service cnss-daemon /system/vendor/bin/cnss-daemon -n -l
     class late_start
+    seclabel u:r:wcnss_service:s0
     user system
     group system inet net_admin wifi
     capabilities NET_ADMIN
@@ -934,6 +937,14 @@ service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
 
 service wifi-sdio-on /vendor/bin/init.qcom.sdio.sh
     class late_start
+    seclabel u:r:qti_init_shell:s0
+    group wifi inet
+    disabled
+    oneshot
+
+service wcnss-service /vendor/bin/init.qcom.sdio.sh
+    class late_start
+    seclabel u:r:qti_init_shell:s0
     group wifi inet
     disabled
     oneshot
@@ -962,6 +973,13 @@ on property:persist.radio.atfwd.start=true
     start atfwd
 
 service hostapd_fst /vendor/bin/hostapd -dd -g /data/vendor/wifi/hostapd/global /data/misc/wifi/hostapd.conf
+    class late_start
+    user wifi
+    group wifi inet keystore net_admin net_raw
+    oneshot
+    disabled
+
+service hostapd /vendor/bin/hostapd -dd /data/misc/wifi/hostapd.conf
     class late_start
     user wifi
     group wifi inet keystore net_admin net_raw
