@@ -155,8 +155,17 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/etc/init/init.fujisan.display.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.fujisan.display.rc \
     vendor/zte/fujisan/proprietary/vendor/bin/los-bootlog.sh:$(TARGET_COPY_OUT_VENDOR)/bin/los-bootlog.sh \
     vendor/zte/fujisan/proprietary/vendor/etc/init/los-bootlog.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/los-bootlog.rc \
+    vendor/zte/fujisan/proprietary/vendor/lib/hw/gralloc.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/gralloc.msm8996.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/hw/hwcomposer.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/hwcomposer.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/gralloc.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gralloc.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/hwcomposer.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/hwcomposer.msm8996.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/egl/eglSubDriverAndroid.so:$(TARGET_COPY_OUT_VENDOR)/lib/egl/eglSubDriverAndroid.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/egl/libEGL_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib/egl/libEGL_adreno.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/egl/libGLESv1_CM_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib/egl/libGLESv1_CM_adreno.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/egl/libGLESv2_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib/egl/libGLESv2_adreno.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/egl/libQTapGLES.so:$(TARGET_COPY_OUT_VENDOR)/lib/egl/libQTapGLES.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/egl/libq3dtools_adreno.so:$(TARGET_COPY_OUT_VENDOR)/lib/egl/libq3dtools_adreno.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/egl/libq3dtools_esx.so:$(TARGET_COPY_OUT_VENDOR)/lib/egl/libq3dtools_esx.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.graphics.allocator@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.graphics.allocator@2.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.graphics.composer@2.1-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.graphics.composer@2.1-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so \
@@ -343,6 +352,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.vibrator@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.vibrator@1.0-service \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/android.hardware.health@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.health@1.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.health@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.health@1.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/hw/vulkan.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/vulkan.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/lights.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/lights.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/memtrack.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/memtrack.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/power.qcom.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/power.qcom.so \
