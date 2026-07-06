@@ -1,6 +1,5 @@
 service camera-provider-2-4 /vendor/bin/hw/android.hardware.camera.provider@2.4-service
     class hal main
-    disabled
     interface android.hardware.camera.provider@2.4::ICameraProvider legacy/0
     user cameraserver
     group audio camera input drmrpc
