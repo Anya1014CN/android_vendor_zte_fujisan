@@ -406,6 +406,12 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/system/lib64/libtfa9890.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libtfa9890.so \
     vendor/zte/fujisan/proprietary/system/lib/libaudioroute.so:$(TARGET_COPY_OUT_VENDOR)/lib/libaudioroute.so \
     vendor/zte/fujisan/proprietary/system/lib64/libaudioroute.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudioroute.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libacdb-fts.so:$(TARGET_COPY_OUT_VENDOR)/lib/libacdb-fts.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libadiertac.so:$(TARGET_COPY_OUT_VENDOR)/lib/libadiertac.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libaudcal.so:$(TARGET_COPY_OUT_VENDOR)/lib/libaudcal.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libacdbloader.so:$(TARGET_COPY_OUT_VENDOR)/lib/libacdbloader.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libacdbmapper.so:$(TARGET_COPY_OUT_VENDOR)/lib/libacdbmapper.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libacdbrtac.so:$(TARGET_COPY_OUT_VENDOR)/lib/libacdbrtac.so \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/audio.primary.default.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/audio.primary.default.so \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/audio.primary.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/audio.primary.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/audio.r_submix.default.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/audio.r_submix.default.so \
@@ -414,6 +420,12 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/android.hardware.soundtrigger@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.soundtrigger@2.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/android.hardware.audio@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.audio@2.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/android.hardware.audio.effect@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.audio.effect@2.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libacdb-fts.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libacdb-fts.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libadiertac.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libadiertac.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libaudcal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudcal.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libacdbloader.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libacdbloader.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libacdbmapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libacdbmapper.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libacdbrtac.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libacdbrtac.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/audio.primary.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.primary.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/sound_trigger.primary.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/sound_trigger.primary.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.audio@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@2.0-impl.so \
@@ -422,11 +434,16 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/etc/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.conf \
     vendor/zte/fujisan/proprietary/vendor/etc/audio_output_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_output_policy.conf \
+    vendor/zte/fujisan/proprietary/vendor/etc/IPACM_cfg.xml:$(TARGET_COPY_OUT_VENDOR)/etc/IPACM_cfg.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/audio_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy.conf \
     vendor/zte/fujisan/proprietary/vendor/etc/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/audio_platform_info_i2s.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info_i2s.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/audio_tuning_mixer.txt:$(TARGET_COPY_OUT_VENDOR)/etc/audio_tuning_mixer.txt \
     vendor/zte/fujisan/proprietary/vendor/etc/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/ftm_test_config:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config \
+    vendor/zte/fujisan/proprietary/vendor/etc/ftm_test_config_msm8996-dtp-tasha-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_msm8996-dtp-tasha-snd-card \
     vendor/zte/fujisan/proprietary/vendor/etc/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
     vendor/zte/fujisan/proprietary/vendor/etc/media_codecs_dolby.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_dolby.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
@@ -435,11 +452,18 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/etc/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/media_profiles_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_vendor.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/mixer_paths_dtp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_dtp.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/mixer_paths_i2s.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_i2s.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/mixer_paths_tasha.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_tasha.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/sound_trigger_mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_mixer_paths.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/sound_trigger_mixer_paths_wcd9330.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_mixer_paths_wcd9330.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf \
+    vendor/zte/fujisan/proprietary/vendor/etc/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt \
     vendor/zte/fujisan/proprietary/vendor/etc/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config \
     vendor/zte/fujisan/proprietary/vendor/etc/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_platform_info.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf \
@@ -566,7 +590,9 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/system/framework/dolby_dax.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/dolby_dax.jar \
     vendor/zte/fujisan/proprietary/system/etc/dolby/dax-default.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/dolby/dax-default.xml \
     vendor/zte/fujisan/proprietary/system/lib/libaudioroute.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libaudioroute.so \
+    vendor/zte/fujisan/proprietary/system/lib/libtinyalsa.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtinyalsa.so \
     vendor/zte/fujisan/proprietary/system/lib64/libaudioroute.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libaudioroute.so \
+    vendor/zte/fujisan/proprietary/system/lib64/libtinyalsa.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libtinyalsa.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libC2D2.so:$(TARGET_COPY_OUT_VENDOR)/lib/libC2D2.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libGPreqcancel.so:$(TARGET_COPY_OUT_VENDOR)/lib/libGPreqcancel.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_faceproc2.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_faceproc2.so \
@@ -664,5 +690,10 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/system/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so
 
 PRODUCT_COPY_FILES += \
+    $(foreach f,$(shell cd vendor/zte/fujisan/proprietary && find vendor/etc/acdbdata -type f | sed 's#^vendor/##' | sort),vendor/zte/fujisan/proprietary/vendor/$(f):$(TARGET_COPY_OUT_VENDOR)/$(f)) \
+    $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/etc/drc/*)),vendor/zte/fujisan/proprietary/vendor/etc/drc/$(f):$(TARGET_COPY_OUT_VENDOR)/etc/drc/$(f)) \
     $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/etc/firmware/ak4962_*.bin)),vendor/zte/fujisan/proprietary/vendor/etc/firmware/$(f):$(TARGET_COPY_OUT_SYSTEM)/etc/firmware/$(f)) \
-    vendor/zte/fujisan/proprietary/vendor/etc/firmware/tfa98xx.cnt:$(TARGET_COPY_OUT_SYSTEM)/etc/firmware/tfa98xx.cnt
+    $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/etc/firmware/ak4962_*.bin)),vendor/zte/fujisan/proprietary/vendor/etc/firmware/$(f):$(TARGET_COPY_OUT_VENDOR)/etc/firmware/$(f)) \
+    $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/etc/surround_sound_3mic/*)),vendor/zte/fujisan/proprietary/vendor/etc/surround_sound_3mic/$(f):$(TARGET_COPY_OUT_VENDOR)/etc/surround_sound_3mic/$(f)) \
+    vendor/zte/fujisan/proprietary/vendor/etc/firmware/tfa98xx.cnt:$(TARGET_COPY_OUT_SYSTEM)/etc/firmware/tfa98xx.cnt \
+    vendor/zte/fujisan/proprietary/vendor/etc/firmware/tfa98xx.cnt:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/tfa98xx.cnt
