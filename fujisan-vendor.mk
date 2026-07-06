@@ -650,4 +650,5 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/system/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so
 
 PRODUCT_COPY_FILES += \
-    $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/etc/firmware/ak4962_*.bin)),vendor/zte/fujisan/proprietary/vendor/etc/firmware/$(f):$(TARGET_COPY_OUT_VENDOR)/etc/firmware/$(f))
+    $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/etc/firmware/ak4962_*.bin)),vendor/zte/fujisan/proprietary/vendor/etc/firmware/$(f):$(TARGET_COPY_OUT_SYSTEM)/etc/firmware/$(f)) \
+    vendor/zte/fujisan/proprietary/vendor/etc/firmware/tfa98xx.cnt:$(TARGET_COPY_OUT_SYSTEM)/etc/firmware/tfa98xx.cnt
