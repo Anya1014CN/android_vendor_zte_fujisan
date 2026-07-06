@@ -21,8 +21,18 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/etc/init/com.qualcomm.qti.wifidisplayhal@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/com.qualcomm.qti.wifidisplayhal@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/vendor.display.color@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.display.color@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/etc/camera/camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camera_config.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/camera/imx350_docomo_front_chromatix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/imx350_docomo_front_chromatix.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/camera/imx350_docomo_virtual_chromatix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/imx350_docomo_virtual_chromatix.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/camera/beautiful_fn/fn_default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/beautiful_fn/fn_default.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/camera/beautiful_fn/fn_imx350.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/beautiful_fn/fn_imx350.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/camera/beautiful_fn/fn_imx350_docomo.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/beautiful_fn/fn_imx350_docomo.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/camera/beautiful_fn/fn_imx386.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/beautiful_fn/fn_imx386.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/camera/beautiful_fn/fn_ov8856.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/beautiful_fn/fn_ov8856.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/data/dsi_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/dsi_config.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/data/netmgr_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/netmgr_config.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml \
     vendor/zte/fujisan/proprietary/vendor/etc/permissions/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml \
@@ -337,6 +347,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib/libqdi.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqdi.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libqservice.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqservice.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libqvop-service.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqvop-service.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libthermalclient.so:$(TARGET_COPY_OUT_VENDOR)/lib/libthermalclient.so \
     vendor/zte/fujisan/proprietary/vendor/lib/librmnetctl.so:$(TARGET_COPY_OUT_VENDOR)/lib/librmnetctl.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libsdm-diag.so:$(TARGET_COPY_OUT_VENDOR)/lib/libsdm-diag.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libsdm-disp-vndapis.so:$(TARGET_COPY_OUT_VENDOR)/lib/libsdm-disp-vndapis.so \
@@ -680,6 +691,54 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/vendor.qti.hardware.wifi.keystore@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.wifi.keystore@1.0_vendor.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/vendor.qti.hardware.wifi.supplicant@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.wifi.supplicant@1.0_vendor.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/vendor.qti.hardware.wigig.supptunnel@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.wigig.supptunnel@1.0.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/camera.device@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/camera.device@1.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/camera.device@3.2-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/camera.device@3.2-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/camera.device@3.3-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/camera.device@3.3-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/hw/android.hardware.camera.provider@2.4-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.camera.provider@2.4-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/hw/camera.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/camera.msm8996.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libImgFvDetect.so:$(TARGET_COPY_OUT_VENDOR)/lib/libImgFvDetect.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libVDBlurlessAPI.so:$(TARGET_COPY_OUT_VENDOR)/lib/libVDBlurlessAPI.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libautohdr_check.so:$(TARGET_COPY_OUT_VENDOR)/lib/libautohdr_check.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libfn_facebeauty_v2.so:$(TARGET_COPY_OUT_VENDOR)/lib/libfn_facebeauty_v2.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmm-qcamera.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmm-qcamera.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera2_mct_shimlayer.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera2_mct_shimlayer.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera2_q3a_core.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera2_q3a_core.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera2_q3a_release.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera2_q3a_release.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmjpeg_interface.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmjpeg_interface.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_dummyalgo.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_dummyalgo.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_eebinparse.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_eebinparse.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_eeprom_util.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_eeprom_util.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_facedetection_lib.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_facedetection_lib.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_faceproc.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_faceproc.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_hdr_gb_lib.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_hdr_gb_lib.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_hvx_add_constant.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_hvx_add_constant.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_hvx_grid_sum.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_hvx_grid_sum.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_hvx_zzHDR.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_hvx_zzHDR.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_imglib_faceproc_adspstub.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_imglib_faceproc_adspstub.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_imx350_docomo_front.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_imx350_docomo_front.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_imx350_docomo_night.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_imx350_docomo_night.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_imx350_docomo_vf_night.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_imx350_docomo_vf_night.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_imx350_docomo_virtual.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_imx350_docomo_virtual.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_interface.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_interface.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_isp_hdr46.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_isp_hdr46.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_sony_imx350_docomo_eeprom.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_sony_imx350_docomo_eeprom.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_sw2d_lib.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_sw2d_lib.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_tintless_algo.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_tintless_algo.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_tintless_bg_pca_algo.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_tintless_bg_pca_algo.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_tuning.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_tuning.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_tuning_lookup.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_tuning_lookup.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libmmjpeg.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmjpeg.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/vendor.qti.hardware.camera.device@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.camera.device@1.0_vendor.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/camera.device@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera.device@1.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/camera.device@3.2-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera.device@3.2-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/camera.device@3.3-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/camera.device@3.3-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.camera.provider@2.4-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.camera.provider@2.4-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libmmcamera2_is.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libmmcamera2_is.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libmmcamera2_q3a_core.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libmmcamera2_q3a_core.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libmmcamera2_stats_algorithm.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libmmcamera2_stats_algorithm.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libmmcamera_tintless_algo.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libmmcamera_tintless_algo.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libmmcamera_tintless_bg_pca_algo.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libmmcamera_tintless_bg_pca_algo.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/vendor.qti.hardware.camera.device@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.camera.device@1.0_vendor.so \
     vendor/zte/fujisan/proprietary/system/lib/libsensor_reg.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libsensor_reg.so \
     vendor/zte/fujisan/proprietary/system/lib/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtrueportrait.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libseemore.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libseemore.so \
@@ -691,6 +750,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(foreach f,$(shell cd vendor/zte/fujisan/proprietary && find vendor/etc/acdbdata -type f | sed 's#^vendor/##' | sort),vendor/zte/fujisan/proprietary/vendor/$(f):$(TARGET_COPY_OUT_VENDOR)/$(f)) \
+    $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/lib/libchromatix_imx350_docomo*.so)),vendor/zte/fujisan/proprietary/vendor/lib/$(f):$(TARGET_COPY_OUT_VENDOR)/lib/$(f)) \
     $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/etc/drc/*)),vendor/zte/fujisan/proprietary/vendor/etc/drc/$(f):$(TARGET_COPY_OUT_VENDOR)/etc/drc/$(f)) \
     $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/etc/firmware/ak4962_*.bin)),vendor/zte/fujisan/proprietary/vendor/etc/firmware/$(f):$(TARGET_COPY_OUT_SYSTEM)/etc/firmware/$(f)) \
     $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/etc/firmware/ak4962_*.bin)),vendor/zte/fujisan/proprietary/vendor/etc/firmware/$(f):$(TARGET_COPY_OUT_VENDOR)/etc/firmware/$(f)) \
