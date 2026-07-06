@@ -388,6 +388,18 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera2_mct.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera2_mct.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera2_sensor_modules.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera2_sensor_modules.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera2_stats_modules.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera2_stats_modules.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libqomx_core.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqomx_core.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libqomx_jpegdec.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqomx_jpegdec.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libqomx_jpegenc.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqomx_jpegenc.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libqomx_jpegenc_pipe.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqomx_jpegenc_pipe.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libFNVfbEngineHAL.so:$(TARGET_COPY_OUT_VENDOR)/lib/libFNVfbEngineHAL.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libfnxml.so:$(TARGET_COPY_OUT_VENDOR)/lib/libfnxml.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libZEffectLib.so:$(TARGET_COPY_OUT_VENDOR)/lib/libZEffectLib.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libflash_pmic.so:$(TARGET_COPY_OUT_VENDOR)/lib/libflash_pmic.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libactuator_bu64297_imx350_docomo.so:$(TARGET_COPY_OUT_VENDOR)/lib/libactuator_bu64297_imx350_docomo.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libactuator_ak7371.so:$(TARGET_COPY_OUT_VENDOR)/lib/libactuator_ak7371.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/mmi_eeprom.so:$(TARGET_COPY_OUT_VENDOR)/lib/mmi_eeprom.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/mmi_flashlight.so:$(TARGET_COPY_OUT_VENDOR)/lib/mmi_flashlight.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libperipheral_client.so:$(TARGET_COPY_OUT_VENDOR)/lib/libperipheral_client.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libqcmaputils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqcmaputils.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libqmi.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqmi.so \
