@@ -228,6 +228,9 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/etc/init/los-bootlog.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/los-bootlog.rc \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/gralloc.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/gralloc.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/hwcomposer.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/hwcomposer.msm8996.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/hw/android.hardware.graphics.allocator@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.graphics.allocator@2.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/hw/android.hardware.graphics.composer@2.1-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.graphics.composer@2.1-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/hw/android.hardware.graphics.mapper@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.graphics.mapper@2.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/gralloc.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gralloc.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/hwcomposer.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/hwcomposer.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/lib/egl/eglSubDriverAndroid.so:$(TARGET_COPY_OUT_VENDOR)/lib/egl/eglSubDriverAndroid.so \
