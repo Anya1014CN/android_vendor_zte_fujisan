@@ -102,12 +102,14 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/bin/irsc_util:$(TARGET_COPY_OUT_VENDOR)/bin/irsc_util \
     vendor/zte/fujisan/proprietary/vendor/bin/LKCore:$(TARGET_COPY_OUT_VENDOR)/bin/LKCore \
     vendor/zte/fujisan/proprietary/vendor/bin/loc_launcher:$(TARGET_COPY_OUT_VENDOR)/bin/loc_launcher \
+    vendor/zte/fujisan/proprietary/vendor/bin/lowi-server:$(TARGET_COPY_OUT_VENDOR)/bin/lowi-server \
     vendor/zte/fujisan/proprietary/vendor/bin/mlid:$(TARGET_COPY_OUT_VENDOR)/bin/mlid \
     vendor/zte/fujisan/proprietary/vendor/bin/msm_irqbalance:$(TARGET_COPY_OUT_VENDOR)/bin/msm_irqbalance \
     vendor/zte/fujisan/proprietary/vendor/bin/mm-pp-dpps:$(TARGET_COPY_OUT_VENDOR)/bin/mm-pp-dpps \
     vendor/zte/fujisan/proprietary/vendor/bin/mm-qcamera-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/mm-qcamera-daemon \
     vendor/zte/fujisan/proprietary/vendor/bin/mmi:$(TARGET_COPY_OUT_VENDOR)/bin/mmi \
     vendor/zte/fujisan/proprietary/vendor/bin/netmgrd:$(TARGET_COPY_OUT_VENDOR)/bin/netmgrd \
+    vendor/zte/fujisan/proprietary/vendor/bin/slim_daemon:$(TARGET_COPY_OUT_VENDOR)/bin/slim_daemon \
     vendor/zte/fujisan/proprietary/vendor/bin/pm-proxy:$(TARGET_COPY_OUT_VENDOR)/bin/pm-proxy \
     vendor/zte/fujisan/proprietary/vendor/bin/pm-service:$(TARGET_COPY_OUT_VENDOR)/bin/pm-service \
     vendor/zte/fujisan/proprietary/vendor/bin/port-bridge:$(TARGET_COPY_OUT_VENDOR)/bin/port-bridge \
@@ -129,6 +131,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/bin/wifidisplayhalservice:$(TARGET_COPY_OUT_VENDOR)/bin/wifidisplayhalservice \
     vendor/zte/fujisan/proprietary/vendor/bin/copypartnerapp:$(TARGET_COPY_OUT_VENDOR)/bin/copypartnerapp \
     vendor/zte/fujisan/proprietary/vendor/bin/qvop-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/qvop-daemon \
+    vendor/zte/fujisan/proprietary/vendor/bin/xtra-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/xtra-daemon \
     vendor/zte/fujisan/proprietary/vendor/lib/modules/wlan.ko:$(TARGET_COPY_OUT_VENDOR)/lib/modules/wlan.ko \
     vendor/zte/fujisan/proprietary/vendor/lib/modules/qca_cld/qca_cld_wlan.ko:$(TARGET_COPY_OUT_VENDOR)/lib/modules/qca_cld/qca_cld_wlan.ko \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/rild:$(TARGET_COPY_OUT_VENDOR)/bin/hw/rild \
@@ -317,6 +320,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/libloc_pla.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libloc_pla.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libloc_stub.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libloc_stub.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/liblowi_client.so:$(TARGET_COPY_OUT_VENDOR)/lib64/liblowi_client.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/libslimclient.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libslimclient.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libllvm-glnext.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libllvm-glnext.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libmdmdetect.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libmdmdetect.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/libmmcamera_dbg.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libmmcamera_dbg.so \
@@ -386,6 +390,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib/libloc_pla.so:$(TARGET_COPY_OUT_VENDOR)/lib/libloc_pla.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libloc_stub.so:$(TARGET_COPY_OUT_VENDOR)/lib/libloc_stub.so \
     vendor/zte/fujisan/proprietary/vendor/lib/liblowi_client.so:$(TARGET_COPY_OUT_VENDOR)/lib/liblowi_client.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/libslimclient.so:$(TARGET_COPY_OUT_VENDOR)/lib/libslimclient.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libmdmdetect.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmdmdetect.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera_dbg.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_dbg.so \
     vendor/zte/fujisan/proprietary/vendor/lib/libmmcamera2_iface_modules.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera2_iface_modules.so \
