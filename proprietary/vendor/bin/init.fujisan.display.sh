@@ -1,5 +1,7 @@
 #!/vendor/bin/sh
 
+export PATH=/system/bin:/vendor/bin:/system/xbin
+
 getprop_int() {
     local value
     value="$(getprop "$1")"
@@ -8,6 +10,28 @@ getprop_int() {
         return
     fi
     echo "$2"
+}
+
+get_setting_int() {
+    local namespace="$1"
+    local key="$2"
+    local fallback="$3"
+    local value
+
+    if [ ! -x "$settings_bin" ]; then
+        echo "$fallback"
+        return
+    fi
+
+    value="$("$settings_bin" get "$namespace" "$key" 2>/dev/null | tr -d '\r')"
+    case "$value" in
+        ""|null)
+            echo "$fallback"
+            ;;
+        *)
+            echo "$value"
+            ;;
+    esac
 }
 
 write_if_exists() {
@@ -23,25 +47,67 @@ hall_status="$(getprop_int persist.sys.zte.hallStatus 1)"
 boot_completed="$(getprop sys.boot_completed)"
 force_dual="$(getprop_int persist.vendor.fujisan.force_dual_screen 0)"
 settings_bin="/system/bin/settings"
+open_mode_fallback=2
+secondary_state=0
+secondary_enabled=0
 
-write_if_exists /sys/class/leds/lcd-backlight/brightness 200
-write_if_exists /sys/class/graphics/fb0/blank 0
+if [ "$hall_status" = "3" ]; then
+    open_mode_fallback="$display_mode"
+fi
+
+remembered_open_mode="$(get_setting_int system hallC_display_mode "$open_mode_fallback")"
+dock_orientation="$(get_setting_int system dual_screen_dock_mode_screen_orientation_mode 2)"
+
+if [ "$hall_status" = "3" ] && [ "$dock_orientation" = "2" ]; then
+    dock_orientation=0
+    remembered_open_mode="$display_mode"
+fi
+
+case "$display_mode" in
+    2|4|8)
+        if [ "$hall_status" = "3" ] || [ "$force_dual" = "1" ]; then
+            secondary_enabled=1
+        fi
+        ;;
+    1)
+        if [ "$single_display" = "1" ]; then
+            secondary_enabled=1
+        fi
+        ;;
+esac
+
+if [ "$secondary_enabled" = "1" ]; then
+    secondary_state=2
+fi
+
 write_if_exists /proc/touchscreen/integrate_device_mode 0
 
 if [ "$boot_completed" = "1" ] && [ -x "$settings_bin" ]; then
     "$settings_bin" put system display_mode "$display_mode"
-    "$settings_bin" put system hallC_display_mode "$display_mode"
+    "$settings_bin" put system hallC_display_mode "$remembered_open_mode"
     "$settings_bin" put system displayid_single_mode "$single_display"
     "$settings_bin" put system user_choose_displayid_single_mode "$single_display"
-    "$settings_bin" put system dual_screen_dock_mode_screen_orientation_mode 0
+    "$settings_bin" put system dual_screen_dock_mode_screen_orientation_mode "$dock_orientation"
+    "$settings_bin" put system zte_secondary_lcd_state "$secondary_state"
+    "$settings_bin" put system zte_secondary_display_power_state "$secondary_state"
     "$settings_bin" put secure switch_dispaly_screen_gesture_enabled 1
 fi
 
-if [ "$display_mode" = "4" ] && { [ "$hall_status" = "3" ] || [ "$force_dual" = "1" ]; }; then
+if [ "$display_mode" = "1" ] && [ "$single_display" = "1" ]; then
+    write_if_exists /sys/class/leds/lcd-backlight/brightness 0
+    write_if_exists /sys/class/graphics/fb0/blank 4
     write_if_exists /sys/class/leds/lcd-backlight-2/brightness "$secondary_backlight"
     write_if_exists /sys/class/graphics/fb1/blank 0
-    write_if_exists /sys/class/graphics/fb2/blank 0
+    write_if_exists /sys/class/graphics/fb2/blank 4
+elif [ "$secondary_enabled" = "1" ]; then
+    write_if_exists /sys/class/leds/lcd-backlight/brightness 200
+    write_if_exists /sys/class/graphics/fb0/blank 0
+    write_if_exists /sys/class/leds/lcd-backlight-2/brightness "$secondary_backlight"
+    write_if_exists /sys/class/graphics/fb1/blank 0
+    write_if_exists /sys/class/graphics/fb2/blank 4
 else
+    write_if_exists /sys/class/leds/lcd-backlight/brightness 200
+    write_if_exists /sys/class/graphics/fb0/blank 0
     write_if_exists /sys/class/leds/lcd-backlight-2/brightness 0
     write_if_exists /sys/class/graphics/fb1/blank 4
     write_if_exists /sys/class/graphics/fb2/blank 4
