@@ -208,6 +208,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/vendor.qti.esepowermanager@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.esepowermanager@1.0_vendor.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/lib-uceservice.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib-uceservice.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/mmi_nfc.so:$(TARGET_COPY_OUT_VENDOR)/lib64/mmi_nfc.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/hw/nfc_nci.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/nfc_nci.msm8996.so \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.gatekeeper@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.gatekeeper@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.keymaster@3.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.keymaster@3.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/bin/qseecomd:$(TARGET_COPY_OUT_VENDOR)/bin/qseecomd \
