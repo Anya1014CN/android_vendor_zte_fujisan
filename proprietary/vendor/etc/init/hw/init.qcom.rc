@@ -217,11 +217,6 @@ on boot
     # Create directory used for display
     mkdir /persist/display 0770 system graphics
  
-    # NFC
-    setprop ro.nfc.port "I2C"
-    chmod 0660 /dev/pn5xx
-    chown nfc system /dev/pn5xx
-
     # Create vpp directory
     mkdir /persist/vpp 0770 media media
 
@@ -383,10 +378,6 @@ on post-fs-data
     chmod 2770 /data/vendor/perfd
     rm /data/vendor/perfd/default_values
 
-    # NFC local data and nfcee xml storage
-    mkdir /data/nfc 0770 nfc nfc
-    mkdir /data/nfc/param 0770 nfc nfc
-
     #Create IOP  deamon related dirs
     mkdir /data/vendor/iop 0770 root system
 
@@ -428,12 +419,6 @@ on post-fs-data
 
     #Create FTM_AP dir for factory test
     mkdir /data/FTM_AP 0775 system system
-
-service nqnfcinfo /system/vendor/bin/nqnfcinfo
-    class late_start
-    group nfc
-    user system
-    oneshot
 
 service iop /system/vendor/bin/iop
     class main
@@ -637,7 +622,7 @@ service qmiproxy /system/bin/qmiproxy
 service qmuxd /system/vendor/bin/qmuxd
     class main
     user root
-    group radio audio bluetooth gps nfc diag
+    group radio audio bluetooth gps diag
     disabled
 
 service netmgrd /system/vendor/bin/netmgrd
@@ -1137,11 +1122,6 @@ service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
     class late_start
     user system
     group system
-
-service esepmdaemon /system/vendor/bin/esepmdaemon
-    class core
-    user system
-    group nfc
 
 on charger
     setprop persist.sys.usb.config mass_storage
