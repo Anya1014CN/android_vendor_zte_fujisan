@@ -448,6 +448,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/vendor.zte.covolution.assertdisplay.vendorad@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.zte.covolution.assertdisplay.vendorad@1.0_vendor.so \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/vendor.display.color@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.display.color@1.0-service \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service \
+    vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.health@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.health@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.light@2.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.light@2.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.memtrack@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.memtrack@1.0-service.rc \
@@ -455,6 +456,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.sensors@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.sensors@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.thermal@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.thermal@1.0-service.rc \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.vibrator@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.vibrator@1.0-service.rc \
+    vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.biometrics.fingerprint@2.1-service \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.health@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.health@1.0-service \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.light@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.light@2.0-service \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.memtrack@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.memtrack@1.0-service \
@@ -462,6 +464,8 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.sensors@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.sensors@1.0-service \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.thermal@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.thermal@1.0-service \
     vendor/zte/fujisan/proprietary/vendor/bin/hw/android.hardware.vibrator@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.vibrator@1.0-service \
+    vendor/zte/fujisan/proprietary/vendor/lib/com.fingerprints.extension@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/com.fingerprints.extension@1.0.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/com.fingerprints.extension@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/com.fingerprints.extension@1.0.so \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/android.hardware.health@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.health@1.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.health@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.health@1.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib/hw/vulkan.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/vulkan.msm8996.so \
@@ -477,6 +481,10 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.sensors@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.sensors@1.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.thermal@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.thermal@1.0-impl.so \
     vendor/zte/fujisan/proprietary/vendor/lib64/hw/android.hardware.vibrator@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.vibrator@1.0-impl.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/mmi_fingerprint.so:$(TARGET_COPY_OUT_VENDOR)/lib/mmi_fingerprint.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/mmi_fingerprint.so:$(TARGET_COPY_OUT_VENDOR)/lib64/mmi_fingerprint.so \
+    vendor/zte/fujisan/proprietary/vendor/lib/vendor.qti.hardware.fingerprint@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.fingerprint@1.0.so \
+    vendor/zte/fujisan/proprietary/vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.fingerprint@1.0.so \
     vendor/zte/fujisan/proprietary/vendor/etc/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
     vendor/zte/fujisan/proprietary/vendor/etc/sensors/sensor_def_qcomdev.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensor_def_qcomdev.conf \
     vendor/zte/fujisan/proprietary/vendor/etc/init/android.hardware.audio@2.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.audio@2.0-service.rc \
