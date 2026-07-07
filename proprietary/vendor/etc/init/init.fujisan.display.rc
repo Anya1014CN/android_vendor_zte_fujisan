@@ -14,3 +14,18 @@ on property:init.svc.surfaceflinger=running
 
 on property:sys.boot_completed=1
     start fujisan-display-setup
+
+on property:persist.vendor.fujisan.display_mode=*
+    start fujisan-display-setup
+
+on property:persist.vendor.fujisan.single_display_id=*
+    start fujisan-display-setup
+
+on property:persist.vendor.fujisan.force_dual_screen=*
+    start fujisan-display-setup
+
+on property:persist.vendor.fujisan.secondary_backlight=*
+    start fujisan-display-setup
+
+on property:persist.sys.zte.hallStatus=*
+    start fujisan-display-setup

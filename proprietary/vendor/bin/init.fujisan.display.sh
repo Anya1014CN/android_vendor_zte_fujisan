@@ -16,24 +16,25 @@ write_if_exists() {
     fi
 }
 
-display_mode="$(getprop_int persist.vendor.fujisan.display_mode 4)"
+display_mode="$(getprop_int persist.vendor.fujisan.display_mode 1)"
 single_display="$(getprop_int persist.vendor.fujisan.single_display_id 0)"
 secondary_backlight="$(getprop_int persist.vendor.fujisan.secondary_backlight 60)"
 hall_status="$(getprop_int persist.sys.zte.hallStatus 1)"
 boot_completed="$(getprop sys.boot_completed)"
-force_dual="$(getprop_int persist.vendor.fujisan.force_dual_screen 1)"
+force_dual="$(getprop_int persist.vendor.fujisan.force_dual_screen 0)"
+settings_bin="/system/bin/settings"
 
 write_if_exists /sys/class/leds/lcd-backlight/brightness 200
 write_if_exists /sys/class/graphics/fb0/blank 0
 write_if_exists /proc/touchscreen/integrate_device_mode 0
 
-if [ "$boot_completed" = "1" ]; then
-    settings put system display_mode "$display_mode"
-    settings put system hallC_display_mode "$display_mode"
-    settings put system displayid_single_mode "$single_display"
-    settings put system user_choose_displayid_single_mode "$single_display"
-    settings put system dual_screen_dock_mode_screen_orientation_mode 0
-    settings put secure switch_dispaly_screen_gesture_enabled 1
+if [ "$boot_completed" = "1" ] && [ -x "$settings_bin" ]; then
+    "$settings_bin" put system display_mode "$display_mode"
+    "$settings_bin" put system hallC_display_mode "$display_mode"
+    "$settings_bin" put system displayid_single_mode "$single_display"
+    "$settings_bin" put system user_choose_displayid_single_mode "$single_display"
+    "$settings_bin" put system dual_screen_dock_mode_screen_orientation_mode 0
+    "$settings_bin" put secure switch_dispaly_screen_gesture_enabled 1
 fi
 
 if [ "$display_mode" = "4" ] && { [ "$hall_status" = "3" ] || [ "$force_dual" = "1" ]; }; then
