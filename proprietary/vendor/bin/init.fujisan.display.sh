@@ -21,6 +21,7 @@ single_display="$(getprop_int persist.vendor.fujisan.single_display_id 0)"
 secondary_backlight="$(getprop_int persist.vendor.fujisan.secondary_backlight 60)"
 hall_status="$(getprop_int persist.sys.zte.hallStatus 1)"
 boot_completed="$(getprop sys.boot_completed)"
+force_dual="$(getprop_int persist.vendor.fujisan.force_dual_screen 1)"
 
 write_if_exists /sys/class/leds/lcd-backlight/brightness 200
 write_if_exists /sys/class/graphics/fb0/blank 0
@@ -35,7 +36,7 @@ if [ "$boot_completed" = "1" ]; then
     settings put secure switch_dispaly_screen_gesture_enabled 1
 fi
 
-if [ "$hall_status" = "3" ] && [ "$display_mode" = "4" ]; then
+if [ "$display_mode" = "4" ] && { [ "$hall_status" = "3" ] || [ "$force_dual" = "1" ]; }; then
     write_if_exists /sys/class/leds/lcd-backlight-2/brightness "$secondary_backlight"
     write_if_exists /sys/class/graphics/fb1/blank 0
     write_if_exists /sys/class/graphics/fb2/blank 0
