@@ -11,3 +11,6 @@ on early-boot
 
 on property:init.svc.surfaceflinger=running
     start fujisan-display-setup
+
+on property:sys.boot_completed=1
+    start fujisan-display-setup
