@@ -145,6 +145,7 @@ PRODUCT_COPY_FILES += \
     vendor/zte/fujisan/proprietary/system/bin/usbconfig:$(TARGET_COPY_OUT_SYSTEM)/bin/usbconfig \
     vendor/zte/fujisan/proprietary/system/framework/izat.xt.srv.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/izat.xt.srv.jar \
     vendor/zte/fujisan/proprietary/system/etc/permissions/izat.xt.srv.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/izat.xt.srv.xml \
+    vendor/zte/fujisan/proprietary/system/vendor/firmware/libpn548ad_fw.so:$(TARGET_COPY_OUT_SYSTEM)/vendor/firmware/libpn548ad_fw.so \
     vendor/zte/fujisan/proprietary/system/lib64/vendor.qti.esepowermanager@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.esepowermanager@1.0.so \
     vendor/zte/fujisan/proprietary/system/lib/vendor.qti.esepowermanager@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vendor.qti.esepowermanager@1.0.so \
     vendor/zte/fujisan/proprietary/system/lib64/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.gnss@1.0.so \
