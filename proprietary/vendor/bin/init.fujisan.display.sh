@@ -40,6 +40,30 @@ write_if_exists() {
     fi
 }
 
+detect_secondary_fb() {
+    local fb_cnt
+    local file
+    local line
+
+    for fb_cnt in 1 2 3; do
+        file="/sys/class/graphics/fb$fb_cnt/msm_fb_panel_info"
+        if [ ! -f "$file" ]; then
+            continue
+        fi
+
+        while IFS= read -r line; do
+            case "$line" in
+                *"is_pluggable"*1*)
+                    echo "$fb_cnt"
+                    return
+                    ;;
+            esac
+        done < "$file"
+    done
+
+    echo "1"
+}
+
 display_mode="$(getprop_int persist.vendor.fujisan.display_mode 1)"
 single_display="$(getprop_int persist.vendor.fujisan.single_display_id 0)"
 secondary_backlight="$(getprop_int persist.vendor.fujisan.secondary_backlight 60)"
@@ -50,6 +74,12 @@ settings_bin="/system/bin/settings"
 open_mode_fallback=2
 secondary_state=0
 secondary_enabled=0
+secondary_fb="$(detect_secondary_fb)"
+other_fb="2"
+
+if [ "$secondary_fb" = "2" ]; then
+    other_fb="1"
+fi
 
 if [ "$hall_status" = "3" ]; then
     open_mode_fallback="$display_mode"
@@ -97,18 +127,18 @@ if [ "$display_mode" = "1" ] && [ "$single_display" = "1" ]; then
     write_if_exists /sys/class/leds/lcd-backlight/brightness 0
     write_if_exists /sys/class/graphics/fb0/blank 4
     write_if_exists /sys/class/leds/lcd-backlight-2/brightness "$secondary_backlight"
-    write_if_exists /sys/class/graphics/fb1/blank 0
-    write_if_exists /sys/class/graphics/fb2/blank 4
+    write_if_exists "/sys/class/graphics/fb$secondary_fb/blank" 0
+    write_if_exists "/sys/class/graphics/fb$other_fb/blank" 4
 elif [ "$secondary_enabled" = "1" ]; then
     write_if_exists /sys/class/leds/lcd-backlight/brightness 200
     write_if_exists /sys/class/graphics/fb0/blank 0
     write_if_exists /sys/class/leds/lcd-backlight-2/brightness "$secondary_backlight"
-    write_if_exists /sys/class/graphics/fb1/blank 0
-    write_if_exists /sys/class/graphics/fb2/blank 4
+    write_if_exists "/sys/class/graphics/fb$secondary_fb/blank" 0
+    write_if_exists "/sys/class/graphics/fb$other_fb/blank" 4
 else
     write_if_exists /sys/class/leds/lcd-backlight/brightness 200
     write_if_exists /sys/class/graphics/fb0/blank 0
     write_if_exists /sys/class/leds/lcd-backlight-2/brightness 0
-    write_if_exists /sys/class/graphics/fb1/blank 4
-    write_if_exists /sys/class/graphics/fb2/blank 4
+    write_if_exists "/sys/class/graphics/fb$secondary_fb/blank" 4
+    write_if_exists "/sys/class/graphics/fb$other_fb/blank" 4
 fi
