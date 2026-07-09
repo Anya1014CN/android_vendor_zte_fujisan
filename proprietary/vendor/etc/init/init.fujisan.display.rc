@@ -6,6 +6,13 @@ service fujisan-display-setup /vendor/bin/init.fujisan.display.sh
     disabled
     oneshot
 
+service fujisan-brightness-sync /vendor/bin/init.fujisan.display.sh --watch-brightness
+    class main
+    seclabel u:r:init:s0
+    user root
+    group root graphics system
+    disabled
+
 on early-boot
     start fujisan-display-setup
 
@@ -14,6 +21,7 @@ on property:init.svc.surfaceflinger=running
 
 on property:sys.boot_completed=1
     start fujisan-display-setup
+    start fujisan-brightness-sync
 
 on property:persist.vendor.fujisan.display_mode=*
     start fujisan-display-setup
