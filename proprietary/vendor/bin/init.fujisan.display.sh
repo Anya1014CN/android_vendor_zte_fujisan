@@ -58,61 +58,6 @@ write_if_exists() {
     fi
 }
 
-sync_brightness_loop() {
-    local display_mode
-    local single_display
-    local secondary_backlight
-    local hall_status
-    local force_dual
-    local secondary_enabled
-    local target_backlight
-    local last_backlight
-
-    last_backlight=""
-    while true; do
-        display_mode="$(getprop_int persist.vendor.fujisan.display_mode 1)"
-        single_display="$(getprop_int persist.vendor.fujisan.single_display_id 0)"
-        secondary_backlight="$(getprop_int persist.vendor.fujisan.secondary_backlight 60)"
-        hall_status="$(getprop_int persist.sys.zte.hallStatus 1)"
-        force_dual="$(getprop_int persist.vendor.fujisan.force_dual_screen 0)"
-        secondary_enabled=0
-
-        case "$display_mode" in
-            2|4|8)
-                if [ "$hall_status" = "3" ] || [ "$force_dual" = "1" ]; then
-                    secondary_enabled=1
-                fi
-                ;;
-            1)
-                if [ "$single_display" = "1" ]; then
-                    secondary_enabled=1
-                fi
-                ;;
-        esac
-
-        if [ "$secondary_enabled" = "1" ]; then
-            if [ "$display_mode" = "1" ] && [ "$single_display" = "1" ]; then
-                target_backlight="$secondary_backlight"
-            else
-                target_backlight="$(get_current_main_backlight)"
-            fi
-        else
-            target_backlight=0
-        fi
-
-        if [ "$target_backlight" != "$last_backlight" ]; then
-            write_if_exists /sys/class/leds/lcd-backlight-2/brightness "$target_backlight"
-            last_backlight="$target_backlight"
-        fi
-
-        sleep 1
-    done
-}
-
-if [ "${1:-}" = "--watch-brightness" ]; then
-    sync_brightness_loop
-fi
-
 detect_secondary_fb() {
     local fb_cnt
     local file
