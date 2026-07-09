@@ -868,6 +868,3 @@ PRODUCT_COPY_FILES += \
     $(foreach f,$(notdir $(wildcard vendor/zte/fujisan/proprietary/vendor/etc/surround_sound_3mic/*)),vendor/zte/fujisan/proprietary/vendor/etc/surround_sound_3mic/$(f):$(TARGET_COPY_OUT_VENDOR)/etc/surround_sound_3mic/$(f)) \
     vendor/zte/fujisan/proprietary/vendor/etc/firmware/tfa98xx.cnt:$(TARGET_COPY_OUT_SYSTEM)/etc/firmware/tfa98xx.cnt \
     vendor/zte/fujisan/proprietary/vendor/etc/firmware/tfa98xx.cnt:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/tfa98xx.cnt
-
-PRODUCT_PACKAGES += \
-    libqdMetaData
