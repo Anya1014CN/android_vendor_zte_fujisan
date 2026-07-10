@@ -58,15 +58,6 @@ write_if_exists() {
     fi
 }
 
-setprop_if_changed() {
-    local name="$1"
-    local value="$2"
-
-    if [ "$(getprop "$name")" != "$value" ]; then
-        setprop "$name" "$value"
-    fi
-}
-
 detect_secondary_fb() {
     local fb_cnt
     local file
@@ -115,16 +106,6 @@ fi
 
 remembered_open_mode="$(get_setting_int system hallC_display_mode "$open_mode_fallback")"
 dock_orientation="$(get_setting_int system dual_screen_dock_mode_screen_orientation_mode 2)"
-sf_replay_marker="/dev/.fujisan-dual-sf-hotplug-replayed"
-
-case "$display_mode" in
-    2|4|8)
-        if [ "$boot_completed" = "1" ] && [ "$force_dual" != "1" ]; then
-            setprop_if_changed persist.vendor.fujisan.force_dual_screen 1
-            force_dual=1
-        fi
-        ;;
-esac
 
 if [ "$hall_status" = "3" ] && [ "$dock_orientation" = "2" ]; then
     dock_orientation=0
@@ -177,15 +158,4 @@ else
     write_if_exists /sys/class/leds/lcd-backlight-2/brightness 0
     write_if_exists "/sys/class/graphics/fb$secondary_fb/blank" 4
     write_if_exists "/sys/class/graphics/fb$other_fb/blank" 4
-    rm -f "$sf_replay_marker"
-fi
-
-if [ "$boot_completed" = "1" ] \
-        && [ "$secondary_enabled" = "1" ] \
-        && [ ! -e "$sf_replay_marker" ] \
-        && [ "$(getprop init.svc.surfaceflinger)" = "running" ]; then
-    touch "$sf_replay_marker"
-    stop surfaceflinger
-    sleep 1
-    start surfaceflinger
 fi
