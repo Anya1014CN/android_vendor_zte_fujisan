@@ -114,9 +114,7 @@ fi
 
 case "$display_mode" in
     2|4|8)
-        if [ "$hall_status" = "3" ] || [ "$force_dual" = "1" ]; then
-            secondary_enabled=1
-        fi
+        secondary_enabled=1
         ;;
     1)
         if [ "$single_display" = "1" ]; then
