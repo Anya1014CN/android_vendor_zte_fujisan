@@ -8,11 +8,50 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
 
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin,$(TARGET_COPY_OUT_VENDOR)/bin)
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc,$(TARGET_COPY_OUT_VENDOR)/etc)
+FJ_VENDOR_BIN_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin,$(TARGET_COPY_OUT_VENDOR)/bin)
+FJ_VENDOR_BIN_EXCLUDES := \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hostapd:$(TARGET_COPY_OUT_VENDOR)/bin/hostapd \
+    $(LOCAL_PATH)/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
+    $(LOCAL_PATH)/proprietary/vendor/bin/vndservicemanager:$(TARGET_COPY_OUT_VENDOR)/bin/vndservicemanager \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.%:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.% \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/rild:$(TARGET_COPY_OUT_VENDOR)/bin/hw/rild \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.display.color@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.display.color@1.0-service \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.qti.gnss@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.gnss@1.0-service \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/wpa_supplicant:$(TARGET_COPY_OUT_VENDOR)/bin/hw/wpa_supplicant
+PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_BIN_EXCLUDES),$(FJ_VENDOR_BIN_FILES))
+
+FJ_VENDOR_ETC_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc,$(TARGET_COPY_OUT_VENDOR)/etc)
+FJ_VENDOR_ETC_EXCLUDES := \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.%.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.%.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.display.color@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.display.color@1.0-service.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.qti.gnss@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.gnss@1.0-service.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/vndservicemanager.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vndservicemanager.rc
+PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_ETC_EXCLUDES),$(FJ_VENDOR_ETC_FILES))
+
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/firmware,$(TARGET_COPY_OUT_VENDOR)/firmware)
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib,$(TARGET_COPY_OUT_VENDOR)/lib)
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64,$(TARGET_COPY_OUT_VENDOR)/lib64)
+
+FJ_VENDOR_LIB_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib,$(TARGET_COPY_OUT_VENDOR)/lib)
+FJ_VENDOR_LIB_EXCLUDES := \
+    $(LOCAL_PATH)/proprietary/vendor/lib/android.hardware.%.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.%.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/hw/android.hardware.%.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.%.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/hw/vendor.qti.gnss@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/vendor.qti.gnss@1.0-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.display.color@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.display.color@1.0_vendor.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.gnss@1.0_vendor.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
+PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_LIB_EXCLUDES),$(FJ_VENDOR_LIB_FILES))
+
+FJ_VENDOR_LIB64_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64,$(TARGET_COPY_OUT_VENDOR)/lib64)
+FJ_VENDOR_LIB64_EXCLUDES := \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/android.hardware.%.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.%.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.%.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.%.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/vendor.qti.gnss@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.gnss@1.0-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.display.color@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.display.color@1.0_vendor.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.gnss@1.0_vendor.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
+PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_LIB64_EXCLUDES),$(FJ_VENDOR_LIB64_FILES))
+
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/radio,$(TARGET_COPY_OUT_VENDOR)/radio)
 
 # Stock system-side companions that are not produced by the AOSP build.
