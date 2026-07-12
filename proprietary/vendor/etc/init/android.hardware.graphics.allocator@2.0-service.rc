@@ -1,0 +1,12 @@
+service gralloc-2-0 /vendor/bin/hw/android.hardware.graphics.allocator@2.0-service
+    class hal animation
+    user system
+    group graphics drmrpc
+    capabilities SYS_NICE
+    onrestart restart surfaceflinger
+
+on property:init.svc.hwservicemanager=running
+    start gralloc-2-0
+
+on boot
+    start gralloc-2-0
