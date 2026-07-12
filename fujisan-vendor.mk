@@ -88,25 +88,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/etc/permissions/izat.xt.srv.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/izat.xt.srv.xml \
     $(LOCAL_PATH)/proprietary/system/framework/dolby_dax.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/dolby_dax.jar \
     $(LOCAL_PATH)/proprietary/system/framework/izat.xt.srv.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/izat.xt.srv.jar \
-    $(LOCAL_PATH)/proprietary/system/lib/android.hidl.base@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/android.hidl.base@1.0.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libhidltransport.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libhidltransport.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libhwbinder.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libhwbinder.so \
     $(LOCAL_PATH)/proprietary/system/lib/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtrueportrait.so \
     $(LOCAL_PATH)/proprietary/system/lib/soundfx/libswdap.so:$(TARGET_COPY_OUT_SYSTEM)/lib/soundfx/libswdap.so \
-    $(LOCAL_PATH)/proprietary/system/lib/vndk-sp/android.hidl.base@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vndk-sp/android.hidl.base@1.0.so \
-    $(LOCAL_PATH)/proprietary/system/lib/vndk-sp/libhidltransport.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vndk-sp/libhidltransport.so \
-    $(LOCAL_PATH)/proprietary/system/lib/vndk-sp/libhwbinder.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vndk-sp/libhwbinder.so \
     $(LOCAL_PATH)/proprietary/system/lib/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vendor.qti.gnss@1.0.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/android.hidl.base@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/android.hidl.base@1.0.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/libhidltransport.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libhidltransport.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/libhwbinder.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libhwbinder.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libtrueportrait.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libzte_zcore.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libzte_zcore.so \
     $(LOCAL_PATH)/proprietary/system/lib64/soundfx/libswdap.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/soundfx/libswdap.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/vndk-sp/android.hidl.base@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vndk-sp/android.hidl.base@1.0.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/vndk-sp/libhidltransport.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vndk-sp/libhidltransport.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/vndk-sp/libhwbinder.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vndk-sp/libhwbinder.so \
     $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.gnss@1.0.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so \
-    $(LOCAL_PATH)/proprietary/system/vendor/lib/android.hidl.base@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/vendor/lib/android.hidl.base@1.0.so \
-    $(LOCAL_PATH)/proprietary/system/vendor/lib64/android.hidl.base@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/vendor/lib64/android.hidl.base@1.0.so
+    $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so
