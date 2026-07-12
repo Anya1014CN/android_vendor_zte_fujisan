@@ -22,11 +22,19 @@ PRODUCT_COPY_FILES += \
 
 FJ_VENDOR_ETC_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc,$(TARGET_COPY_OUT_VENDOR)/etc)
 FJ_VENDOR_INIT_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init,$(TARGET_COPY_OUT_VENDOR)/etc/init)
-FJ_VENDOR_ETC_EXCLUDES := $(FJ_VENDOR_INIT_FILES)
+FJ_VENDOR_WIFI_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/wifi,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
+FJ_VENDOR_ETC_EXCLUDES := \
+    $(FJ_VENDOR_INIT_FILES) \
+    $(FJ_VENDOR_WIFI_FILES)
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_ETC_EXCLUDES),$(FJ_VENDOR_ETC_FILES))
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.dolby.hardware.dms@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.dolby.hardware.dms@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/proprietary/vendor/etc/wifi/aoa_cldb_falcon.bin:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/aoa_cldb_falcon.bin \
+    $(LOCAL_PATH)/proprietary/vendor/etc/wifi/aoa_cldb_swl14.bin:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/aoa_cldb_swl14.bin \
+    $(LOCAL_PATH)/proprietary/vendor/etc/wifi/wigig_p2p_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wigig_p2p_supplicant.conf \
+    $(LOCAL_PATH)/proprietary/vendor/etc/wifi/wigig_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wigig_supplicant.conf
 
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/firmware,$(TARGET_COPY_OUT_VENDOR)/firmware)
 
