@@ -16,13 +16,12 @@ FJ_VENDOR_BIN_EXCLUDES := \
     $(LOCAL_PATH)/proprietary/vendor/bin/vndservicemanager:$(TARGET_COPY_OUT_VENDOR)/bin/vndservicemanager \
     $(FJ_VENDOR_BIN_HW_FILES)
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_BIN_EXCLUDES),$(FJ_VENDOR_BIN_FILES))
-# HAL services with Android 11 source implementations are built in device.mk.
-# Keep the Android 8 qdutils/vendorad services out until they have a dedicated
-# legacy linker namespace; starting them against the platform VNDK crash-loops.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service
 
 FJ_VENDOR_ETC_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc,$(TARGET_COPY_OUT_VENDOR)/etc)
 FJ_VENDOR_INIT_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init,$(TARGET_COPY_OUT_VENDOR)/etc/init)
-FJ_VENDOR_INIT_HW_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init/hw,$(TARGET_COPY_OUT_VENDOR)/etc/init/hw)
 FJ_VENDOR_WIFI_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/wifi,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
 FJ_VENDOR_WIFI_GENERATED_FILES := \
     $(LOCAL_PATH)/proprietary/vendor/etc/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf
@@ -31,7 +30,8 @@ FJ_VENDOR_ETC_EXCLUDES := \
     $(FJ_VENDOR_WIFI_FILES)
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_ETC_EXCLUDES),$(FJ_VENDOR_ETC_FILES))
 PRODUCT_COPY_FILES += \
-    $(FJ_VENDOR_INIT_HW_FILES) \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc \
     $(filter-out $(FJ_VENDOR_WIFI_GENERATED_FILES),$(FJ_VENDOR_WIFI_FILES))
 
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/firmware,$(TARGET_COPY_OUT_VENDOR)/firmware)
@@ -50,6 +50,8 @@ FJ_VENDOR_LIB_EXCLUDES := \
     $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.gnss@1.0_vendor.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_LIB_EXCLUDES),$(FJ_VENDOR_LIB_FILES))
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
 FJ_VENDOR_LIB64_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64,$(TARGET_COPY_OUT_VENDOR)/lib64)
 FJ_VENDOR_LIB64_HW_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64/hw,$(TARGET_COPY_OUT_VENDOR)/lib64/hw)
@@ -66,6 +68,8 @@ FJ_VENDOR_LIB64_EXCLUDES := \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.gnss@1.0_vendor.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_LIB64_EXCLUDES),$(FJ_VENDOR_LIB64_FILES))
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/radio,$(TARGET_COPY_OUT_VENDOR)/radio)
 
