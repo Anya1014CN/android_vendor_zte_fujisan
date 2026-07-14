@@ -24,13 +24,15 @@ FJ_VENDOR_ETC_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary
 FJ_VENDOR_INIT_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init,$(TARGET_COPY_OUT_VENDOR)/etc/init)
 FJ_VENDOR_INIT_HW_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init/hw,$(TARGET_COPY_OUT_VENDOR)/etc/init/hw)
 FJ_VENDOR_WIFI_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/wifi,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
+FJ_VENDOR_WIFI_GENERATED_FILES := \
+    $(LOCAL_PATH)/proprietary/vendor/etc/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf
 FJ_VENDOR_ETC_EXCLUDES := \
     $(FJ_VENDOR_INIT_FILES) \
     $(FJ_VENDOR_WIFI_FILES)
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_ETC_EXCLUDES),$(FJ_VENDOR_ETC_FILES))
 PRODUCT_COPY_FILES += \
     $(FJ_VENDOR_INIT_HW_FILES) \
-    $(FJ_VENDOR_WIFI_FILES)
+    $(filter-out $(FJ_VENDOR_WIFI_GENERATED_FILES),$(FJ_VENDOR_WIFI_FILES))
 
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/firmware,$(TARGET_COPY_OUT_VENDOR)/firmware)
 
