@@ -1,5 +1,5 @@
 <manifest version="1.0" type="device" target-level="2">
-    <!-- Audio HAL is built from the LineageOS 18.1 source tree. -->
+    <!-- Required by the level 2 framework matrix; no audio HAL service is packaged. -->
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
@@ -126,7 +126,7 @@
     <hal format="hidl">
         <name>android.hardware.health</name>
         <transport>hwbinder</transport>
-        <version>2.1</version>
+        <version>1.0</version>
         <interface>
             <name>IHealth</name>
             <instance>default</instance>
