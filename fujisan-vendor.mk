@@ -12,6 +12,7 @@ FJ_VENDOR_BIN_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary
 FJ_VENDOR_BIN_HW_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin/hw,$(TARGET_COPY_OUT_VENDOR)/bin/hw)
 FJ_VENDOR_BIN_EXCLUDES := \
     $(LOCAL_PATH)/proprietary/vendor/bin/hostapd:$(TARGET_COPY_OUT_VENDOR)/bin/hostapd \
+    $(LOCAL_PATH)/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
     $(LOCAL_PATH)/proprietary/vendor/bin/vndservicemanager:$(TARGET_COPY_OUT_VENDOR)/bin/vndservicemanager \
     $(FJ_VENDOR_BIN_HW_FILES)
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_BIN_EXCLUDES),$(FJ_VENDOR_BIN_FILES))
