@@ -20,7 +20,6 @@ bin_exclude += \
 PRODUCT_COPY_FILES := $(filter-out $(bin_exclude),$(PRODUCT_COPY_FILES))
 # Only these few hw services have no AOSP equivalent.
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/rild:$(TARGET_COPY_OUT_VENDOR)/bin/hw/rild \
     $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti \
     $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service
 
