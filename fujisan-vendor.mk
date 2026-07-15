@@ -10,36 +10,67 @@ PRODUCT_COPY_FILES += \
 
 FJ_VENDOR_BIN_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin,$(TARGET_COPY_OUT_VENDOR)/bin)
 FJ_VENDOR_BIN_HW_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin/hw,$(TARGET_COPY_OUT_VENDOR)/bin/hw)
+
+# Exclude prebuilts that the device tree builds from AOSP source.
+FJ_VENDOR_BIN_HW_DEVICE_BUILT := \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.configstore@1.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.configstore@1.1-service \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.graphics.allocator@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.graphics.allocator@2.0-service \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.graphics.composer@2.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.graphics.composer@2.1-service \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.health@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.health@1.0-service \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.memtrack@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.memtrack@1.0-service \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.power@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.power@1.0-service \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.sensors@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.sensors@1.0-service
+
 FJ_VENDOR_BIN_EXCLUDES := \
     $(LOCAL_PATH)/proprietary/vendor/bin/hostapd:$(TARGET_COPY_OUT_VENDOR)/bin/hostapd \
     $(LOCAL_PATH)/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
     $(LOCAL_PATH)/proprietary/vendor/bin/vndservicemanager:$(TARGET_COPY_OUT_VENDOR)/bin/vndservicemanager \
-    $(FJ_VENDOR_BIN_HW_FILES)
+    $(FJ_VENDOR_BIN_HW_DEVICE_BUILT)
+
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_BIN_EXCLUDES),$(FJ_VENDOR_BIN_FILES))
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service
+PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_BIN_HW_DEVICE_BUILT),$(FJ_VENDOR_BIN_HW_FILES))
 
 FJ_VENDOR_ETC_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc,$(TARGET_COPY_OUT_VENDOR)/etc)
 FJ_VENDOR_INIT_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init,$(TARGET_COPY_OUT_VENDOR)/etc/init)
 FJ_VENDOR_WIFI_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/wifi,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
 FJ_VENDOR_WIFI_GENERATED_FILES := \
     $(LOCAL_PATH)/proprietary/vendor/etc/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf
+
+# Exclude init scripts for HALs that the device tree builds from AOSP source.
+FJ_VENDOR_INIT_DEVICE_BUILT := \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.graphics.allocator@2.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.graphics.allocator@2.0-service.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.graphics.composer@2.1-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.graphics.composer@2.1-service.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.health@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.health@1.0-service.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.memtrack@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.memtrack@1.0-service.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.power@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.power@1.0-service.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.sensors@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.sensors@1.0-service.rc
+
+# Include all vendor init scripts except the ones built by device tree.
+PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_INIT_DEVICE_BUILT),$(FJ_VENDOR_INIT_FILES))
+
+# Include all vendor wifi configs except the generated wpa_supplicant.conf.
+PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_WIFI_GENERATED_FILES),$(FJ_VENDOR_WIFI_FILES))
+
+# Include remaining vendor etc files (not init, not wifi - those are handled above).
 FJ_VENDOR_ETC_EXCLUDES := \
     $(FJ_VENDOR_INIT_FILES) \
     $(FJ_VENDOR_WIFI_FILES)
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_ETC_EXCLUDES),$(FJ_VENDOR_ETC_FILES))
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc \
-    $(filter-out $(FJ_VENDOR_WIFI_GENERATED_FILES),$(FJ_VENDOR_WIFI_FILES))
 
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/firmware,$(TARGET_COPY_OUT_VENDOR)/firmware)
 
 FJ_VENDOR_LIB_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib,$(TARGET_COPY_OUT_VENDOR)/lib)
 FJ_VENDOR_LIB_HW_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib/hw,$(TARGET_COPY_OUT_VENDOR)/lib/hw)
+
+# Exclude hw impl libraries that the device tree builds from AOSP source.
+FJ_VENDOR_LIB_HW_DEVICE_BUILT := \
+    $(LOCAL_PATH)/proprietary/vendor/lib/hw/android.hardware.graphics.allocator@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.graphics.allocator@2.0-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/hw/android.hardware.graphics.composer@2.1-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.graphics.composer@2.1-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/hw/android.hardware.graphics.mapper@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.graphics.mapper@2.0-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/hw/android.hardware.health@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.health@1.0-impl.so
+
 FJ_VENDOR_LIB_EXCLUDES := \
-    $(FJ_VENDOR_LIB_HW_FILES) \
+    $(FJ_VENDOR_LIB_HW_DEVICE_BUILT) \
     $(LOCAL_PATH)/proprietary/vendor/lib/android.hardware.tetheroffload.config@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.tetheroffload.config@1.0.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libgnsspps.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgnsspps.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libgps.utils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgps.utils.so \
@@ -50,13 +81,25 @@ FJ_VENDOR_LIB_EXCLUDES := \
     $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.gnss@1.0_vendor.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_LIB_EXCLUDES),$(FJ_VENDOR_LIB_FILES))
+PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_LIB_HW_DEVICE_BUILT),$(FJ_VENDOR_LIB_HW_FILES))
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
 FJ_VENDOR_LIB64_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64,$(TARGET_COPY_OUT_VENDOR)/lib64)
 FJ_VENDOR_LIB64_HW_FILES := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64/hw,$(TARGET_COPY_OUT_VENDOR)/lib64/hw)
+
+# Exclude hw impl libraries that the device tree builds from AOSP source.
+FJ_VENDOR_LIB64_HW_DEVICE_BUILT := \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.graphics.allocator@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.graphics.allocator@2.0-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.graphics.composer@2.1-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.graphics.composer@2.1-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.health@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.health@1.0-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.memtrack@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.memtrack@1.0-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.power@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.power@1.0-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.sensors@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.sensors@1.0-impl.so
+
 FJ_VENDOR_LIB64_EXCLUDES := \
-    $(FJ_VENDOR_LIB64_HW_FILES) \
+    $(FJ_VENDOR_LIB64_HW_DEVICE_BUILT) \
     $(LOCAL_PATH)/proprietary/vendor/lib64/android.hardware.tetheroffload.config@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.tetheroffload.config@1.0.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/android.hardware.tetheroffload.control@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.tetheroffload.control@1.0.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/libgnsspps.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libgnsspps.so \
@@ -68,6 +111,7 @@ FJ_VENDOR_LIB64_EXCLUDES := \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.gnss@1.0_vendor.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_LIB64_EXCLUDES),$(FJ_VENDOR_LIB64_FILES))
+PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_LIB64_HW_DEVICE_BUILT),$(FJ_VENDOR_LIB64_HW_FILES))
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
