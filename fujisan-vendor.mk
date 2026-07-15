@@ -45,8 +45,19 @@ FJ_VENDOR_INIT_DEVICE_BUILT := \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.power@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.power@1.0-service.rc \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.sensors@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.sensors@1.0-service.rc
 
-# Include all vendor init scripts except the ones built by device tree.
-PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_INIT_DEVICE_BUILT),$(FJ_VENDOR_INIT_FILES))
+# The stock init/hw scripts (init.qcom.rc, init.target.rc, etc.) define
+# hundreds of services referencing binaries that do not exist on AOSP-based
+# LineageOS and introduce duplicate service-definition conflicts.  Only the
+# USB configuration scripts are safe to keep from this directory.
+FJ_VENDOR_INIT_HW_EXCLUDES := \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.qcom.factory.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.factory.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.vendor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.vendor.rc
+
+# Include all vendor init scripts except the ones built by device tree
+# and the problematic stock init/hw scripts.
+PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_INIT_DEVICE_BUILT) $(FJ_VENDOR_INIT_HW_EXCLUDES),$(FJ_VENDOR_INIT_FILES))
 
 # Include all vendor wifi configs except the generated wpa_supplicant.conf.
 PRODUCT_COPY_FILES += $(filter-out $(FJ_VENDOR_WIFI_GENERATED_FILES),$(FJ_VENDOR_WIFI_FILES))
