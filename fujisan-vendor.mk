@@ -9,27 +9,20 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
 
 # ---- vendor/bin ----
-# Include all stock vendor daemons and helpers, except a few that are
-# provided by the AOSP build (hostapd, ipacm, vndservicemanager) and
-# HAL services that the device tree builds from AOSP source.
+# Include all stock vendor daemons and helpers.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin,$(TARGET_COPY_OUT_VENDOR)/bin)
+# Exclude binaries that the AOSP build provides.
 PRODUCT_COPY_FILES := $(filter-out \
     %/bin/hostapd \
     %/bin/ipacm \
     %/bin/vndservicemanager \
-    %/bin/hw/android.hardware.biometrics.fingerprint@2.1-service \
-    %/bin/hw/android.hardware.cas@1.2-service \
-    %/bin/hw/android.hardware.configstore@1.1-service \
-    %/bin/hw/android.hardware.gatekeeper@1.0-service \
-    %/bin/hw/android.hardware.graphics.allocator@2.0-service \
-    %/bin/hw/android.hardware.graphics.composer@2.1-service \
-    %/bin/hw/android.hardware.health@1.0-service \
-    %/bin/hw/android.hardware.keymaster@3.0-service \
-    %/bin/hw/android.hardware.media.omx@1.0-service \
-    %/bin/hw/android.hardware.memtrack@1.0-service \
-    %/bin/hw/android.hardware.power@1.0-service \
-    %/bin/hw/android.hardware.sensors@1.0-service, \
+    %/bin/hw/%, \
     $(PRODUCT_COPY_FILES))
+# Only these few hw services have no AOSP equivalent and must come from stock.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/rild:$(TARGET_COPY_OUT_VENDOR)/bin/hw/rild \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service
 
 # ---- vendor/etc ----
 # Include all stock configuration, excluding init scripts and wifi
@@ -41,19 +34,33 @@ PRODUCT_COPY_FILES := $(filter-out \
     $(PRODUCT_COPY_FILES))
 
 # ---- vendor/etc/init ----
-# Include all vendor init scripts except:
-#   a) HALs that the device tree builds from AOSP source
-#   b) Stock init/hw scripts that define hundreds of services for
-#      binaries not present on Lineage (init.qcom.rc, etc.)
+# Include all stock init scripts.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init,$(TARGET_COPY_OUT_VENDOR)/etc/init)
+# Exclude init scripts for HALs that AOSP builds or that define
+# hundreds of conflicting services for missing stock binaries.
 PRODUCT_COPY_FILES := $(filter-out \
+    %/etc/init/android.hardware.audio@2.0-service.rc \
     %/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc \
+    %/etc/init/android.hardware.bluetooth@1.0-service-qti.rc \
+    %/etc/init/android.hardware.camera.provider@2.4-service.rc \
+    %/etc/init/android.hardware.cas@1.2-service.rc \
+    %/etc/init/android.hardware.configstore@1.1-service.rc \
+    %/etc/init/android.hardware.gatekeeper@1.0-service.rc \
     %/etc/init/android.hardware.graphics.allocator@2.0-service.rc \
     %/etc/init/android.hardware.graphics.composer@2.1-service.rc \
     %/etc/init/android.hardware.health@1.0-service.rc \
+    %/etc/init/android.hardware.keymaster@3.0-service.rc \
+    %/etc/init/android.hardware.light@2.0-service.rc \
+    %/etc/init/android.hardware.media.omx@1.0-service.rc \
     %/etc/init/android.hardware.memtrack@1.0-service.rc \
     %/etc/init/android.hardware.power@1.0-service.rc \
     %/etc/init/android.hardware.sensors@1.0-service.rc \
+    %/etc/init/android.hardware.thermal@1.0-service.rc \
+    %/etc/init/android.hardware.vibrator@1.0-service.rc \
+    %/etc/init/android.hardware.wifi@1.0-service.rc \
+    %/etc/init/vendor.display.color@1.0-service.rc \
+    %/etc/init/vendor.dolby.hardware.dms@1.0-service.rc \
+    %/etc/init/vendor.qti.gnss@1.0-service.rc \
     %/etc/init/hw/init.qcom.rc \
     %/etc/init/hw/init.qcom.factory.rc \
     %/etc/init/hw/init.target.rc \
