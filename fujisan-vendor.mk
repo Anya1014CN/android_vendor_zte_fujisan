@@ -17,10 +17,15 @@ PRODUCT_COPY_FILES := $(filter-out \
     %/bin/hostapd \
     %/bin/ipacm \
     %/bin/vndservicemanager \
+    %/bin/hw/android.hardware.biometrics.fingerprint@2.1-service \
+    %/bin/hw/android.hardware.cas@1.2-service \
     %/bin/hw/android.hardware.configstore@1.1-service \
+    %/bin/hw/android.hardware.gatekeeper@1.0-service \
     %/bin/hw/android.hardware.graphics.allocator@2.0-service \
     %/bin/hw/android.hardware.graphics.composer@2.1-service \
     %/bin/hw/android.hardware.health@1.0-service \
+    %/bin/hw/android.hardware.keymaster@3.0-service \
+    %/bin/hw/android.hardware.media.omx@1.0-service \
     %/bin/hw/android.hardware.memtrack@1.0-service \
     %/bin/hw/android.hardware.power@1.0-service \
     %/bin/hw/android.hardware.sensors@1.0-service, \
@@ -42,6 +47,7 @@ PRODUCT_COPY_FILES := $(filter-out \
 #      binaries not present on Lineage (init.qcom.rc, etc.)
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init,$(TARGET_COPY_OUT_VENDOR)/etc/init)
 PRODUCT_COPY_FILES := $(filter-out \
+    %/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc \
     %/etc/init/android.hardware.graphics.allocator@2.0-service.rc \
     %/etc/init/android.hardware.graphics.composer@2.1-service.rc \
     %/etc/init/android.hardware.health@1.0-service.rc \
@@ -70,10 +76,14 @@ PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/
 #   b) Libraries provided by the AOSP build
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib,$(TARGET_COPY_OUT_VENDOR)/lib)
 PRODUCT_COPY_FILES := $(filter-out \
+    %/lib/hw/android.hardware.biometrics.fingerprint@2.1-impl.so \
+    %/lib/hw/android.hardware.cas@1.2-impl.so \
+    %/lib/hw/android.hardware.gatekeeper@1.0-impl.so \
     %/lib/hw/android.hardware.graphics.allocator@2.0-impl.so \
     %/lib/hw/android.hardware.graphics.composer@2.1-impl.so \
     %/lib/hw/android.hardware.graphics.mapper@2.0-impl.so \
     %/lib/hw/android.hardware.health@1.0-impl.so \
+    %/lib/hw/android.hardware.keymaster@3.0-impl.so \
     %/lib/android.hardware.tetheroffload.config@1.0.so \
     %/lib/libgnsspps.so \
     %/lib/libgps.utils.so \
@@ -94,10 +104,14 @@ PRODUCT_COPY_FILES += \
 #   b) Libraries provided by the AOSP build
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64,$(TARGET_COPY_OUT_VENDOR)/lib64)
 PRODUCT_COPY_FILES := $(filter-out \
+    %/lib64/hw/android.hardware.biometrics.fingerprint@2.1-impl.so \
+    %/lib64/hw/android.hardware.cas@1.2-impl.so \
+    %/lib64/hw/android.hardware.gatekeeper@1.0-impl.so \
     %/lib64/hw/android.hardware.graphics.allocator@2.0-impl.so \
     %/lib64/hw/android.hardware.graphics.composer@2.1-impl.so \
     %/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so \
     %/lib64/hw/android.hardware.health@1.0-impl.so \
+    %/lib64/hw/android.hardware.keymaster@3.0-impl.so \
     %/lib64/hw/android.hardware.memtrack@1.0-impl.so \
     %/lib64/hw/android.hardware.power@1.0-impl.so \
     %/lib64/hw/android.hardware.sensors@1.0-impl.so \
@@ -136,3 +150,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/lib64/libzte_zcore.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libzte_zcore.so \
     $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.gnss@1.0.so \
     $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so
+
+# Deduplicate in case find-copy-subdir-files produces overlapping entries.
+PRODUCT_COPY_FILES := $(sort $(PRODUCT_COPY_FILES))
