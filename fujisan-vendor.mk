@@ -75,62 +75,41 @@ PRODUCT_COPY_FILES := $(filter-out \
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/firmware,$(TARGET_COPY_OUT_VENDOR)/firmware)
 
 # ---- vendor/lib ----
-# Include all stock 32-bit libraries except:
-#   a) HAL impls that the device tree builds from AOSP source
-#   b) Libraries provided by the AOSP build
+# Include all stock 32-bit libraries.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib,$(TARGET_COPY_OUT_VENDOR)/lib)
-PRODUCT_COPY_FILES := $(filter-out \
-    %/lib/hw/android.hardware.biometrics.fingerprint@2.1-impl.so \
-    %/lib/hw/android.hardware.cas@1.2-impl.so \
-    %/lib/hw/android.hardware.gatekeeper@1.0-impl.so \
-    %/lib/hw/android.hardware.graphics.allocator@2.0-impl.so \
-    %/lib/hw/android.hardware.graphics.composer@2.1-impl.so \
-    %/lib/hw/android.hardware.graphics.mapper@2.0-impl.so \
-    %/lib/hw/android.hardware.health@1.0-impl.so \
-    %/lib/hw/android.hardware.keymaster@3.0-impl.so \
-    %/lib/android.hardware.tetheroffload.config@1.0.so \
-    %/lib/libgnsspps.so \
-    %/lib/libgps.utils.so \
-    %/lib/libgpustats.so \
-    %/lib/librmnetctl.so \
-    %/lib/libsdm-disp-vndapis.so \
-    %/lib/vendor.display.color@1.0_vendor.so \
-    %/lib/vendor.qti.gnss@1.0_vendor.so \
-    %/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so, \
-    $(PRODUCT_COPY_FILES))
-# Re-include qdutils_disp (required by display HAL)
+# AOSP builds all HAL impl libraries from source.
+lib_exclude := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib/hw,$(TARGET_COPY_OUT_VENDOR)/lib/hw)
+lib_exclude += \
+    $(LOCAL_PATH)/proprietary/vendor/lib/android.hardware.tetheroffload.config@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.tetheroffload.config@1.0.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libgnsspps.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgnsspps.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libgps.utils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgps.utils.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libgpustats.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgpustats.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/librmnetctl.so:$(TARGET_COPY_OUT_VENDOR)/lib/librmnetctl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libsdm-disp-vndapis.so:$(TARGET_COPY_OUT_VENDOR)/lib/libsdm-disp-vndapis.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.display.color@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.display.color@1.0_vendor.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.gnss@1.0_vendor.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
+PRODUCT_COPY_FILES := $(filter-out $(lib_exclude),$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
 # ---- vendor/lib64 ----
-# Include all stock 64-bit libraries except:
-#   a) HAL impls that the device tree builds from AOSP source
-#   b) Libraries provided by the AOSP build
+# Include all stock 64-bit libraries.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64,$(TARGET_COPY_OUT_VENDOR)/lib64)
-PRODUCT_COPY_FILES := $(filter-out \
-    %/lib64/hw/android.hardware.biometrics.fingerprint@2.1-impl.so \
-    %/lib64/hw/android.hardware.cas@1.2-impl.so \
-    %/lib64/hw/android.hardware.gatekeeper@1.0-impl.so \
-    %/lib64/hw/android.hardware.graphics.allocator@2.0-impl.so \
-    %/lib64/hw/android.hardware.graphics.composer@2.1-impl.so \
-    %/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so \
-    %/lib64/hw/android.hardware.health@1.0-impl.so \
-    %/lib64/hw/android.hardware.keymaster@3.0-impl.so \
-    %/lib64/hw/android.hardware.memtrack@1.0-impl.so \
-    %/lib64/hw/android.hardware.power@1.0-impl.so \
-    %/lib64/hw/android.hardware.sensors@1.0-impl.so \
-    %/lib64/android.hardware.tetheroffload.config@1.0.so \
-    %/lib64/android.hardware.tetheroffload.control@1.0.so \
-    %/lib64/libgnsspps.so \
-    %/lib64/libgps.utils.so \
-    %/lib64/libgpustats.so \
-    %/lib64/librmnetctl.so \
-    %/lib64/libsdm-disp-vndapis.so \
-    %/lib64/vendor.display.color@1.0_vendor.so \
-    %/lib64/vendor.qti.gnss@1.0_vendor.so \
-    %/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so, \
-    $(PRODUCT_COPY_FILES))
-# Re-include qdutils_disp (required by display HAL)
+# AOSP builds all HAL impl libraries from source.
+lib64_exclude := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64/hw,$(TARGET_COPY_OUT_VENDOR)/lib64/hw)
+lib64_exclude += \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/android.hardware.tetheroffload.config@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.tetheroffload.config@1.0.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/android.hardware.tetheroffload.control@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.tetheroffload.control@1.0.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libgnsspps.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libgnsspps.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libgps.utils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libgps.utils.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libgpustats.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libgpustats.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/librmnetctl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/librmnetctl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libsdm-disp-vndapis.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libsdm-disp-vndapis.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.display.color@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.display.color@1.0_vendor.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.gnss@1.0_vendor.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
+PRODUCT_COPY_FILES := $(filter-out $(lib64_exclude),$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
