@@ -10,9 +10,11 @@ PRODUCT_COPY_FILES += \
 
 # ---- vendor/bin ----
 # Include all stock vendor daemons and helpers, EXCLUDING the hw/
-# subdirectory whose HAL service binaries are all built from AOSP source.
+# subdirectory whose HAL service binaries are mostly built from AOSP source.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin,$(TARGET_COPY_OUT_VENDOR)/bin)
-bin_exclude := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin/hw,$(TARGET_COPY_OUT_VENDOR)/bin/hw)
+audio_hw_service_keep := \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.audio@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.audio@2.0-service
+bin_exclude := $(filter-out $(audio_hw_service_keep),$(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin/hw,$(TARGET_COPY_OUT_VENDOR)/bin/hw))
 bin_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/bin/hostapd:$(TARGET_COPY_OUT_VENDOR)/bin/hostapd \
     $(LOCAL_PATH)/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
