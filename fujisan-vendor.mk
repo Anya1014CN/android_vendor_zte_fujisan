@@ -12,8 +12,7 @@ PRODUCT_COPY_FILES += \
 # Include all stock vendor daemons and helpers, EXCLUDING the hw/
 # subdirectory whose HAL service binaries are all built from AOSP source.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin,$(TARGET_COPY_OUT_VENDOR)/bin)
-bin_exclude := $(filter-out \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin/hw,$(TARGET_COPY_OUT_VENDOR)/bin/hw))
+bin_exclude := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin/hw,$(TARGET_COPY_OUT_VENDOR)/bin/hw)
 bin_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/bin/hostapd:$(TARGET_COPY_OUT_VENDOR)/bin/hostapd \
     $(LOCAL_PATH)/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
@@ -24,10 +23,8 @@ PRODUCT_COPY_FILES := $(filter-out $(bin_exclude),$(PRODUCT_COPY_FILES))
 # Include all stock configuration, excluding init scripts and wifi
 # configs (which are handled separately below).
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc,$(TARGET_COPY_OUT_VENDOR)/etc)
-PRODUCT_COPY_FILES := $(filter-out \
-    %/etc/init/% \
-    %/etc/wifi/%, \
-    $(PRODUCT_COPY_FILES))
+vendor_etc_exclude_patterns := %/etc/init/% %/etc/wifi/%
+PRODUCT_COPY_FILES := $(filter-out $(vendor_etc_exclude_patterns),$(PRODUCT_COPY_FILES))
 
 # ---- vendor/etc/init ----
 # Include all stock init scripts.
@@ -71,9 +68,7 @@ PRODUCT_COPY_FILES += \
 # ---- vendor/etc/wifi ----
 # Include all stock wifi configs except the generated wpa_supplicant.conf.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/wifi,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
-PRODUCT_COPY_FILES := $(filter-out \
-    %/etc/wifi/wpa_supplicant.conf, \
-    $(PRODUCT_COPY_FILES))
+PRODUCT_COPY_FILES := $(filter-out %/etc/wifi/wpa_supplicant.conf,$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/etc/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
 
