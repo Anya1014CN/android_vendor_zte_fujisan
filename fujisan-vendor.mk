@@ -118,6 +118,7 @@ lib64_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 PRODUCT_COPY_FILES := $(filter-out $(lib64_exclude),$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/gatekeeper.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gatekeeper.msm8996.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
 # ---- vendor/radio ----
