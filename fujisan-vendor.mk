@@ -13,7 +13,6 @@ PRODUCT_COPY_FILES += \
 # subdirectory whose HAL service binaries are all built from AOSP source.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin,$(TARGET_COPY_OUT_VENDOR)/bin)
 bin_exclude := $(filter-out \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.biometrics.fingerprint@2.1-service \
     $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.bluetooth@1.0-service-qti, \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin/hw,$(TARGET_COPY_OUT_VENDOR)/bin/hw))
 bin_exclude += \
