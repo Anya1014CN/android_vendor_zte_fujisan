@@ -10,11 +10,9 @@ PRODUCT_COPY_FILES += \
 
 # ---- vendor/bin ----
 # Include all stock vendor daemons and helpers, EXCLUDING the hw/
-# subdirectory whose HAL service binaries are mostly built from AOSP source.
+# subdirectory whose HAL service binaries are all built from AOSP source.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin,$(TARGET_COPY_OUT_VENDOR)/bin)
-audio_hw_service_keep := \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.audio@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.audio@2.0-service
-bin_exclude := $(filter-out $(audio_hw_service_keep),$(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin/hw,$(TARGET_COPY_OUT_VENDOR)/bin/hw))
+bin_exclude := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin/hw,$(TARGET_COPY_OUT_VENDOR)/bin/hw)
 bin_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/bin/hostapd:$(TARGET_COPY_OUT_VENDOR)/bin/hostapd \
     $(LOCAL_PATH)/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
@@ -80,13 +78,11 @@ PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/
 # ---- vendor/lib ----
 # Include all stock 32-bit libraries.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib,$(TARGET_COPY_OUT_VENDOR)/lib)
-# AOSP builds most HAL impl libraries from source. Keep the stock audio HIDL
-# wrappers: the generic Android 11 ones still fall back to audio.primary.default
-# on fujisan, which leaves the framework with routes but no real codec path.
-audio_hw_keep := \
-    $(LOCAL_PATH)/proprietary/vendor/lib/hw/android.hardware.audio.effect@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.audio.effect@2.0-impl.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/hw/android.hardware.audio@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.audio@2.0-impl.so
-lib_exclude := $(filter-out $(audio_hw_keep),$(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib/hw,$(TARGET_COPY_OUT_VENDOR)/lib/hw))
+# AOSP builds the HIDL wrappers from source. Keep only the stock device-side
+# primary HAL, which is what actually talks to the legacy Qualcomm codec stack.
+audio_primary_keep := \
+    $(LOCAL_PATH)/proprietary/vendor/lib/hw/audio.primary.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/audio.primary.msm8996.so
+lib_exclude := $(filter-out $(audio_primary_keep),$(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib/hw,$(TARGET_COPY_OUT_VENDOR)/lib/hw))
 lib_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/lib/android.hardware.tetheroffload.config@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.tetheroffload.config@1.0.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libgnsspps.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgnsspps.so \
@@ -104,13 +100,11 @@ PRODUCT_COPY_FILES += \
 # ---- vendor/lib64 ----
 # Include all stock 64-bit libraries.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64,$(TARGET_COPY_OUT_VENDOR)/lib64)
-# AOSP builds most HAL impl libraries from source. Keep the stock audio HIDL
-# wrappers so the service talks to the legacy Qualcomm audio stack instead of
-# exposing a framework-only topology backed by audio.primary.default.
-audio_hw64_keep := \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.audio.effect@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio.effect@2.0-impl.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.audio@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.audio@2.0-impl.so
-lib64_exclude := $(filter-out $(audio_hw64_keep),$(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64/hw,$(TARGET_COPY_OUT_VENDOR)/lib64/hw))
+# AOSP builds the HIDL wrappers from source. Keep only the stock device-side
+# primary HAL for the same reason as the 32-bit variant above.
+audio_primary64_keep := \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/audio.primary.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.primary.msm8996.so
+lib64_exclude := $(filter-out $(audio_primary64_keep),$(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64/hw,$(TARGET_COPY_OUT_VENDOR)/lib64/hw))
 lib64_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/lib64/android.hardware.tetheroffload.config@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.tetheroffload.config@1.0.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/android.hardware.tetheroffload.control@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.tetheroffload.control@1.0.so \
