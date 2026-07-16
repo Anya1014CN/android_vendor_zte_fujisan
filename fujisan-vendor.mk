@@ -64,6 +64,13 @@ init_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/vndservicemanager.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vndservicemanager.rc
 PRODUCT_COPY_FILES := $(filter-out $(init_exclude),$(PRODUCT_COPY_FILES))
 
+# USB composition on msm8996 is device-specific. The generic framework rules
+# do not provide the ZTE/Qualcomm product IDs or initialize every function.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.msm.usb.configfs.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.msm.usb.configfs.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.usb.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.vendor.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.vendor.usb.rc
+
 # ---- vendor/etc/wifi ----
 # Include all stock wifi configs except the generated wpa_supplicant.conf.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/wifi,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
