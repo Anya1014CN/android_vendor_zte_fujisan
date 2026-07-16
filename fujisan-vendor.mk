@@ -18,10 +18,6 @@ bin_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
     $(LOCAL_PATH)/proprietary/vendor/bin/vndservicemanager:$(TARGET_COPY_OUT_VENDOR)/bin/vndservicemanager
 PRODUCT_COPY_FILES := $(filter-out $(bin_exclude),$(PRODUCT_COPY_FILES))
-# Only these few hw services have no AOSP equivalent.
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.zte.covolution.assertdisplay.vendorad@1.0-service
 
 # ---- vendor/etc ----
 # Include all stock configuration, excluding init scripts and wifi
@@ -61,6 +57,8 @@ init_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.display.color@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.display.color@1.0-service.rc \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.dolby.hardware.dms@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.dolby.hardware.dms@1.0-service.rc \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.qti.gnss@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.gnss@1.0-service.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/vndservicemanager.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vndservicemanager.rc
 PRODUCT_COPY_FILES := $(filter-out $(init_exclude),$(PRODUCT_COPY_FILES))
 
