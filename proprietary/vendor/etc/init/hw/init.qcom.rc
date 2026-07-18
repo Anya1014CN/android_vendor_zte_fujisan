@@ -1006,6 +1006,8 @@ service ril-daemon /vendor/bin/hw/rild
     user radio
     group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    interface android.hardware.radio@1.0::IRadio slot1
+    interface android.hardware.radio@1.0::ISap slot1
     interface android.hardware.radio@1.1::IRadio slot1
     interface android.hardware.radio@1.1::ISap slot1
     interface android.hardware.radio.deprecated@1.0::IOemHook slot1
@@ -1018,6 +1020,8 @@ service ril-daemon2 /vendor/bin/hw/rild -c 2
     disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    interface android.hardware.radio@1.0::IRadio slot2
+    interface android.hardware.radio@1.0::ISap slot2
     interface android.hardware.radio@1.1::IRadio slot2
     interface android.hardware.radio@1.1::ISap slot2
     interface android.hardware.radio.deprecated@1.0::IOemHook slot2
