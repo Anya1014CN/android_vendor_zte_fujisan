@@ -27,8 +27,11 @@ PRODUCT_COPY_FILES += \
 # Include all stock configuration, excluding init scripts and wifi
 # configs (which are handled separately below).
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc,$(TARGET_COPY_OUT_VENDOR)/etc)
-vendor_etc_exclude_patterns := %/etc/init/% %/etc/wifi/%
+vendor_etc_exclude_patterns := %/etc/init/% %/etc/wifi/% %/etc/audio_policy_configuration.xml
 PRODUCT_COPY_FILES := $(filter-out $(vendor_etc_exclude_patterns),$(PRODUCT_COPY_FILES))
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/etc/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
+    $(LOCAL_PATH)/proprietary/vendor/etc/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/odm/etc/audio_policy_configuration.xml
 
 # ---- vendor/etc/init ----
 # Include all stock init scripts.
@@ -107,6 +110,8 @@ lib_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 PRODUCT_COPY_FILES := $(filter-out $(lib_exclude),$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/lib/libaudioroute.so:$(TARGET_COPY_OUT_VENDOR)/lib/libaudioroute.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libtfa9890.so:$(TARGET_COPY_OUT_VENDOR)/lib/libtfa9890.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
 # ---- vendor/lib64 ----
@@ -128,6 +133,8 @@ lib64_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 PRODUCT_COPY_FILES := $(filter-out $(lib64_exclude),$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/lib64/libaudioroute.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudioroute.so \
+    $(LOCAL_PATH)/proprietary/system/lib64/libtfa9890.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libtfa9890.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/hw/gatekeeper.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gatekeeper.msm8996.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
@@ -147,9 +154,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/framework/izat.xt.srv.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/izat.xt.srv.jar \
     $(LOCAL_PATH)/proprietary/system/lib/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtrueportrait.so \
     $(LOCAL_PATH)/proprietary/system/lib/libqmi_cci_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libqmi_cci_system.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libaudioroute.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libaudioroute.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libtfa9890.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtfa9890.so \
+    $(LOCAL_PATH)/proprietary/system/lib/soundfx/libswdap.so:$(TARGET_COPY_OUT_SYSTEM)/lib/soundfx/libswdap.so \
     $(LOCAL_PATH)/proprietary/system/lib/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vendor.qti.gnss@1.0.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libtrueportrait.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libqmi_cci_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libqmi_cci_system.so \
+    $(LOCAL_PATH)/proprietary/system/lib64/libaudioroute.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libaudioroute.so \
+    $(LOCAL_PATH)/proprietary/system/lib64/libtfa9890.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libtfa9890.so \
+    $(LOCAL_PATH)/proprietary/system/lib64/soundfx/libswdap.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/soundfx/libswdap.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libzte_zcore.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libzte_zcore.so \
     $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.gnss@1.0.so \
     $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so
