@@ -157,13 +157,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/framework/izat.xt.srv.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/izat.xt.srv.jar \
     $(LOCAL_PATH)/proprietary/system/lib/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtrueportrait.so \
     $(LOCAL_PATH)/proprietary/system/lib/libqmi_cci_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libqmi_cci_system.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libaudioroute.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libaudioroute.so \
     $(LOCAL_PATH)/proprietary/system/lib/libtfa9890.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtfa9890.so \
     $(LOCAL_PATH)/proprietary/system/lib/soundfx/libswdap.so:$(TARGET_COPY_OUT_SYSTEM)/lib/soundfx/libswdap.so \
     $(LOCAL_PATH)/proprietary/system/lib/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vendor.qti.gnss@1.0.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libtrueportrait.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libqmi_cci_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libqmi_cci_system.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/libaudioroute.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libaudioroute.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libtfa9890.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libtfa9890.so \
     $(LOCAL_PATH)/proprietary/system/lib64/soundfx/libswdap.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/soundfx/libswdap.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libzte_zcore.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libzte_zcore.so \
