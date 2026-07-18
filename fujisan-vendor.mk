@@ -19,10 +19,6 @@ bin_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/bin/vndservicemanager:$(TARGET_COPY_OUT_VENDOR)/bin/vndservicemanager
 PRODUCT_COPY_FILES := $(filter-out $(bin_exclude),$(PRODUCT_COPY_FILES))
 
-# The FPC HAL is device-specific and has no source-built replacement.
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.biometrics.fingerprint@2.1-service
-
 # ---- vendor/etc ----
 # Include all stock configuration, excluding init scripts and wifi
 # configs (which are handled separately below).
