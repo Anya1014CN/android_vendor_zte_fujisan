@@ -26,6 +26,8 @@ PRODUCT_COPY_FILES += \
 # configs (which are handled separately below).
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc,$(TARGET_COPY_OUT_VENDOR)/etc)
 vendor_etc_exclude_patterns := %/etc/init/% %/etc/wifi/% %/etc/audio_policy_configuration.xml %/etc/audio_policy_engine_configuration.xml %/etc/audio_policy_engine_criteria.xml %/etc/audio_policy_engine_criterion_types.xml %/etc/audio_policy_engine_default_stream_volumes.xml %/etc/audio_policy_engine_product_strategies.xml %/etc/audio_policy_engine_stream_volumes.xml
+vendor_etc_exclude_patterns += \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/rild.legacy.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rild.legacy.rc
 PRODUCT_COPY_FILES := $(filter-out $(vendor_etc_exclude_patterns),$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/etc/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
