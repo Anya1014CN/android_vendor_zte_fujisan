@@ -63,10 +63,6 @@ init_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/vndservicemanager.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vndservicemanager.rc
 PRODUCT_COPY_FILES := $(filter-out $(init_exclude),$(PRODUCT_COPY_FILES))
 
-# Start the proprietary FPC HAL after userdata is mounted.
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc
-
 # USB composition on msm8996 is device-specific. The generic framework rules
 # do not provide the ZTE/Qualcomm product IDs or initialize every function.
 PRODUCT_COPY_FILES += \
