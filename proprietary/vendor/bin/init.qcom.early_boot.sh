@@ -367,6 +367,16 @@ if [ -f /firmware/verinfo/ver_info.txt ]; then
                     ;;
             esac
         fi
+    elif [ "$modem" = "TH" ]; then
+        zygote=`getprop ro.zygote`
+        case "$zygote" in
+            "zygote64_32")
+                setprop vendor.rild.libpath "/vendor/lib64/libril-qc-qmi-1.so"
+                ;;
+            "zygote32")
+                setprop vendor.rild.libpath "/vendor/lib/libril-qc-qmi-1.so"
+                ;;
+        esac
     fi;
 fi
 
