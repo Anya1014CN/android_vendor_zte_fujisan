@@ -150,6 +150,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/bin/fgchargerdumper:$(TARGET_COPY_OUT_SYSTEM)/bin/fgchargerdumper \
     $(LOCAL_PATH)/proprietary/system/bin/tloc_daemon:$(TARGET_COPY_OUT_SYSTEM)/bin/tloc_daemon \
     $(LOCAL_PATH)/proprietary/system/bin/usbconfig:$(TARGET_COPY_OUT_SYSTEM)/bin/usbconfig \
+    $(LOCAL_PATH)/proprietary/vendor/etc/mixer_paths.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/mixer_paths.xml \
+    $(LOCAL_PATH)/proprietary/vendor/etc/audio_platform_info.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_platform_info.xml \
+    $(LOCAL_PATH)/proprietary/vendor/etc/audio_platform_info_i2s.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_platform_info_i2s.xml \
     $(LOCAL_PATH)/proprietary/system/etc/permissions/izat.xt.srv.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/izat.xt.srv.xml \
     $(LOCAL_PATH)/proprietary/system/framework/izat.xt.srv.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/izat.xt.srv.jar \
     $(LOCAL_PATH)/proprietary/system/lib/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtrueportrait.so \
