@@ -1,12 +1,20 @@
-service vendor.audio-hal-2-0 /vendor/bin/hw/android.hardware.audio@2.0-service
+# Android 11 ships the real audio HAL entry point from
+# android.hardware.audio.service.rc as "vendor.audio-hal".
+# Keep the legacy service names and interface map alive so audioserver and
+# hwservicemanager can still trigger that source-built service.
+service vendor.audio-hal-4-0-msd /system/bin/setprop ctl.start vendor.audio-hal
     class hal
-    setenv LD_PRELOAD /vendor/lib/libdolbyshim.so
-    user audioserver
-    # media gid needed for /dev/fm (radio) and for /data/misc/media (tee)
-    group audio camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct oem_2901
-    ioprio rt 4
-    writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
-    # audioflinger restarts itself when it loses connection with the hal
-    # and its .rc file has an "onrestart restart audio-hal" rule, thus
-    # an additional auto-restart from the init process isn't needed.
+    disabled
+    oneshot
+
+service vendor.audio-hal-2-0 /system/bin/setprop ctl.start vendor.audio-hal
+    interface android.hardware.audio@2.0::IDevicesFactory default
+    interface android.hardware.audio.effect@2.0::IEffectsFactory default
+    class hal
+    disabled
+    oneshot
+
+service audio-hal-2-0 /system/bin/setprop ctl.start vendor.audio-hal
+    class hal
+    disabled
     oneshot
