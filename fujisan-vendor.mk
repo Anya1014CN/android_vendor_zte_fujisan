@@ -20,7 +20,6 @@ bin_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/bin/vndservicemanager:$(TARGET_COPY_OUT_VENDOR)/bin/vndservicemanager
 PRODUCT_COPY_FILES := $(filter-out $(bin_exclude),$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.biometrics.fingerprint@2.1-service \
     $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.bluetooth@1.0-service-qti
 
 # ---- vendor/etc ----
@@ -41,6 +40,7 @@ PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/
 # cnss-daemon that LOS does not provide elsewhere.
 init_exclude := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init/hw,$(TARGET_COPY_OUT_VENDOR)/etc/init/hw)
 init_exclude += \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.camera.provider@2.4-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.camera.provider@2.4-service.rc \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.cas@1.2-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.cas@1.2-service.rc \
     $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.configstore@1.1-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.configstore@1.1-service.rc \

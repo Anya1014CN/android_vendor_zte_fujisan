@@ -1,0 +1,5 @@
+on boot
+    chmod 0600 /sys/bus/platform/devices/soc:fpc1020/irq
+    chown system system /sys/bus/platform/devices/soc:fpc1020/irq
+    chmod 0200 /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
+    chown system system /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
