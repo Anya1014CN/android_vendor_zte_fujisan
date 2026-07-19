@@ -30,8 +30,7 @@ PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/
 vendor_etc_exclude_patterns := %/etc/init/% %/etc/wifi/% %/etc/audio_policy_configuration.xml %/etc/audio_policy_engine_configuration.xml %/etc/audio_policy_engine_criteria.xml %/etc/audio_policy_engine_criterion_types.xml %/etc/audio_policy_engine_default_stream_volumes.xml %/etc/audio_policy_engine_product_strategies.xml %/etc/audio_policy_engine_stream_volumes.xml %/etc/media_codecs_google_audio.xml %/etc/media_codecs_google_telephony.xml %/etc/media_codecs_google_video.xml
 PRODUCT_COPY_FILES := $(filter-out $(vendor_etc_exclude_patterns),$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/etc/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
-    $(LOCAL_PATH)/proprietary/vendor/etc/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/odm/etc/audio_policy_configuration.xml
+    $(LOCAL_PATH)/proprietary/vendor/etc/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
 # ---- vendor/etc/init ----
 # Include all stock init scripts.
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init,$(TARGET_COPY_OUT_VENDOR)/etc/init)
@@ -111,6 +110,7 @@ lib_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 PRODUCT_COPY_FILES := $(filter-out $(lib_exclude),$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/lib/libaudioroute.so:$(TARGET_COPY_OUT_VENDOR)/lib/libaudioroute.so \
     $(LOCAL_PATH)/proprietary/system/lib/libtfa9890.so:$(TARGET_COPY_OUT_VENDOR)/lib/libtfa9890.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
@@ -140,6 +140,7 @@ lib64_exclude += \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 PRODUCT_COPY_FILES := $(filter-out $(lib64_exclude),$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/lib64/libaudioroute.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libaudioroute.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libtfa9890.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libtfa9890.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/hw/gatekeeper.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gatekeeper.msm8996.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
