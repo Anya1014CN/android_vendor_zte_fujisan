@@ -155,22 +155,6 @@ volume index from 0 to 100.
                                       ref="SILENT_VOLUME_CURVE"/>
     <volume stream="AUDIO_STREAM_TTS" deviceCategory="DEVICE_CATEGORY_EXT_MEDIA"
                                       ref="SILENT_VOLUME_CURVE"/>
-    <volume stream="AUDIO_STREAM_ACCESSIBILITY" deviceCategory="DEVICE_CATEGORY_HEADSET"
-                                                ref="DEFAULT_MEDIA_VOLUME_CURVE"/>
-    <volume stream="AUDIO_STREAM_ACCESSIBILITY" deviceCategory="DEVICE_CATEGORY_SPEAKER"
-                                                ref="DEFAULT_DEVICE_CATEGORY_SPEAKER_VOLUME_CURVE"/>
-    <volume stream="AUDIO_STREAM_ACCESSIBILITY" deviceCategory="DEVICE_CATEGORY_EARPIECE"
-                                                ref="DEFAULT_MEDIA_VOLUME_CURVE"/>
-    <volume stream="AUDIO_STREAM_ACCESSIBILITY" deviceCategory="DEVICE_CATEGORY_EXT_MEDIA"
-                                                ref="DEFAULT_MEDIA_VOLUME_CURVE"/>
-    <volume stream="AUDIO_STREAM_INCALL_MUSIC" deviceCategory="DEVICE_CATEGORY_HEADSET"
-                                      ref="SILENT_VOLUME_CURVE"/>
-    <volume stream="AUDIO_STREAM_INCALL_MUSIC" deviceCategory="DEVICE_CATEGORY_SPEAKER"
-                                      ref="FULL_SCALE_VOLUME_CURVE"/>
-    <volume stream="AUDIO_STREAM_INCALL_MUSIC" deviceCategory="DEVICE_CATEGORY_EARPIECE"
-                                      ref="SILENT_VOLUME_CURVE"/>
-    <volume stream="AUDIO_STREAM_INCALL_MUSIC" deviceCategory="DEVICE_CATEGORY_EXT_MEDIA"
-                                      ref="SILENT_VOLUME_CURVE"/>
     <volume stream="AUDIO_STREAM_REROUTING" deviceCategory="DEVICE_CATEGORY_HEADSET"
                                             ref="FULL_SCALE_VOLUME_CURVE"/>
     <volume stream="AUDIO_STREAM_REROUTING" deviceCategory="DEVICE_CATEGORY_SPEAKER"
@@ -188,4 +172,3 @@ volume index from 0 to 100.
     <volume stream="AUDIO_STREAM_PATCH" deviceCategory="DEVICE_CATEGORY_EXT_MEDIA"
                                         ref="FULL_SCALE_VOLUME_CURVE"/>
 </volumes>
-
