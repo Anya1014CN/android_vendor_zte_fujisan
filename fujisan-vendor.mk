@@ -3,162 +3,914 @@ LOCAL_PATH := vendor/zte/fujisan
 PRODUCT_SOONG_NAMESPACES += \
     vendor/zte/fujisan
 
-# Keep manifest and compatibility matrix under VINTF packaging control instead
-# of copying the raw files into /system/vendor.
+# Keep manifest and compatibility matrix under VINTF packaging control.
+# This file intentionally lists only the blobs we actually install.
+
+define fujisan-copy-files
+$(foreach file,$(2),$(LOCAL_PATH)/proprietary/$(1)/$(file):$(3)/$(file))
+endef
+
+FUJISAN_VENDOR_ROOT_FILES := \
+    ueventd.rc
+
+FUJISAN_VENDOR_BIN_FILES := \
+    ATFWD-daemon \
+    LKCore \
+    adsprpcd \
+    cnd \
+    cnss-daemon \
+    cnss_diag \
+    copypartnerapp \
+    diag_mdlog \
+    dpmQmiMgr \
+    energy-awareness \
+    event_record_softlink.sh \
+    gamed \
+    hvdcp_opti \
+    ims_rtp_daemon \
+    imsdatadaemon \
+    imsqmidaemon \
+    imsrcsd \
+    init.class_main.sh \
+    init.crda.sh \
+    init.qcom.class_core.sh \
+    init.qcom.crashdata.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.post_boot.sh \
+    init.qcom.sdio.sh \
+    init.qcom.sensors.sh \
+    init.qcom.sh \
+    init.qcom.usb.sh \
+    init.vendor.usb.sh \
+    ipacm-diag \
+    irsc_util \
+    loc_launcher \
+    lowi-server \
+    mlid \
+    mm-pp-dpps \
+    mm-qcamera-daemon \
+    mmi \
+    msm_irqbalance \
+    netmgrd \
+    pm-proxy \
+    pm-service \
+    port-bridge \
+    power_off_alarm \
+    qcom-system-daemon \
+    qseecomd \
+    qti \
+    qvop-daemon \
+    rmt_storage \
+    sensors.qcom \
+    slim_daemon \
+    ssr_diag \
+    ssr_setup \
+    subsystem_ramdump \
+    tftp_server \
+    thermal-engine \
+    time_daemon \
+    wcnss_filter \
+    wigighalsvc \
+    wigignpt \
+    xtra-daemon \
+    xtwifi-client \
+    xtwifi-inet-agent
+
+FUJISAN_VENDOR_BIN_HW_FILES := \
+    android.hardware.bluetooth@1.0-service-qti
+
+FUJISAN_VENDOR_ETC_FILES := \
+    acdbdata/Fluid/Fluid_Bluetooth_cal.acdb \
+    acdbdata/Fluid/Fluid_General_cal.acdb \
+    acdbdata/Fluid/Fluid_Global_cal.acdb \
+    acdbdata/Fluid/Fluid_Handset_cal.acdb \
+    acdbdata/Fluid/Fluid_Hdmi_cal.acdb \
+    acdbdata/Fluid/Fluid_Headset_cal.acdb \
+    acdbdata/Fluid/Fluid_Speaker_cal.acdb \
+    acdbdata/Liquid/Liquid_Bluetooth_cal.acdb \
+    acdbdata/Liquid/Liquid_General_cal.acdb \
+    acdbdata/Liquid/Liquid_Global_cal.acdb \
+    acdbdata/Liquid/Liquid_Handset_cal.acdb \
+    acdbdata/Liquid/Liquid_Hdmi_cal.acdb \
+    acdbdata/Liquid/Liquid_Headset_cal.acdb \
+    acdbdata/Liquid/Liquid_Speaker_cal.acdb \
+    acdbdata/MTP/MTP_Bluetooth_cal.acdb \
+    acdbdata/MTP/MTP_General_cal.acdb \
+    acdbdata/MTP/MTP_Global_cal.acdb \
+    acdbdata/MTP/MTP_Handset_cal.acdb \
+    acdbdata/MTP/MTP_Hdmi_cal.acdb \
+    acdbdata/MTP/MTP_Headset_cal.acdb \
+    acdbdata/MTP/MTP_Speaker_cal.acdb \
+    acdbdata/QRD/QRD_Bluetooth_cal.acdb \
+    acdbdata/QRD/QRD_General_cal.acdb \
+    acdbdata/QRD/QRD_Global_cal.acdb \
+    acdbdata/QRD/QRD_Handset_cal.acdb \
+    acdbdata/QRD/QRD_Hdmi_cal.acdb \
+    acdbdata/QRD/QRD_Headset_cal.acdb \
+    acdbdata/QRD/QRD_Speaker_cal.acdb \
+    audio/audio_policy_configuration.xml \
+    audio_policy.conf \
+    cacert_location.pem \
+    camera/beautiful_fn/fn_default.xml \
+    camera/beautiful_fn/fn_imx350.xml \
+    camera/beautiful_fn/fn_imx350_docomo.xml \
+    camera/beautiful_fn/fn_imx386.xml \
+    camera/beautiful_fn/fn_ov8856.xml \
+    camera/camera_config.xml \
+    camera/imx350_docomo_front_chromatix.xml \
+    camera/imx350_docomo_virtual_chromatix.xml \
+    data/dsi_config.xml \
+    data/netmgr_config.xml \
+    drc/drc_cfg_5.1.txt \
+    drc/drc_cfg_AZ.txt \
+    firmware/ak4962_aram_karaoke_heavy.bin \
+    firmware/ak4962_aram_karaoke_light.bin \
+    firmware/ak4962_aram_karaoke_middle.bin \
+    firmware/ak4962_aram_karaoke_spk.bin \
+    firmware/ak4962_cram_barge_in.bin \
+    firmware/ak4962_cram_beam_record.bin \
+    firmware/ak4962_cram_interview_record.bin \
+    firmware/ak4962_cram_karaoke_cave.bin \
+    firmware/ak4962_cram_karaoke_cloister.bin \
+    firmware/ak4962_cram_karaoke_live.bin \
+    firmware/ak4962_cram_karaoke_room.bin \
+    firmware/ak4962_cram_karaoke_spk_live.bin \
+    firmware/ak4962_cram_karaoke_spk_room.bin \
+    firmware/ak4962_cram_karaoke_spk_theater.bin \
+    firmware/ak4962_cram_karaoke_theater.bin \
+    firmware/ak4962_cram_karaoke_valley.bin \
+    firmware/ak4962_cram_music_speaker.bin \
+    firmware/ak4962_cram_narrow_handfree.bin \
+    firmware/ak4962_cram_narrow_handset.bin \
+    firmware/ak4962_cram_narrow_headphone.bin \
+    firmware/ak4962_cram_narrow_headset.bin \
+    firmware/ak4962_cram_sound_record.bin \
+    firmware/ak4962_cram_voice_recognition.bin \
+    firmware/ak4962_cram_voice_record.bin \
+    firmware/ak4962_cram_wide_handfree.bin \
+    firmware/ak4962_cram_wide_handset.bin \
+    firmware/ak4962_cram_wide_handset_new.bin \
+    firmware/ak4962_cram_wide_headphone.bin \
+    firmware/ak4962_cram_wide_headset.bin \
+    firmware/ak4962_pram_barge_in.bin \
+    firmware/ak4962_pram_beam_record.bin \
+    firmware/ak4962_pram_interview_record.bin \
+    firmware/ak4962_pram_karaoke.bin \
+    firmware/ak4962_pram_karaoke_spk.bin \
+    firmware/ak4962_pram_music_speaker.bin \
+    firmware/ak4962_pram_narrow.bin \
+    firmware/ak4962_pram_sound_record.bin \
+    firmware/ak4962_pram_voice_recognition.bin \
+    firmware/ak4962_pram_wide.bin \
+    firmware/tfa98xx.cnt \
+    flp.conf \
+    fstab.qcom \
+    ftm_test_config \
+    ftm_test_config_msm8996-dtp-tasha-snd-card \
+    gps.conf \
+    gpsInterval.xml \
+    izat.conf \
+    media_codecs.xml \
+    media_codecs_dolby.xml \
+    media_codecs_performance.xml \
+    media_codecs_vendor_audio.xml \
+    media_profiles.xml \
+    media_profiles_V1_0.xml \
+    media_profiles_vendor.xml \
+    mixer_paths_dtp.xml \
+    mixer_paths_i2s.xml \
+    mixer_paths_tasha.xml \
+    msm_irqbalance.conf \
+    permissions/android.hardware.bluetooth.xml \
+    permissions/android.hardware.bluetooth_le.xml \
+    permissions/android.hardware.camera.flash-autofocus.xml \
+    permissions/android.hardware.camera.front.xml \
+    permissions/android.hardware.location.gps.xml \
+    permissions/android.hardware.opengles.aep.xml \
+    permissions/android.hardware.sensor.accelerometer.xml \
+    permissions/android.hardware.sensor.compass.xml \
+    permissions/android.hardware.sensor.gyroscope.xml \
+    permissions/android.hardware.sensor.light.xml \
+    permissions/android.hardware.sensor.proximity.xml \
+    permissions/android.hardware.sensor.stepcounter.xml \
+    permissions/android.hardware.sensor.stepdetector.xml \
+    permissions/android.hardware.telephony.cdma.xml \
+    permissions/android.hardware.telephony.gsm.xml \
+    permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    permissions/android.hardware.usb.accessory.xml \
+    permissions/android.hardware.usb.host.xml \
+    permissions/android.hardware.vulkan.compute-0.xml \
+    permissions/android.hardware.vulkan.level-0.xml \
+    permissions/android.hardware.vulkan.version-1_0_3.xml \
+    permissions/android.hardware.wifi.direct.xml \
+    permissions/android.hardware.wifi.passpoint.xml \
+    permissions/android.hardware.wifi.xml \
+    permissions/android.software.midi.xml \
+    permissions/handheld_core_hardware.xml \
+    public.libraries.txt \
+    sec_config \
+    sensors/hals.conf \
+    sensors/sensor_def_qcomdev.conf \
+    surround_sound_3mic/surround_sound_rec_5.1.cfg \
+    surround_sound_3mic/surround_sound_rec_AZ.cfg \
+    thermal-engine.conf \
+    xtra_root_cert.pem \
+    xtwifi.conf
+
+FUJISAN_VENDOR_INIT_FILES := \
+    android.hardware.audio@2.0-service.rc \
+    android.hardware.bluetooth@1.0-service-qti.rc \
+    fujisan.fingerprint.rc
+
+FUJISAN_VENDOR_INIT_HW_FILES := \
+    init.msm.usb.configfs.rc \
+    init.qcom.factory.rc \
+    init.qcom.rc \
+    init.qcom.usb.rc \
+    init.target.rc \
+    init.vendor.rc \
+    init.vendor.usb.rc
+
+FUJISAN_VENDOR_WIFI_FILES := \
+    WCNSS_qcom_cfg.ini \
+    aoa_cldb_falcon.bin \
+    aoa_cldb_swl14.bin \
+    p2p_supplicant_overlay.conf \
+    wigig_p2p_supplicant.conf \
+    wigig_supplicant.conf \
+    wpa_supplicant_overlay.conf
+
+FUJISAN_VENDOR_FIRMWARE_FILES := \
+    a530_gpmu.fw2 \
+    a530_pfp.fw \
+    a530_pm4.fw \
+    a530_zap.b00 \
+    a530_zap.b01 \
+    a530_zap.b02 \
+    a530_zap.elf \
+    a530_zap.mdt \
+    a530v1_pfp.fw \
+    a530v1_pm4.fw \
+    a530v2_seq.fw2 \
+    a530v3_gpmu.fw2 \
+    a530v3_seq.fw2 \
+    cpp_firmware_v1_10_0.fw
+
+FUJISAN_VENDOR_LIB_FILES := \
+    com.fingerprints.extension@1.0.so \
+    com.qualcomm.qti.ant@1.0_vendor.so \
+    com.qualcomm.qti.bluetooth_audio@1.0_vendor.so \
+    com.qualcomm.qti.dpm.api@1.0_vendor.so \
+    com.quicinc.cne.api@1.0.so \
+    com.quicinc.cne.constants@1.0.so \
+    com.quicinc.cne.constants@2.0.so \
+    com.quicinc.cne.server@2.0.so \
+    egl/eglSubDriverAndroid.so \
+    egl/libEGL_adreno.so \
+    egl/libGLESv1_CM_adreno.so \
+    egl/libGLESv2_adreno.so \
+    egl/libQTapGLES.so \
+    egl/libq3dtools_adreno.so \
+    egl/libq3dtools_esx.so \
+    lib-dplmedia.so \
+    lib-uceservice.so \
+    libC2D2.so \
+    libCB.so \
+    libDRPlugin.so \
+    libFNVfbEngineHAL.so \
+    libGPreqcancel.so \
+    libGPreqcancel_svc.so \
+    libImgFvDetect.so \
+    libImgmovie_solid.so \
+    libOpenCL.so \
+    libOpenCL_system.so \
+    libQSEEComAPI.so \
+    libRSDriver_adreno.so \
+    libStDrvInt.so \
+    libVDBlurlessAPI.so \
+    libZEffectLib.so \
+    libacdb-fts.so \
+    libacdbloader.so \
+    libacdbmapper.so \
+    libacdbrtac.so \
+    libactuator_ak7371.so \
+    libactuator_bu64297_imx350_docomo.so \
+    libactuator_interface.so \
+    libactuator_update_interface.so \
+    libadiertac.so \
+    libadreno_utils.so \
+    libadsp_default_listener.so \
+    libadsprpc.so \
+    libaudcal.so \
+    libaudio_log_utils.so \
+    libautohdr_check.so \
+    libchromaflash.so \
+    libchromatix_imx350_docomo_3a_1080p_preview.so \
+    libchromatix_imx350_docomo_3a_1080p_video.so \
+    libchromatix_imx350_docomo_3a_4k_preview.so \
+    libchromatix_imx350_docomo_3a_4k_video.so \
+    libchromatix_imx350_docomo_3a_hfr_120.so \
+    libchromatix_imx350_docomo_3a_hfr_240.so \
+    libchromatix_imx350_docomo_3a_hfr_300.so \
+    libchromatix_imx350_docomo_3a_hfr_60.so \
+    libchromatix_imx350_docomo_3a_preview_livephoto.so \
+    libchromatix_imx350_docomo_3a_preview_panorama.so \
+    libchromatix_imx350_docomo_3a_preview_sport.so \
+    libchromatix_imx350_docomo_3a_vga_preview.so \
+    libchromatix_imx350_docomo_3a_vga_video.so \
+    libchromatix_imx350_docomo_common.so \
+    libchromatix_imx350_docomo_cpp_1080p_liveshot.so \
+    libchromatix_imx350_docomo_cpp_1080p_preview.so \
+    libchromatix_imx350_docomo_cpp_1080p_snapshot.so \
+    libchromatix_imx350_docomo_cpp_1080p_video.so \
+    libchromatix_imx350_docomo_cpp_4k_liveshot.so \
+    libchromatix_imx350_docomo_cpp_4k_preview.so \
+    libchromatix_imx350_docomo_cpp_4k_snapshot.so \
+    libchromatix_imx350_docomo_cpp_4k_video.so \
+    libchromatix_imx350_docomo_cpp_hfr_120.so \
+    libchromatix_imx350_docomo_cpp_hfr_240.so \
+    libchromatix_imx350_docomo_cpp_hfr_300.so \
+    libchromatix_imx350_docomo_cpp_hfr_60.so \
+    libchromatix_imx350_docomo_cpp_liveshot.so \
+    libchromatix_imx350_docomo_cpp_preview.so \
+    libchromatix_imx350_docomo_cpp_preview_livephoto.so \
+    libchromatix_imx350_docomo_cpp_preview_panorama.so \
+    libchromatix_imx350_docomo_cpp_preview_sport.so \
+    libchromatix_imx350_docomo_cpp_snapshot.so \
+    libchromatix_imx350_docomo_cpp_snapshot_downscale.so \
+    libchromatix_imx350_docomo_cpp_snapshot_livephoto.so \
+    libchromatix_imx350_docomo_cpp_snapshot_night.so \
+    libchromatix_imx350_docomo_cpp_snapshot_night_vd.so \
+    libchromatix_imx350_docomo_cpp_snapshot_upscale.so \
+    libchromatix_imx350_docomo_cpp_vga_liveshot.so \
+    libchromatix_imx350_docomo_cpp_vga_preview.so \
+    libchromatix_imx350_docomo_cpp_vga_snapshot.so \
+    libchromatix_imx350_docomo_cpp_vga_video.so \
+    libchromatix_imx350_docomo_cpp_video.so \
+    libchromatix_imx350_docomo_default_preview.so \
+    libchromatix_imx350_docomo_default_video.so \
+    libchromatix_imx350_docomo_isp_1080p_preview.so \
+    libchromatix_imx350_docomo_isp_1080p_snapshot.so \
+    libchromatix_imx350_docomo_isp_1080p_video.so \
+    libchromatix_imx350_docomo_isp_4k_preview.so \
+    libchromatix_imx350_docomo_isp_4k_snapshot.so \
+    libchromatix_imx350_docomo_isp_4k_video.so \
+    libchromatix_imx350_docomo_isp_hfr_120.so \
+    libchromatix_imx350_docomo_isp_hfr_240.so \
+    libchromatix_imx350_docomo_isp_hfr_300.so \
+    libchromatix_imx350_docomo_isp_hfr_60.so \
+    libchromatix_imx350_docomo_isp_liveshot.so \
+    libchromatix_imx350_docomo_isp_preview.so \
+    libchromatix_imx350_docomo_isp_preview_panorama.so \
+    libchromatix_imx350_docomo_isp_preview_sport.so \
+    libchromatix_imx350_docomo_isp_snapshot.so \
+    libchromatix_imx350_docomo_isp_snapshot_livephoto.so \
+    libchromatix_imx350_docomo_isp_vga_preview.so \
+    libchromatix_imx350_docomo_isp_vga_snapshot.so \
+    libchromatix_imx350_docomo_isp_vga_video.so \
+    libchromatix_imx350_docomo_isp_video.so \
+    libchromatix_imx350_docomo_postproc.so \
+    libchromatix_imx350_docomo_vf_3a_1080p_preview.so \
+    libchromatix_imx350_docomo_vf_3a_1080p_video.so \
+    libchromatix_imx350_docomo_vf_3a_4k_preview.so \
+    libchromatix_imx350_docomo_vf_3a_4k_video.so \
+    libchromatix_imx350_docomo_vf_3a_hfr_120.so \
+    libchromatix_imx350_docomo_vf_3a_hfr_240.so \
+    libchromatix_imx350_docomo_vf_3a_hfr_300.so \
+    libchromatix_imx350_docomo_vf_3a_hfr_60.so \
+    libchromatix_imx350_docomo_vf_3a_preview_livephoto.so \
+    libchromatix_imx350_docomo_vf_3a_preview_panorama.so \
+    libchromatix_imx350_docomo_vf_3a_preview_sport.so \
+    libchromatix_imx350_docomo_vf_3a_vga_preview.so \
+    libchromatix_imx350_docomo_vf_3a_vga_video.so \
+    libchromatix_imx350_docomo_vf_common.so \
+    libchromatix_imx350_docomo_vf_cpp_1080p_liveshot.so \
+    libchromatix_imx350_docomo_vf_cpp_1080p_preview.so \
+    libchromatix_imx350_docomo_vf_cpp_1080p_snapshot.so \
+    libchromatix_imx350_docomo_vf_cpp_1080p_video.so \
+    libchromatix_imx350_docomo_vf_cpp_4k_liveshot.so \
+    libchromatix_imx350_docomo_vf_cpp_4k_preview.so \
+    libchromatix_imx350_docomo_vf_cpp_4k_snapshot.so \
+    libchromatix_imx350_docomo_vf_cpp_4k_video.so \
+    libchromatix_imx350_docomo_vf_cpp_hfr_120.so \
+    libchromatix_imx350_docomo_vf_cpp_hfr_240.so \
+    libchromatix_imx350_docomo_vf_cpp_hfr_300.so \
+    libchromatix_imx350_docomo_vf_cpp_hfr_60.so \
+    libchromatix_imx350_docomo_vf_cpp_liveshot.so \
+    libchromatix_imx350_docomo_vf_cpp_preview.so \
+    libchromatix_imx350_docomo_vf_cpp_preview_livephoto.so \
+    libchromatix_imx350_docomo_vf_cpp_preview_panorama.so \
+    libchromatix_imx350_docomo_vf_cpp_preview_sport.so \
+    libchromatix_imx350_docomo_vf_cpp_snapshot.so \
+    libchromatix_imx350_docomo_vf_cpp_snapshot_downscale.so \
+    libchromatix_imx350_docomo_vf_cpp_snapshot_livephoto.so \
+    libchromatix_imx350_docomo_vf_cpp_snapshot_night.so \
+    libchromatix_imx350_docomo_vf_cpp_snapshot_night_vd.so \
+    libchromatix_imx350_docomo_vf_cpp_snapshot_upscale.so \
+    libchromatix_imx350_docomo_vf_cpp_vga_liveshot.so \
+    libchromatix_imx350_docomo_vf_cpp_vga_preview.so \
+    libchromatix_imx350_docomo_vf_cpp_vga_snapshot.so \
+    libchromatix_imx350_docomo_vf_cpp_vga_video.so \
+    libchromatix_imx350_docomo_vf_cpp_video.so \
+    libchromatix_imx350_docomo_vf_default_preview.so \
+    libchromatix_imx350_docomo_vf_default_video.so \
+    libchromatix_imx350_docomo_vf_isp_1080p_preview.so \
+    libchromatix_imx350_docomo_vf_isp_1080p_snapshot.so \
+    libchromatix_imx350_docomo_vf_isp_1080p_video.so \
+    libchromatix_imx350_docomo_vf_isp_4k_preview.so \
+    libchromatix_imx350_docomo_vf_isp_4k_snapshot.so \
+    libchromatix_imx350_docomo_vf_isp_4k_video.so \
+    libchromatix_imx350_docomo_vf_isp_hfr_120.so \
+    libchromatix_imx350_docomo_vf_isp_hfr_240.so \
+    libchromatix_imx350_docomo_vf_isp_hfr_300.so \
+    libchromatix_imx350_docomo_vf_isp_hfr_60.so \
+    libchromatix_imx350_docomo_vf_isp_liveshot.so \
+    libchromatix_imx350_docomo_vf_isp_preview.so \
+    libchromatix_imx350_docomo_vf_isp_preview_panorama.so \
+    libchromatix_imx350_docomo_vf_isp_preview_sport.so \
+    libchromatix_imx350_docomo_vf_isp_snapshot.so \
+    libchromatix_imx350_docomo_vf_isp_snapshot_livephoto.so \
+    libchromatix_imx350_docomo_vf_isp_vga_preview.so \
+    libchromatix_imx350_docomo_vf_isp_vga_snapshot.so \
+    libchromatix_imx350_docomo_vf_isp_vga_video.so \
+    libchromatix_imx350_docomo_vf_isp_video.so \
+    libchromatix_imx350_docomo_vf_postproc.so \
+    libchromatix_imx350_docomo_vf_zsl_preview.so \
+    libchromatix_imx350_docomo_vf_zsl_video.so \
+    libchromatix_imx350_docomo_zsl_preview.so \
+    libchromatix_imx350_docomo_zsl_video.so \
+    libcne.so \
+    libcneapiclient.so \
+    libconfigdb.so \
+    libdataitems.so \
+    libdiag.so \
+    libdiag_system.so \
+    libdisp-aba.so \
+    libdlbdapstorage.so \
+    libdlbdsservice.so \
+    libdlbmemoryservice.so \
+    libdpmqmihal.so \
+    libdrmfs.so \
+    libdrmtime.so \
+    libdrplugin_client.so \
+    libdsi_netctrl.so \
+    libdsutils.so \
+    libevent_observer.so \
+    libfastcvopt.so \
+    libflash_pmic.so \
+    libflp.so \
+    libfn_facebeauty_v2.so \
+    libfnxml.so \
+    libgdtap.so \
+    libgeofence.so \
+    libgps.utils.so \
+    libgsl.so \
+    libidl.so \
+    libizat_client_api.so \
+    libizat_core.so \
+    liblbs_core.so \
+    libllvm-glnext.so \
+    libllvm-qcom.so \
+    libllvm-qgl.so \
+    libloc_api_v02.so \
+    libloc_core.so \
+    libloc_ds_api.so \
+    libloc_externalDr.so \
+    libloc_pla.so \
+    libloc_stub.so \
+    liblocationservice.so \
+    liblocationservice_glue.so \
+    liblowi_client.so \
+    liblqe.so \
+    libmdmdetect.so \
+    libmm-qcamera.so \
+    libmm-qdcm.so \
+    libmmcamera2_c2d_module.so \
+    libmmcamera2_cpp_module.so \
+    libmmcamera2_frame_algorithm.so \
+    libmmcamera2_iface_modules.so \
+    libmmcamera2_imglib_modules.so \
+    libmmcamera2_is.so \
+    libmmcamera2_isp_modules.so \
+    libmmcamera2_mct.so \
+    libmmcamera2_mct_shimlayer.so \
+    libmmcamera2_pp_buf_mgr.so \
+    libmmcamera2_pproc_modules.so \
+    libmmcamera2_q3a_core.so \
+    libmmcamera2_q3a_release.so \
+    libmmcamera2_sensor_modules.so \
+    libmmcamera2_stats_algorithm.so \
+    libmmcamera2_stats_modules.so \
+    libmmcamera_chromaflash_lib.so \
+    libmmcamera_dbg.so \
+    libmmcamera_dummyalgo.so \
+    libmmcamera_eebinparse.so \
+    libmmcamera_eeprom_util.so \
+    libmmcamera_eztune_module.so \
+    libmmcamera_facedetection_lib.so \
+    libmmcamera_faceproc.so \
+    libmmcamera_faceproc2.so \
+    libmmcamera_hdr_gb_lib.so \
+    libmmcamera_hvx_add_constant.so \
+    libmmcamera_hvx_grid_sum.so \
+    libmmcamera_hvx_zzHDR.so \
+    libmmcamera_imglib.so \
+    libmmcamera_imglib_faceproc_adspstub.so \
+    libmmcamera_imx350_docomo_front.so \
+    libmmcamera_imx350_docomo_night.so \
+    libmmcamera_imx350_docomo_vf_night.so \
+    libmmcamera_imx350_docomo_virtual.so \
+    libmmcamera_interface.so \
+    libmmcamera_isp_abf47.so \
+    libmmcamera_isp_aec_bg_stats47.so \
+    libmmcamera_isp_bf_stats47.so \
+    libmmcamera_isp_bg_stats46.so \
+    libmmcamera_isp_bhist_stats44.so \
+    libmmcamera_isp_black_level47.so \
+    libmmcamera_isp_bpc47.so \
+    libmmcamera_isp_cac47.so \
+    libmmcamera_isp_chroma_enhan40.so \
+    libmmcamera_isp_chroma_suppress40.so \
+    libmmcamera_isp_clamp_encoder40.so \
+    libmmcamera_isp_clamp_video40.so \
+    libmmcamera_isp_clamp_viewfinder40.so \
+    libmmcamera_isp_color_correct46.so \
+    libmmcamera_isp_color_xform_encoder46.so \
+    libmmcamera_isp_color_xform_video46.so \
+    libmmcamera_isp_color_xform_viewfinder46.so \
+    libmmcamera_isp_cs_stats46.so \
+    libmmcamera_isp_demosaic47.so \
+    libmmcamera_isp_demux40.so \
+    libmmcamera_isp_fovcrop_encoder46.so \
+    libmmcamera_isp_fovcrop_video46.so \
+    libmmcamera_isp_fovcrop_viewfinder46.so \
+    libmmcamera_isp_gamma44.so \
+    libmmcamera_isp_gic46.so \
+    libmmcamera_isp_gtm46.so \
+    libmmcamera_isp_hdr46.so \
+    libmmcamera_isp_hdr_be_stats46.so \
+    libmmcamera_isp_ihist_stats46.so \
+    libmmcamera_isp_linearization40.so \
+    libmmcamera_isp_ltm47.so \
+    libmmcamera_isp_mce40.so \
+    libmmcamera_isp_mesh_rolloff44.so \
+    libmmcamera_isp_pedestal_correct46.so \
+    libmmcamera_isp_rs_stats46.so \
+    libmmcamera_isp_scaler_encoder46.so \
+    libmmcamera_isp_scaler_video46.so \
+    libmmcamera_isp_scaler_viewfinder46.so \
+    libmmcamera_isp_sce40.so \
+    libmmcamera_isp_snr47.so \
+    libmmcamera_isp_sub_module.so \
+    libmmcamera_llvd.so \
+    libmmcamera_optizoom_lib.so \
+    libmmcamera_paaf_lib.so \
+    libmmcamera_pdaf.so \
+    libmmcamera_pdafcamif.so \
+    libmmcamera_ppbase_module.so \
+    libmmcamera_quadracfa.so \
+    libmmcamera_sony_imx350_docomo_eeprom.so \
+    libmmcamera_stillmore_lib.so \
+    libmmcamera_sw2d_lib.so \
+    libmmcamera_thread_services.so \
+    libmmcamera_tintless_algo.so \
+    libmmcamera_tintless_bg_pca_algo.so \
+    libmmcamera_trueportrait_lib.so \
+    libmmcamera_tuning.so \
+    libmmcamera_tuning_lookup.so \
+    libmmcamera_ubifocus_lib.so \
+    libmmjpeg.so \
+    libmmjpeg_interface.so \
+    libmmosal_proprietary.so \
+    libmodemapi_vendor.so \
+    libnetmgr.so \
+    liboptizoom.so \
+    libperfgluelayer.so \
+    libperipheral_client.so \
+    libqcrilFramework.so \
+    libqdi.so \
+    libqisl.so \
+    libqmi.so \
+    libqmi_cci.so \
+    libqmi_client_helper.so \
+    libqmi_client_qmux.so \
+    libqmi_common_so.so \
+    libqmi_csi.so \
+    libqmi_encdec.so \
+    libqmiservices.so \
+    libqomx_core.so \
+    libqomx_jpegdec.so \
+    libqomx_jpegenc.so \
+    libqomx_jpegenc_pipe.so \
+    libqti-perfd-client.so \
+    libqti-util.so \
+    libqvop-service.so \
+    libremosaic_daemon.so \
+    libril-qc-hal-qmi.so \
+    libril-qc-ltedirectdisc.so \
+    libril-qc-qmi-1.so \
+    libril-qc-radioconfig.so \
+    libril-qcril-hook-oem.so \
+    librilqmiservices.so \
+    librs_adreno.so \
+    librs_adreno_sha1.so \
+    libscalar.so \
+    libsdedrm.so \
+    libsecureui.so \
+    libseemore.so \
+    libsensor1.so \
+    libsensor_reg.so \
+    libsettings.so \
+    libslimclient.so \
+    libsmemlog.so \
+    libsystem_health_mon.so \
+    libthermalclient.so \
+    libtinycompress_vendor.so \
+    libtsvideoprocess.so \
+    libtzdrmgenprov.so \
+    libubifocus.so \
+    libulp2.so \
+    libvendorutils_vendor.so \
+    libxtadapter.so \
+    libxtwifi_ulp_adaptor.so \
+    mmi_eeprom.so \
+    mmi_fingerprint.so \
+    mmi_flashlight.so \
+    modules/qca_cld/qca_cld_wlan.ko \
+    modules/wlan.ko \
+    sensors.hallSensor.so \
+    sensors.ssc.so \
+    vendor.display.config@1.0_vendor.so \
+    vendor.display.postproc@1.0_vendor.so \
+    vendor.dolby.hardware.dms@1.0-impl.so \
+    vendor.dolby.hardware.dms@1.0.so \
+    vendor.qti.hardware.camera.device@1.0_vendor.so \
+    vendor.qti.hardware.data.latency@1.0_vendor.so \
+    vendor.qti.hardware.fingerprint@1.0.so \
+    vendor.qti.hardware.fm@1.0_vendor.so \
+    vendor.qti.hardware.perf@1.0_vendor.so \
+    vendor.qti.hardware.qdutils_disp@1.0_vendor.so \
+    vendor.qti.hardware.radio.am@1.0_vendor.so \
+    vendor.qti.hardware.radio.atcmdfwd@1.0_vendor.so \
+    vendor.qti.hardware.radio.ims@1.0_vendor.so \
+    vendor.qti.hardware.radio.lpa@1.0_vendor.so \
+    vendor.qti.hardware.radio.qcrilhook@1.0_vendor.so \
+    vendor.qti.hardware.radio.qtiradio@1.0_vendor.so \
+    vendor.qti.hardware.radio.uim@1.0_vendor.so \
+    vendor.qti.hardware.radio.uim_remote_client@1.0_vendor.so \
+    vendor.qti.hardware.radio.uim_remote_server@1.0_vendor.so \
+    vendor.qti.hardware.wigig.supptunnel@1.0.so \
+    vendor.qti.voiceprint@1.0.so \
+    vendor.zte.covolution.assertdisplay.vendorad@1.0_vendor.so
+
+FUJISAN_VENDOR_LIB64_FILES := \
+    com.fingerprints.extension@1.0.so \
+    com.qualcomm.qti.ant@1.0_vendor.so \
+    com.qualcomm.qti.bluetooth_audio@1.0_vendor.so \
+    com.qualcomm.qti.dpm.api@1.0_vendor.so \
+    com.quicinc.cne.api@1.0.so \
+    com.quicinc.cne.constants@1.0.so \
+    com.quicinc.cne.constants@2.0.so \
+    com.quicinc.cne.server@2.0.so \
+    egl/eglSubDriverAndroid.so \
+    egl/libEGL_adreno.so \
+    egl/libGLESv1_CM_adreno.so \
+    egl/libGLESv2_adreno.so \
+    egl/libQTapGLES.so \
+    egl/libq3dtools_adreno.so \
+    egl/libq3dtools_esx.so \
+    lib-dplmedia.so \
+    lib-imsdpl.so \
+    lib-rtpcommon.so \
+    lib-rtpcore.so \
+    lib-rtpdaemoninterface.so \
+    lib-rtpsl.so \
+    lib-uceservice.so \
+    libCB.so \
+    libDRPlugin.so \
+    libGPreqcancel.so \
+    libGPreqcancel_svc.so \
+    libOpenCL.so \
+    libQSEEComAPI.so \
+    libRSDriver_adreno.so \
+    libStDrvInt.so \
+    libacdb-fts.so \
+    libacdbloader.so \
+    libacdbmapper.so \
+    libacdbrtac.so \
+    libadiertac.so \
+    libadreno_utils.so \
+    libadsp_default_listener.so \
+    libadsprpc.so \
+    libaudcal.so \
+    libaudio_log_utils.so \
+    libbtnv.so \
+    libcert_parse.wpa_s.so \
+    libcne.so \
+    libcneapiclient.so \
+    libconfigdb.so \
+    libdataitems.so \
+    libdiag.so \
+    libdiag_system.so \
+    libdisp-aba.so \
+    libdlbdapstorage.so \
+    libdlbdsservice.so \
+    libdlbmemoryservice.so \
+    libdpmqmihal.so \
+    libdrmfs.so \
+    libdrmtime.so \
+    libdrplugin_client.so \
+    libdsi_netctrl.so \
+    libdsutils.so \
+    libevent_observer.so \
+    libfastcvopt.so \
+    libflp.so \
+    libgdtap.so \
+    libgeofence.so \
+    libgps.utils.so \
+    libgsl.so \
+    libidl.so \
+    libizat_client_api.so \
+    libizat_core.so \
+    libkeymaster_staging.so \
+    libkeymasterdeviceutils.so \
+    libkeymasterprovision.so \
+    libkeymasterutils.so \
+    liblbs_core.so \
+    libllvm-glnext.so \
+    libllvm-qgl.so \
+    libloc_api_v02.so \
+    libloc_core.so \
+    libloc_ds_api.so \
+    libloc_externalDr.so \
+    libloc_pla.so \
+    libloc_stub.so \
+    liblocationservice.so \
+    liblocationservice_glue.so \
+    liblowi_client.so \
+    liblqe.so \
+    libmdmdetect.so \
+    libmmcamera2_frame_algorithm.so \
+    libmmcamera2_is.so \
+    libmmcamera2_q3a_core.so \
+    libmmcamera2_stats_algorithm.so \
+    libmmcamera_dbg.so \
+    libmmcamera_tintless_algo.so \
+    libmmcamera_tintless_bg_pca_algo.so \
+    libmmosal_proprietary.so \
+    libmodemapi_vendor.so \
+    libnetmgr.so \
+    liboptizoom.so \
+    libperfgluelayer.so \
+    libperipheral_client.so \
+    libqcrilFramework.so \
+    libqdi.so \
+    libqdp.so \
+    libqisl.so \
+    libqmi.so \
+    libqmi_cci.so \
+    libqmi_client_helper.so \
+    libqmi_client_qmux.so \
+    libqmi_common_so.so \
+    libqmi_csi.so \
+    libqmi_encdec.so \
+    libqmiservices.so \
+    libqti-gt-prop.so \
+    libqti-perfd-client.so \
+    libqti-util.so \
+    libqvop-service.so \
+    libril-qc-hal-qmi.so \
+    libril-qc-ltedirectdisc.so \
+    libril-qc-qmi-1.so \
+    libril-qc-radioconfig.so \
+    libril-qcril-hook-oem.so \
+    librilqmiservices.so \
+    librpmb.so \
+    librs_adreno.so \
+    librs_adreno_sha1.so \
+    libscalar.so \
+    libsecureui.so \
+    libseemore.so \
+    libselinux_vendor.so \
+    libsensor1.so \
+    libsensor_reg.so \
+    libsettings.so \
+    libslimclient.so \
+    libsmemlog.so \
+    libssd.so \
+    libsubsystem_control.so \
+    libsystem_health_mon.so \
+    libthermalclient.so \
+    libthermalioctl.so \
+    libtime_genoff.so \
+    libtinycompress_vendor.so \
+    libtinyxml2_1.so \
+    libubifocus.so \
+    libulp2.so \
+    libvendorutils_vendor.so \
+    libxtadapter.so \
+    mmi_fingerprint.so \
+    sensors.hallSensor.so \
+    sensors.ssc.so \
+    vendor.display.config@1.0_vendor.so \
+    vendor.display.postproc@1.0_vendor.so \
+    vendor.dolby.hardware.dms@1.0-impl.so \
+    vendor.dolby.hardware.dms@1.0.so \
+    vendor.qti.hardware.camera.device@1.0_vendor.so \
+    vendor.qti.hardware.data.latency@1.0_vendor.so \
+    vendor.qti.hardware.fingerprint@1.0.so \
+    vendor.qti.hardware.fm@1.0_vendor.so \
+    vendor.qti.hardware.perf@1.0_vendor.so \
+    vendor.qti.hardware.qdutils_disp@1.0_vendor.so \
+    vendor.qti.hardware.radio.am@1.0_vendor.so \
+    vendor.qti.hardware.radio.atcmdfwd@1.0_vendor.so \
+    vendor.qti.hardware.radio.ims@1.0_vendor.so \
+    vendor.qti.hardware.radio.lpa@1.0_vendor.so \
+    vendor.qti.hardware.radio.qcrilhook@1.0_vendor.so \
+    vendor.qti.hardware.radio.qtiradio@1.0_vendor.so \
+    vendor.qti.hardware.radio.uim@1.0_vendor.so \
+    vendor.qti.hardware.radio.uim_remote_client@1.0_vendor.so \
+    vendor.qti.hardware.radio.uim_remote_server@1.0_vendor.so \
+    vendor.qti.hardware.wifi.keystore@1.0_vendor.so \
+    vendor.qti.hardware.wifi.supplicant@1.0_vendor.so \
+    vendor.qti.hardware.wigig.supptunnel@1.0.so \
+    vendor.qti.imsrtpservice@1.0-service-Impl.so \
+    vendor.qti.imsrtpservice@1.0_vendor.so \
+    vendor.qti.voiceprint@1.0.so \
+    vendor.zte.covolution.assertdisplay.vendorad@1.0_vendor.so
+
+FUJISAN_VENDOR_LIB64_HW_FILES := \
+    gatekeeper.msm8996.so
+
+FUJISAN_VENDOR_RADIO_FILES := \
+    qcril_database/qcril.db
+
+FUJISAN_SYSTEM_BIN_FILES := \
+    app6939 \
+    bt_logger \
+    diag_socket_log.sh \
+    dun-server \
+    fgchargerdumper \
+    tloc_daemon \
+    usbconfig
+
+FUJISAN_SYSTEM_ETC_FILES := \
+    permissions/izat.xt.srv.xml
+
+FUJISAN_SYSTEM_FRAMEWORK_FILES := \
+    izat.xt.srv.jar
+
+FUJISAN_SYSTEM_LIB_FILES := \
+    libqmi_cci_system.so \
+    libtfa9890.so \
+    libtrueportrait.so \
+    vendor.qti.gnss@1.0.so
+
+FUJISAN_SYSTEM_LIB64_FILES := \
+    libqmi_cci_system.so \
+    libtfa9890.so \
+    libtrueportrait.so \
+    libzte_zcore.so \
+    vendor.qti.gnss@1.0.so \
+    vendor.qti.hardware.wigig.netperftuner@1.0.so
+
+# vendor root
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
+$(call fujisan-copy-files,vendor,$(FUJISAN_VENDOR_ROOT_FILES),$(TARGET_COPY_OUT_VENDOR))
 
-# ---- vendor/bin ----
-# Include all stock vendor daemons and helpers, EXCLUDING the hw/
-# subdirectory. Most HAL service binaries are source-built; the remaining
-# stock-only services are added back explicitly below.
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin,$(TARGET_COPY_OUT_VENDOR)/bin)
-bin_exclude := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/bin/hw,$(TARGET_COPY_OUT_VENDOR)/bin/hw)
-bin_exclude += \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hostapd:$(TARGET_COPY_OUT_VENDOR)/bin/hostapd \
-    $(LOCAL_PATH)/proprietary/vendor/bin/ipacm:$(TARGET_COPY_OUT_VENDOR)/bin/ipacm \
-    $(LOCAL_PATH)/proprietary/vendor/bin/vndservicemanager:$(TARGET_COPY_OUT_VENDOR)/bin/vndservicemanager
-PRODUCT_COPY_FILES := $(filter-out $(bin_exclude),$(PRODUCT_COPY_FILES))
+# vendor/bin
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.bluetooth@1.0-service-qti
+$(call fujisan-copy-files,vendor/bin,$(FUJISAN_VENDOR_BIN_FILES),$(TARGET_COPY_OUT_VENDOR)/bin) \
+$(call fujisan-copy-files,vendor/bin/hw,$(FUJISAN_VENDOR_BIN_HW_FILES),$(TARGET_COPY_OUT_VENDOR)/bin/hw)
 
-# ---- vendor/etc ----
-# Include all stock configuration, excluding init scripts and wifi
-# configs (which are handled separately below).
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc,$(TARGET_COPY_OUT_VENDOR)/etc)
-vendor_etc_exclude_patterns := %/etc/init/% %/etc/wifi/% %/etc/audio_effects.conf %/etc/audio_output_policy.conf %/etc/audio_policy_configuration.xml %/etc/audio_policy_volumes.xml %/etc/default_volume_tables.xml %/etc/a2dp_audio_policy_configuration.xml %/etc/usb_audio_policy_configuration.xml %/etc/r_submix_audio_policy_configuration.xml %/etc/audio_platform_info.xml %/etc/audio_platform_info_i2s.xml %/etc/audio_tuning_mixer.txt %/etc/mixer_paths.xml %/etc/sound_trigger_mixer_paths.xml %/etc/sound_trigger_mixer_paths_wcd9330.xml %/etc/sound_trigger_platform_info.xml %/etc/audio_policy_engine_configuration.xml %/etc/audio_policy_engine_criteria.xml %/etc/audio_policy_engine_criterion_types.xml %/etc/audio_policy_engine_default_stream_volumes.xml %/etc/audio_policy_engine_product_strategies.xml %/etc/audio_policy_engine_stream_volumes.xml %/etc/media_codecs_google_audio.xml %/etc/media_codecs_google_telephony.xml %/etc/media_codecs_google_video.xml
-PRODUCT_COPY_FILES := $(filter-out $(vendor_etc_exclude_patterns),$(PRODUCT_COPY_FILES))
-# ---- vendor/etc/init ----
-# Include all stock init scripts.
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init,$(TARGET_COPY_OUT_VENDOR)/etc/init)
-# Exclude init scripts for HALs that AOSP builds (which also provide their
-# own init scripts). We still restore the stock qcom init chain explicitly
-# below because it wires up legacy Wi-Fi/BT helpers like wcnss-service and
-# cnss-daemon that LOS does not provide elsewhere.
-init_exclude := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/init/hw,$(TARGET_COPY_OUT_VENDOR)/etc/init/hw)
-init_exclude += \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.camera.provider@2.4-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.camera.provider@2.4-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.cas@1.2-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.cas@1.2-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.configstore@1.1-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.configstore@1.1-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.gatekeeper@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.gatekeeper@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.graphics.allocator@2.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.graphics.allocator@2.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.graphics.composer@2.1-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.graphics.composer@2.1-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.health@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.health@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.keymaster@3.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.keymaster@3.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.light@2.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.light@2.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.media.omx@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.media.omx@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.memtrack@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.memtrack@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.power@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.power@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.sensors@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.sensors@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.thermal@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.thermal@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.vibrator@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.vibrator@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/android.hardware.wifi@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.wifi@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.dolby.hardware.dms@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.dolby.hardware.dms@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.display.color@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.display.color@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.qti.gnss@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.gnss@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.zte.covolution.assertdisplay.vendorad@1.0-service.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/vndservicemanager.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vndservicemanager.rc
-PRODUCT_COPY_FILES := $(filter-out $(init_exclude),$(PRODUCT_COPY_FILES))
-
-# USB composition on msm8996 is device-specific. The generic framework rules
-# do not provide the ZTE/Qualcomm product IDs or initialize every function.
+# vendor/etc
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.qcom.factory.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.factory.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.msm.usb.configfs.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.msm.usb.configfs.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.usb.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.vendor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.vendor.rc \
-    $(LOCAL_PATH)/proprietary/vendor/etc/init/hw/init.vendor.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.vendor.usb.rc
+$(call fujisan-copy-files,vendor/etc,$(FUJISAN_VENDOR_ETC_FILES),$(TARGET_COPY_OUT_VENDOR)/etc) \
+$(call fujisan-copy-files,vendor/etc/init,$(FUJISAN_VENDOR_INIT_FILES),$(TARGET_COPY_OUT_VENDOR)/etc/init) \
+$(call fujisan-copy-files,vendor/etc/init/hw,$(FUJISAN_VENDOR_INIT_HW_FILES),$(TARGET_COPY_OUT_VENDOR)/etc/init/hw) \
+$(call fujisan-copy-files,vendor/etc/wifi,$(FUJISAN_VENDOR_WIFI_FILES),$(TARGET_COPY_OUT_VENDOR)/etc/wifi) \
+$(LOCAL_PATH)/proprietary/vendor/etc/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
 
-# ---- vendor/etc/wifi ----
-# Include all stock wifi configs except the generated wpa_supplicant.conf.
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/etc/wifi,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
-PRODUCT_COPY_FILES := $(filter-out %/etc/wifi/wpa_supplicant.conf,$(PRODUCT_COPY_FILES))
+# vendor/firmware
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/etc/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
+$(call fujisan-copy-files,vendor/firmware,$(FUJISAN_VENDOR_FIRMWARE_FILES),$(TARGET_COPY_OUT_VENDOR)/firmware)
 
-# ---- vendor/firmware ----
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/firmware,$(TARGET_COPY_OUT_VENDOR)/firmware)
-
-# ---- vendor/lib ----
-# Include all stock 32-bit libraries.
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib,$(TARGET_COPY_OUT_VENDOR)/lib)
-# AOSP/CAF builds the msm8996 audio stack from source; keep only proprietary
-# device-specific companions such as the TFA smartpa library and calibration.
-lib_exclude := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib/hw,$(TARGET_COPY_OUT_VENDOR)/lib/hw)
-lib_exclude += \
-    $(LOCAL_PATH)/proprietary/vendor/lib/android.hardware.tetheroffload.config@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.tetheroffload.config@1.0.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/libgnsspps.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgnsspps.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/libgpustats.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgpustats.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/libsdm-disp-vndapis.so:$(TARGET_COPY_OUT_VENDOR)/lib/libsdm-disp-vndapis.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/soundfx/libqcbassboost.so:$(TARGET_COPY_OUT_VENDOR)/lib/soundfx/libqcbassboost.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/soundfx/libqcompostprocbundle.so:$(TARGET_COPY_OUT_VENDOR)/lib/soundfx/libqcompostprocbundle.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/soundfx/libqcomvisualizer.so:$(TARGET_COPY_OUT_VENDOR)/lib/soundfx/libqcomvisualizer.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/soundfx/libqcomvoiceprocessing.so:$(TARGET_COPY_OUT_VENDOR)/lib/soundfx/libqcomvoiceprocessing.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/soundfx/libqcreverb.so:$(TARGET_COPY_OUT_VENDOR)/lib/soundfx/libqcreverb.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/soundfx/libqcvirt.so:$(TARGET_COPY_OUT_VENDOR)/lib/soundfx/libqcvirt.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/soundfx/libvolumelistener.so:$(TARGET_COPY_OUT_VENDOR)/lib/soundfx/libvolumelistener.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.display.color@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.display.color@1.0_vendor.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.gnss@1.0_vendor.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
-PRODUCT_COPY_FILES := $(filter-out $(lib_exclude),$(PRODUCT_COPY_FILES))
+# vendor/lib
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/lib/libtfa9890.so:$(TARGET_COPY_OUT_VENDOR)/lib/libtfa9890.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
+$(call fujisan-copy-files,vendor/lib,$(FUJISAN_VENDOR_LIB_FILES),$(TARGET_COPY_OUT_VENDOR)/lib) \
+$(call fujisan-copy-files,vendor/lib64,$(FUJISAN_VENDOR_LIB64_FILES),$(TARGET_COPY_OUT_VENDOR)/lib64) \
+$(call fujisan-copy-files,vendor/lib64/hw,$(FUJISAN_VENDOR_LIB64_HW_FILES),$(TARGET_COPY_OUT_VENDOR)/lib64/hw)
 
-# ---- vendor/lib64 ----
-# Include all stock 64-bit libraries.
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64,$(TARGET_COPY_OUT_VENDOR)/lib64)
-# AOSP/CAF builds the msm8996 audio stack from source; keep only proprietary
-# device-specific companions such as the TFA smartpa library and calibration.
-lib64_exclude := $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/lib64/hw,$(TARGET_COPY_OUT_VENDOR)/lib64/hw)
-lib64_exclude += \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/android.hardware.tetheroffload.config@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.tetheroffload.config@1.0.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/android.hardware.tetheroffload.control@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.tetheroffload.control@1.0.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/libgnsspps.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libgnsspps.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/libgpustats.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libgpustats.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/libsdm-disp-vndapis.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libsdm-disp-vndapis.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/soundfx/libqcbassboost.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcbassboost.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/soundfx/libqcompostprocbundle.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcompostprocbundle.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/soundfx/libqcomvisualizer.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcomvisualizer.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/soundfx/libqcomvoiceprocessing.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcomvoiceprocessing.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/soundfx/libqcreverb.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcreverb.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/soundfx/libqcvirt.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libqcvirt.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/soundfx/libvolumelistener.so:$(TARGET_COPY_OUT_VENDOR)/lib64/soundfx/libvolumelistener.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.display.color@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.display.color@1.0_vendor.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.gnss@1.0_vendor.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
-PRODUCT_COPY_FILES := $(filter-out $(lib64_exclude),$(PRODUCT_COPY_FILES))
+# vendor/radio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/lib64/libtfa9890.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libtfa9890.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/gatekeeper.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gatekeeper.msm8996.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
+$(call fujisan-copy-files,vendor/radio,$(FUJISAN_VENDOR_RADIO_FILES),$(TARGET_COPY_OUT_VENDOR)/radio)
 
-# ---- vendor/radio ----
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/vendor/radio,$(TARGET_COPY_OUT_VENDOR)/radio)
-
-# ---- system-side stock companions ----
+# system-side stock companions
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/bin/app6939:$(TARGET_COPY_OUT_SYSTEM)/bin/app6939 \
-    $(LOCAL_PATH)/proprietary/system/bin/bt_logger:$(TARGET_COPY_OUT_SYSTEM)/bin/bt_logger \
-    $(LOCAL_PATH)/proprietary/system/bin/diag_socket_log.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/diag_socket_log.sh \
-    $(LOCAL_PATH)/proprietary/system/bin/dun-server:$(TARGET_COPY_OUT_SYSTEM)/bin/dun-server \
-    $(LOCAL_PATH)/proprietary/system/bin/fgchargerdumper:$(TARGET_COPY_OUT_SYSTEM)/bin/fgchargerdumper \
-    $(LOCAL_PATH)/proprietary/system/bin/tloc_daemon:$(TARGET_COPY_OUT_SYSTEM)/bin/tloc_daemon \
-    $(LOCAL_PATH)/proprietary/system/bin/usbconfig:$(TARGET_COPY_OUT_SYSTEM)/bin/usbconfig \
-    $(LOCAL_PATH)/proprietary/system/etc/permissions/izat.xt.srv.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/izat.xt.srv.xml \
-    $(LOCAL_PATH)/proprietary/system/framework/izat.xt.srv.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/izat.xt.srv.jar \
-    $(LOCAL_PATH)/proprietary/system/lib/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtrueportrait.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libqmi_cci_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libqmi_cci_system.so \
-    $(LOCAL_PATH)/proprietary/system/lib/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vendor.qti.gnss@1.0.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libtrueportrait.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/libqmi_cci_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libqmi_cci_system.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/libzte_zcore.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libzte_zcore.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.gnss@1.0.so \
-    $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so
+$(call fujisan-copy-files,system/bin,$(FUJISAN_SYSTEM_BIN_FILES),$(TARGET_COPY_OUT_SYSTEM)/bin) \
+$(call fujisan-copy-files,system/etc,$(FUJISAN_SYSTEM_ETC_FILES),$(TARGET_COPY_OUT_SYSTEM)/etc) \
+$(call fujisan-copy-files,system/framework,$(FUJISAN_SYSTEM_FRAMEWORK_FILES),$(TARGET_COPY_OUT_SYSTEM)/framework) \
+$(call fujisan-copy-files,system/lib,$(FUJISAN_SYSTEM_LIB_FILES),$(TARGET_COPY_OUT_SYSTEM)/lib) \
+$(call fujisan-copy-files,system/lib64,$(FUJISAN_SYSTEM_LIB64_FILES),$(TARGET_COPY_OUT_SYSTEM)/lib64)
 
-# Deduplicate in case find-copy-subdir-files produces overlapping entries.
 PRODUCT_COPY_FILES := $(sort $(PRODUCT_COPY_FILES))
