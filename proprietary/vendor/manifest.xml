@@ -1,9 +1,10 @@
-<manifest version="1.0" type="device" target-level="2">
-    <!-- Required by the level 2 framework matrix; no audio HAL service is packaged. -->
+<manifest version="1.0" type="device" target-level="3">
+    <!-- Android 12L consumes the 6.0 audio interfaces; the legacy 2.0
+         service remains packaged for the Oreo vendor implementation. -->
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
-        <version>2.0</version>
+        <version>6.0</version>
         <interface>
             <name>IDevicesFactory</name>
             <instance>default</instance>
@@ -12,7 +13,7 @@
     <hal format="hidl">
         <name>android.hardware.audio.effect</name>
         <transport>hwbinder</transport>
-        <version>2.0</version>
+        <version>6.0</version>
         <interface>
             <name>IEffectsFactory</name>
             <instance>default</instance>
