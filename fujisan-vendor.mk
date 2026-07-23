@@ -169,7 +169,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/etc/firmware/ak4962_pram_wide.bin:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/ak4962_pram_wide.bin \
     $(LOCAL_PATH)/proprietary/vendor/etc/firmware/tfa98xx.cnt:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/tfa98xx.cnt \
     $(LOCAL_PATH)/proprietary/vendor/etc/flp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/flp.conf \
-    $(LOCAL_PATH)/proprietary/vendor/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom \
     $(LOCAL_PATH)/proprietary/vendor/etc/ftm_test_config:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config \
     $(LOCAL_PATH)/proprietary/vendor/etc/ftm_test_config_msm8996-dtp-tasha-snd-card:$(TARGET_COPY_OUT_VENDOR)/etc/ftm_test_config_msm8996-dtp-tasha-snd-card \
     $(LOCAL_PATH)/proprietary/vendor/etc/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf \

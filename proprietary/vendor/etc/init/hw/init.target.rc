@@ -151,10 +151,12 @@ service qvrd /system/vendor/bin/qvrservice
 
 #Start up peripheral manager
 service per_mgr /vendor/bin/pm-service
-    class core
     user system
     group system net_raw
     ioprio rt 4
+    class late_start
+    disabled
+    oneshot
 
 service per_proxy /vendor/bin/pm-proxy
     class core
@@ -162,8 +164,7 @@ service per_proxy /vendor/bin/pm-proxy
     group system
     disabled
 
-on property:init.svc.per_mgr=running
-    start per_proxy
+# bring-up: per_mgr/per_proxy disabled (pm-proxy SIGSEGV loop)
 
 on property:sys.shutdown.requested=*
     stop per_proxy
