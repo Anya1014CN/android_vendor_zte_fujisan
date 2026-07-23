@@ -460,12 +460,17 @@ then
     file=/sys/class/graphics/fb0/mdp/caps
     if [ -f "$file" ]
     then
+        # Fujisan posts panel B via CPU copy to /dev/graphics/fb1 in the HWC
+        # wrapper. UBWC client targets map as snow on that path, so keep linear
+        # GPU buffers even when MDP advertises ubwc (primary stays correct).
         setprop debug.gralloc.gfx_ubwc_disable 1
+        setprop debug.gralloc.enable_fb_ubwc 0
         cat $file | while read line; do
           case "$line" in
                     *"ubwc"*)
-                    setprop debug.gralloc.enable_fb_ubwc 1
-                    setprop debug.gralloc.gfx_ubwc_disable 0
+                    # Intentionally do NOT re-enable UBWC on fujisan.
+                    setprop debug.gralloc.enable_fb_ubwc 0
+                    setprop debug.gralloc.gfx_ubwc_disable 1
                 esac
         done
     fi
