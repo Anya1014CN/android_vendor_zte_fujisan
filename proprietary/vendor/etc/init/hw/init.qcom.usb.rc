@@ -44,6 +44,9 @@ on charger
     symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
     mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
     write /sys/class/android_usb/android0/f_ffs/aliases adb
+    # Fujisan: force configfs (4.4 + LOS 19.1). Legacy android_usb writes EPERM.
+    setprop sys.usb.configfs 1
+    setprop sys.usb.controller 6a00000.dwc3
     enable qcom-usb-sh
     start qcom-usb-sh
     setprop sys.usb.config mass_storage
@@ -89,6 +92,9 @@ on boot
     symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
     mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
     write /sys/class/android_usb/android0/f_ffs/aliases adb
+    # Fujisan: force configfs (4.4 + LOS 19.1). Legacy android_usb writes EPERM.
+    setprop sys.usb.configfs 1
+    setprop sys.usb.controller 6a00000.dwc3
     enable qcom-usb-sh
 
 service qcom-usb-sh /vendor/bin/init.qcom.usb.sh
