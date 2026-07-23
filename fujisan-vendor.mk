@@ -836,11 +836,3 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
 
 PRODUCT_COPY_FILES := $(sort $(PRODUCT_COPY_FILES))
-
-# Android 12 only loads /vendor/etc/ueventd.rc. Stock Oreo path is kept above.
-# Composer was dropped earlier due to install conflicts with source packages;
-# source packages are gone, so ship the stock service/impl only.
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.graphics.composer@2.1-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.graphics.composer@2.1-service \
-    $(LOCAL_PATH)/proprietary/vendor/lib/hw/android.hardware.graphics.composer@2.1-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/android.hardware.graphics.composer@2.1-impl.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/android.hardware.graphics.composer@2.1-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/android.hardware.graphics.composer@2.1-impl.so
