@@ -257,10 +257,13 @@ service adsprpcd /system/vendor/bin/adsprpcd
    user media
    group media
 
-service audiod /system/vendor/bin/audiod
+# Bring-up: audiod is not packaged; keep service disabled.
+service audiod /system/bin/true
    class late_start
    user system
    group system
+   disabled
+   oneshot
 
 
 service usf_tester /system/vendor/bin/usf_tester
