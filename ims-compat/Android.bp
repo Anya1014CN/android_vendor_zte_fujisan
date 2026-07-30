@@ -1,0 +1,17 @@
+android_app_import {
+    name: "FujisanQtiIms",
+    // Oreo IMS client, compatible with Oreo QCRIL.  Smaller and avoids
+    // the Android 10 HAL parameter mismatch in gemini-ims.apk.
+    apk: "prebuilt/ims.apk",
+    certificate: "platform",
+    privileged: true,
+    enforce_uses_libs: false,
+}
+
+android_app_import {
+    name: "FujisanQtiTelephonyService",
+    apk: "prebuilt/QtiTelephonyService.apk",
+    certificate: "platform",
+    privileged: true,
+    enforce_uses_libs: false,
+}
