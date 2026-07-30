@@ -1001,6 +1001,8 @@ service battery_monitor /system/bin/battery_monitor
 
 service ril-daemon /vendor/bin/hw/rild
     class main
+    # Legacy Qualcomm RIL needs the removed libutils strdup8to16 ABI.
+    setenv LD_PRELOAD /vendor/lib64/libril-compat.so
     socket rild stream 660 root radio
     socket rild-debug stream 660 radio system
     user radio
@@ -1014,6 +1016,8 @@ service ril-daemon /vendor/bin/hw/rild
 
 service ril-daemon2 /vendor/bin/hw/rild -c 2
     class main
+    # Keep the ABI shim scoped to the legacy RIL processes.
+    setenv LD_PRELOAD /vendor/lib64/libril-compat.so
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
     user radio
@@ -1028,6 +1032,8 @@ service ril-daemon2 /vendor/bin/hw/rild -c 2
 
 service ril-daemon3 /vendor/bin/hw/rild -c 3
     class main
+    # Keep the ABI shim scoped to the legacy RIL processes.
+    setenv LD_PRELOAD /vendor/lib64/libril-compat.so
     socket rild3 stream 660 root radio
     socket rild-debug3 stream 660 radio system
     user radio
