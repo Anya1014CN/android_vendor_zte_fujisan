@@ -883,9 +883,12 @@ service mlid /vendor/bin/mlid
     socket mlid stream 0666 gps gps
 
 service loc_launcher /system/vendor/bin/loc_launcher
-    #loc_launcher will start as root and set its uid to gps
+    # The legacy launcher starts xtra-daemon, whose pre-Treble injection path
+    # is ABI-incompatible with the source-built GNSS HAL. AOSP owns GNSS
+    # assistance and time injection on this build, so do not start it.
     class late_start
     group gps inet diag wifi
+    disabled
 
 on property:crypto.driver.load=1
      insmod /system/lib/modules/qce.ko
