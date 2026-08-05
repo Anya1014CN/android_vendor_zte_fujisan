@@ -1,6 +1,46 @@
 LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter fujisan,$(TARGET_DEVICE)),)
+ifeq ($(TARGET_USES_FUJISAN_SOURCE_QCAMERA),false)
+include $(CLEAR_VARS)
+LOCAL_MODULE := camera.msm8996
+LOCAL_MODULE_OWNER := zte
+LOCAL_SRC_FILES := proprietary/vendor/lib/hw/camera.msm8996.so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_RELATIVE_PATH := hw
+LOCAL_MODULE_STEM := camera.msm8996
+LOCAL_MULTILIB := 32
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+LOCAL_STRIP_MODULE := false
+include $(BUILD_PREBUILT)
+endif
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libmmcamera_interface
+LOCAL_MODULE_OWNER := zte
+LOCAL_SRC_FILES := proprietary/vendor/lib/libmmcamera_interface.so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MULTILIB := 32
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+include $(BUILD_PREBUILT)
+
+ifeq ($(TARGET_USES_FUJISAN_SOURCE_QCAMERA),true)
+include $(CLEAR_VARS)
+LOCAL_MODULE := libmmjpeg_interface
+LOCAL_MODULE_OWNER := zte
+LOCAL_SRC_FILES := proprietary/vendor/lib/libmmjpeg_interface.so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MULTILIB := 32
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+include $(BUILD_PREBUILT)
+endif
+
 include $(CLEAR_VARS)
 LOCAL_MODULE := libsdm-disp-vndapis
 LOCAL_MODULE_OWNER := zte

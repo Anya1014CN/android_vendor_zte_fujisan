@@ -513,7 +513,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmmcamera_imx350_docomo_night.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_imx350_docomo_night.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmmcamera_imx350_docomo_vf_night.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_imx350_docomo_vf_night.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmmcamera_imx350_docomo_virtual.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_imx350_docomo_virtual.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/libmmcamera_interface.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_interface.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libqomx_core.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqomx_core.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmmcamera_isp_abf47.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_isp_abf47.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmmcamera_isp_aec_bg_stats47.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_isp_aec_bg_stats47.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmmcamera_isp_bf_stats47.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_isp_bf_stats47.so \
@@ -573,7 +573,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmmcamera_tuning_lookup.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_tuning_lookup.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmmcamera_ubifocus_lib.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmcamera_ubifocus_lib.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmmjpeg.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmjpeg.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/libmmjpeg_interface.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmjpeg_interface.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmmosal_proprietary.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmosal_proprietary.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libmodemapi_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmodemapi_vendor.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libnetmgr.so:$(TARGET_COPY_OUT_VENDOR)/lib/libnetmgr.so \
@@ -591,7 +590,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/lib/libqmi_csi.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqmi_csi.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libqmi_encdec.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqmi_encdec.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libqmiservices.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqmiservices.so \
-    $(LOCAL_PATH)/proprietary/vendor/lib/libqomx_core.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqomx_core.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libqomx_jpegdec.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqomx_jpegdec.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libqomx_jpegenc.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqomx_jpegenc.so \
     $(LOCAL_PATH)/proprietary/vendor/lib/libqomx_jpegenc_pipe.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqomx_jpegenc_pipe.so \
@@ -838,5 +836,10 @@ PRODUCT_COPY_FILES += \
 
 
 
+
+ifeq ($(TARGET_USES_FUJISAN_SOURCE_QCAMERA),false)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libmmjpeg_interface.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmjpeg_interface.so
+endif
 
 PRODUCT_COPY_FILES := $(sort $(PRODUCT_COPY_FILES))
