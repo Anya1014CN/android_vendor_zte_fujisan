@@ -111,14 +111,18 @@ LensInfo : Information of the lens present in the module.
   </CameraModuleConfig>
 <CameraModuleConfig>
     <CameraId>1</CameraId>
-    <SensorName>imx350_docomo_front</SensorName>
+    <!-- The device has one physical IMX350.  Expose the same module at the
+         front-facing logical slot; the panel controller uses this metadata
+         to select the requested display while the sensor is in use. -->
+    <SensorName>imx350_docomo_virtual</SensorName>
     <ActuatorName>bu64297_imx350_docomo</ActuatorName>
     <EepromName>sony_imx350_docomo</EepromName>
     <FlashName>pmic</FlashName>
-    <ChromatixName>imx350_docomo_front_chromatix</ChromatixName>
+    <ChromatixName>imx350_docomo_virtual_chromatix</ChromatixName>
     <ModesSupported>1</ModesSupported>
+    <!-- Logical front slot for the shared physical module. -->
     <Position>FRONT</Position>
-    <MountAngle>270</MountAngle>
+    <MountAngle>90</MountAngle>
     <CSIInfo>
       <CSIDCore>0</CSIDCore>
       <LaneMask>0x1F</LaneMask>
@@ -135,4 +139,3 @@ LensInfo : Information of the lens present in the module.
     </LensInfo>
   </CameraModuleConfig>
 </CameraConfigurationRoot>
-
