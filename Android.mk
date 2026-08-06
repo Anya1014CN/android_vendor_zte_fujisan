@@ -28,7 +28,6 @@ LOCAL_PROPRIETARY_MODULE := true
 LOCAL_CHECK_ELF_FILES := false
 include $(BUILD_PREBUILT)
 
-ifeq ($(TARGET_USES_FUJISAN_SOURCE_QCAMERA),true)
 include $(CLEAR_VARS)
 LOCAL_MODULE := libmmjpeg_interface
 LOCAL_MODULE_OWNER := zte
@@ -39,7 +38,17 @@ LOCAL_MULTILIB := 32
 LOCAL_PROPRIETARY_MODULE := true
 LOCAL_CHECK_ELF_FILES := false
 include $(BUILD_PREBUILT)
-endif
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libfujisan_graphicbuffer_compat
+LOCAL_MODULE_OWNER := zte
+LOCAL_SRC_FILES := proprietary/vendor/lib/libfujisan_graphicbuffer_compat.so
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MULTILIB := 32
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := libsdm-disp-vndapis

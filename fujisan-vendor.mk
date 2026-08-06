@@ -837,9 +837,4 @@ PRODUCT_COPY_FILES += \
 
 
 
-ifeq ($(TARGET_USES_FUJISAN_SOURCE_QCAMERA),false)
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/vendor/lib/libmmjpeg_interface.so:$(TARGET_COPY_OUT_VENDOR)/lib/libmmjpeg_interface.so
-endif
-
 PRODUCT_COPY_FILES := $(sort $(PRODUCT_COPY_FILES))
