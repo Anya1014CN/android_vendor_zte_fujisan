@@ -532,11 +532,6 @@ on property:vold.decrypt=trigger_restart_framework
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
-service cnd /system/vendor/bin/cnd
-    class main
-    user system
-    group system wifi inet radio wakelock net_admin
-
 service dpmQmiMgr /system/vendor/bin/dpmQmiMgr
     class main
     user system
@@ -1006,6 +1001,7 @@ service ril-daemon /vendor/bin/hw/rild
     class main
     # Legacy Qualcomm RIL needs the removed libutils strdup8to16 ABI.
     setenv LD_PRELOAD /vendor/lib64/libril-compat.so
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
     socket rild stream 660 root radio
     socket rild-debug stream 660 radio system
     user radio
@@ -1021,6 +1017,7 @@ service ril-daemon2 /vendor/bin/hw/rild -c 2
     class main
     # Keep the ABI shim scoped to the legacy RIL processes.
     setenv LD_PRELOAD /vendor/lib64/libril-compat.so
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
     user radio
@@ -1037,6 +1034,7 @@ service ril-daemon3 /vendor/bin/hw/rild -c 3
     class main
     # Keep the ABI shim scoped to the legacy RIL processes.
     setenv LD_PRELOAD /vendor/lib64/libril-compat.so
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
     socket rild3 stream 660 root radio
     socket rild-debug3 stream 660 radio system
     user radio
