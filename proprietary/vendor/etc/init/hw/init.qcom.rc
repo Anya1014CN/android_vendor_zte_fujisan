@@ -42,6 +42,15 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 root system
 
+    # Keep a peripheral SSR from resetting the whole SoC.  This is the
+    # standard msm8996 Lineage configuration; the kernel default is SYSTEM.
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys3/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys4/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys5/restart_level related
+
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
