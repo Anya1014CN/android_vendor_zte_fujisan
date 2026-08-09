@@ -825,4 +825,29 @@ PRODUCT_COPY_FILES += \
 
 
 
+# Oreo's MSM8996 display HAL is device-specific and no compatible CAF source
+# implementation exists in the LineageOS 23.2 tree.  Keep the complete
+# closed display dependency set together, for both supported ABIs.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/lib/hw/gralloc.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/gralloc.msm8996.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/hw/hwcomposer.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib/hw/hwcomposer.msm8996.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libdrmutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libdrmutils.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libgpu_tonemapper.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgpu_tonemapper.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libgrallocutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgrallocutils.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libqdMetaData.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqdMetaData.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libqdutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqdutils.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libqservice.so:$(TARGET_COPY_OUT_VENDOR)/lib/libqservice.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libsdmcore.so:$(TARGET_COPY_OUT_VENDOR)/lib/libsdmcore.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libsdmutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libsdmutils.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/gralloc.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gralloc.msm8996.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/hwcomposer.msm8996.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/hwcomposer.msm8996.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libdrmutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libdrmutils.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libgpu_tonemapper.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libgpu_tonemapper.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libgrallocutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libgrallocutils.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libqdMetaData.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libqdMetaData.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libqdutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libqdutils.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libqservice.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libqservice.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libsdmcore.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libsdmcore.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libsdmutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libsdmutils.so
+
 PRODUCT_COPY_FILES := $(sort $(PRODUCT_COPY_FILES))
