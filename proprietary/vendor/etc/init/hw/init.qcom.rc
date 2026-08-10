@@ -545,6 +545,7 @@ service dpmQmiMgr /system/vendor/bin/dpmQmiMgr
     class main
     user system
     group system
+    disabled
 
 service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class core
@@ -839,6 +840,7 @@ service cnss-daemon /system/vendor/bin/cnss-daemon -n -l
     user system
     group system inet net_admin wifi
     capabilities NET_ADMIN
+    disabled
 
 on property:sys.shutdown.requested=*
     stop cnss-daemon
@@ -958,6 +960,7 @@ service qvop-daemon /vendor/bin/qvop-daemon
     class late_start
     user system
     group system drmrpc
+    disabled
 # avoid atfwd be killed
 service atfwd /vendor/bin/ATFWD-daemon
     class main
@@ -965,7 +968,7 @@ service atfwd /vendor/bin/ATFWD-daemon
     group system radio
     disabled
 
-on property:persist.radio.atfwd.start=true
+on property:persist.radio.atfwd.start=true && property:ro.vendor.fujisan.enable_legacy_radio=1
     start atfwd
 
 service hostapd_fst /vendor/bin/hostapd -dd -g /data/vendor/wifi/hostapd/global /data/misc/wifi/hostapd.conf
@@ -1014,6 +1017,7 @@ service ril-daemon /vendor/bin/hw/rild
     socket rild stream 660 root radio
     socket rild-debug stream 660 radio system
     user radio
+    disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
     interface android.hardware.radio@1.0::IRadio slot1

@@ -30,6 +30,10 @@
 #
 # start ril-daemon only for targets on which radio is present
 #
+if [ "$(getprop ro.vendor.fujisan.enable_legacy_radio)" != "1" ]; then
+    exit 0
+fi
+
 baseband=`getprop ro.baseband`
 sgltecsfb=`getprop persist.vendor.radio.sglte_csfb`
 datamode=`getprop persist.data.mode`
