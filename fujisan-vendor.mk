@@ -3,6 +3,11 @@ LOCAL_PATH := vendor/zte/fujisan
 PRODUCT_SOONG_NAMESPACES += \
     vendor/zte/fujisan
 
+# Legacy 32-bit camera components resolve these proven ABI-compatible files
+# from the vendor namespace.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libstdc++.so:$(TARGET_COPY_OUT_VENDOR)/lib/libstdc++.so
+
 # Keep manifest and compatibility matrix under VINTF packaging control.
 # This file intentionally lists only the blobs we actually install.
 
