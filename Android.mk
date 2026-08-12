@@ -101,17 +101,4 @@ LOCAL_CHECK_ELF_FILES := false
 LOCAL_PROPRIETARY_MODULE := true
 include $(BUILD_PREBUILT)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE := fujisan_fingerprint_blob_overlay
-LOCAL_MODULE_OWNER := zte
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := proprietary/vendor/etc/init/fujisan.fingerprint.rc
-LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)/etc
-LOCAL_MODULE_STEM := .fujisan_fingerprint_blob_overlay
-LOCAL_REQUIRED_MODULES := android.hardware.biometrics.fingerprint@2.1-service
-LOCAL_POST_INSTALL_CMD := cp $(LOCAL_PATH)/proprietary/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service $(TARGET_OUT_VENDOR)/bin/hw/android.hardware.biometrics.fingerprint@2.1-service && chmod 755 $(TARGET_OUT_VENDOR)/bin/hw/android.hardware.biometrics.fingerprint@2.1-service
-LOCAL_PROPRIETARY_MODULE := true
-include $(BUILD_PREBUILT)
-
 endif

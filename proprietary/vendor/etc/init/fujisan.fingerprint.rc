@@ -3,3 +3,13 @@ on boot
     chown system system /sys/bus/platform/devices/soc:fpc1020/irq
     chmod 0200 /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
     chown system system /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
+
+# The Android 8 fingerprint extension still references the removed HIDL
+# constructor-map globals. Load the device-side compatibility shim for only
+# this legacy service.
+service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service
+    override
+    class late_start
+    user system
+    group system input uhid
+    setenv LD_PRELOAD /vendor/lib64/libhidlbase_fujisan_legacy_map_shim.so
