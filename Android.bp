@@ -1,0 +1,38 @@
+// VIDC uses the frame-metadata ABI implemented by Fujisan's OEM MSM8996
+// gralloc stack. Declare the already-packaged ABI libraries for Soong so the
+// source-built Qualcomm V4L2 OMX implementation can link against them.
+cc_prebuilt_library_shared {
+    name: "libqdMetaData",
+    vendor: true,
+    arch: {
+        arm: {
+            srcs: ["proprietary/vendor/lib/libqdMetaData.so"],
+        },
+        arm64: {
+            srcs: ["proprietary/vendor/lib64/libqdMetaData.so"],
+        },
+    },
+    strip: {
+        none: true,
+    },
+    check_elf_files: false,
+    installable: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libqdutils",
+    vendor: true,
+    arch: {
+        arm: {
+            srcs: ["proprietary/vendor/lib/libqdutils.so"],
+        },
+        arm64: {
+            srcs: ["proprietary/vendor/lib64/libqdutils.so"],
+        },
+    },
+    strip: {
+        none: true,
+    },
+    check_elf_files: false,
+    installable: false,
+}
