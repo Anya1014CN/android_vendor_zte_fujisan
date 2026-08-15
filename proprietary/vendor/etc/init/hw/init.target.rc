@@ -150,14 +150,14 @@ service qvrd /system/vendor/bin/qvrservice
     socket qvrservice stream 0666 system system
     disabled
 
-#Start up peripheral manager
+# The legacy QCRIL blob registers its modem vote through this standard QTI
+# vendor Binder service.  pm-service is made Android 16-compatible by the
+# device-installed libutils-v33 dependency, matching Lineage msm8996-common.
 service per_mgr /vendor/bin/pm-service
+    class core
     user system
     group system net_raw
     ioprio rt 4
-    class late_start
-    disabled
-    oneshot
 
 service per_proxy /vendor/bin/pm-proxy
     class core
@@ -165,7 +165,8 @@ service per_proxy /vendor/bin/pm-proxy
     group system
     disabled
 
-# bring-up: per_mgr/per_proxy disabled (pm-proxy SIGSEGV loop)
+# pm-proxy has a known crash loop and is not needed by the radio stack.
+# Keep it disabled while per_mgr serves the QCRIL modem power vote.
 
 on property:sys.shutdown.requested=*
     stop per_proxy
