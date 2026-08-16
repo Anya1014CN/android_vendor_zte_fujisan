@@ -857,4 +857,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/lib64/libsdmcore.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libsdmcore.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/libsdmutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libsdmutils.so
 
+## Android 10 Qualcomm Radio/QMI/IMS stack used by the maintained Xiaomi
+## MSM8996 reference. These files are copied as one tested closure so QCRIL
+## and its QMI clients never mix incompatible generations.
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/radio-stack/vendor,$(TARGET_COPY_OUT_VENDOR)) \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/radio-stack/system_ext/etc,$(TARGET_COPY_OUT_SYSTEM_EXT)/etc) \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/radio-stack/system_ext/framework,$(TARGET_COPY_OUT_SYSTEM_EXT)/framework) \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/radio-stack/system_ext/lib64,$(TARGET_COPY_OUT_SYSTEM_EXT)/lib64)
+
 PRODUCT_COPY_FILES := $(sort $(PRODUCT_COPY_FILES))
