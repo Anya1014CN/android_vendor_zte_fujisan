@@ -866,4 +866,8 @@ PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/radio-stack/system_ext/framework,$(TARGET_COPY_OUT_SYSTEM_EXT)/framework) \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/proprietary/radio-stack/system_ext/lib64,$(TARGET_COPY_OUT_SYSTEM_EXT)/lib64)
 
+PRODUCT_PACKAGES += \
+    QtiIms \
+    UceShimService
+
 PRODUCT_COPY_FILES := $(sort $(PRODUCT_COPY_FILES))

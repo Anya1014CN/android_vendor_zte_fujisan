@@ -1,0 +1,20 @@
+android_app_import {
+    name: "QtiIms",
+    apk: "priv-app/ims/ims.apk",
+    certificate: "platform",
+    privileged: true,
+    system_ext_specific: true,
+    relative_install_path: "ims",
+    filename: "ims.apk",
+    enforce_uses_libs: false,
+}
+
+android_app_import {
+    name: "UceShimService",
+    apk: "app/uceShimService/uceShimService.apk",
+    certificate: "platform",
+    system_ext_specific: true,
+    relative_install_path: "uceShimService",
+    filename: "uceShimService.apk",
+    enforce_uses_libs: false,
+}
