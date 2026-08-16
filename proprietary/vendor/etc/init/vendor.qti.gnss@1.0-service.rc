@@ -2,3 +2,7 @@ service qti_gnss_service /vendor/bin/hw/vendor.qti.gnss@1.0-service
     class hal
     user gps
     group system gps radio
+    # Android 8 generated QTI HIDL code uses the deprecated constructor-map
+    # globals. The device already ships this compatibility shim for OEM RIL.
+    setenv LD_PRELOAD /vendor/lib64/libhidlbase_fujisan_legacy_map_shim.so
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64

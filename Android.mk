@@ -1,6 +1,45 @@
 LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter fujisan,$(TARGET_DEVICE)),)
+include $(CLEAR_VARS)
+LOCAL_MODULE := libgps.utils
+LOCAL_MODULE_OWNER := zte
+LOCAL_SRC_FILES_32 := proprietary/vendor/lib/libgps.utils.so
+LOCAL_SRC_FILES_64 := proprietary/vendor/lib64/libgps.utils.so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MULTILIB := both
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+LOCAL_STRIP_MODULE := false
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libgnsspps
+LOCAL_MODULE_OWNER := zte
+LOCAL_SRC_FILES_32 := proprietary/vendor/lib/libgnsspps.so
+LOCAL_SRC_FILES_64 := proprietary/vendor/lib64/libgnsspps.so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MULTILIB := both
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+LOCAL_STRIP_MODULE := false
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libloc_core
+LOCAL_MODULE_OWNER := zte
+LOCAL_SRC_FILES_32 := proprietary/vendor/lib/libloc_core.so
+LOCAL_SRC_FILES_64 := proprietary/vendor/lib64/libloc_core.so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MULTILIB := both
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+LOCAL_STRIP_MODULE := false
+include $(BUILD_PREBUILT)
+
 ifeq ($(TARGET_USES_FUJISAN_SOURCE_QCAMERA),false)
 include $(CLEAR_VARS)
 LOCAL_MODULE := camera.msm8996

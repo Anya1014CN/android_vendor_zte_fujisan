@@ -11,6 +11,25 @@ PRODUCT_COPY_FILES += \
 # Keep manifest and compatibility matrix under VINTF packaging control.
 # This file intentionally lists only the blobs we actually install.
 
+# Stock uses this 64-bit GNSS 1.0/Izat stack.  The remaining location blobs,
+# configuration files, and the supporting LOWI/SLIM daemons are listed below.
+# These files were omitted while the source-built bridge was in use.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/bin/hw/vendor.qti.gnss@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/vendor.qti.gnss@1.0-service \
+    $(LOCAL_PATH)/proprietary/vendor/bin/loc_launcher:$(TARGET_COPY_OUT_VENDOR)/bin/loc_launcher \
+    $(LOCAL_PATH)/proprietary/vendor/bin/xtra-daemon:$(TARGET_COPY_OUT_VENDOR)/bin/xtra-daemon \
+    $(LOCAL_PATH)/proprietary/vendor/etc/init/vendor.qti.gnss@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.qti.gnss@1.0-service.rc \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/hw/vendor.qti.gnss@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.gnss@1.0-impl.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.gnss@1.0_vendor.so
+
+# The source-built standard HIDL bridge links these two SONAMEs.  Register the
+# OEM 64-bit pair as modules so product packaging resolves the same libraries
+# used by the proprietary GNSS/Izat stack, without a destination-file clash.
+PRODUCT_PACKAGES += \
+    libgps.utils \
+    libgnsspps \
+    libloc_core
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/bin/app6939:$(TARGET_COPY_OUT_SYSTEM)/bin/app6939 \
     $(LOCAL_PATH)/proprietary/system/bin/bt_logger:$(TARGET_COPY_OUT_SYSTEM)/bin/bt_logger \
