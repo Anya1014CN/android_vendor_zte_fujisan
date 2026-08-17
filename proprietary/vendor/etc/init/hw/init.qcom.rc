@@ -363,8 +363,11 @@ on post-fs-data
     #Create directory for hostapd
     mkdir /data/hostapd 0770 system wifi
 
-    # Create /data/time folder for time-services
-    mkdir /data/time/ 0700 system system
+    # QCOM policy owns time-service data under /data/vendor/time. Keep the
+    # legacy /data/time path as a bind-mounted compatibility view for blobs.
+    mkdir /data/vendor/time 0700 system system
+    mkdir /data/time 0700 system system
+    mount none /data/vendor/time /data/time bind
 
     mkdir /data/vendor/audio/ 0770 media audio
 
