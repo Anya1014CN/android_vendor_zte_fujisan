@@ -62,22 +62,8 @@ else
 fi
 
 function set_density_by_fb() {
-    #put default density based on width
-    if [ -z $fb_width ]; then
-        setprop ro.sf.lcd_density 320
-    else
-        if [ $fb_width -ge 1440 ]; then
-           setprop ro.sf.lcd_density 560
-        elif [ $fb_width -ge 1080 ]; then
-           setprop ro.sf.lcd_density 480
-        elif [ $fb_width -ge 720 ]; then
-           setprop ro.sf.lcd_density 320 #for 720X1280 resolution
-        elif [ $fb_width -ge 480 ]; then
-            setprop ro.sf.lcd_density 240 #for 480X854 QRD resolution
-        else
-            setprop ro.sf.lcd_density 160
-        fi
-    fi
+    # Fujisan's 480 dpi density is supplied statically by system.prop.
+    :
 }
 target=`getprop ro.board.platform`
 case "$target" in
@@ -214,7 +200,7 @@ case "$target" in
                 setprop qemu.hw.mainkeys 0
                 ;;
             *)
-                setprop ro.sf.lcd_density 560
+                :
                 ;;
         esac
         ;;
@@ -322,7 +308,9 @@ if [ -f /firmware/verinfo/ver_info.txt ]; then
                 sed -n 's/^[^:]*modem[^:]*:[[:blank:]]*//p' |
                 sed 's/.*AT.\(.*\)/\1/g' | cut -d \- -f 1`
         if [ ! -z $version ]; then
-            zygote=`getprop ro.zygote`
+            # Fujisan is a fixed 64-bit system with a 32-bit app zygote.
+            # Do not read the framework-only ro.zygote property from vendor.
+            zygote=zygote64_32
             case "$zygote" in
                 "zygote64_32")
                     if [ "$version" \< "3.1" ]; then
@@ -349,7 +337,7 @@ if [ -f /firmware/verinfo/ver_info.txt ]; then
                 sed -n 's/^[^:]*modem[^:]*:[[:blank:]]*//p' |
                 sed 's/.*TA.\(.*\)/\1/g' | cut -d \- -f 1`
         if [ ! -z $version ]; then
-            zygote=`getprop ro.zygote`
+            zygote=zygote64_32
             case "$zygote" in
                 "zygote64_32")
                     if [ "$version" \< "3.0" ]; then
@@ -368,7 +356,7 @@ if [ -f /firmware/verinfo/ver_info.txt ]; then
             esac
         fi
     elif [ "$modem" = "TH" ]; then
-        zygote=`getprop ro.zygote`
+        zygote=zygote64_32
         case "$zygote" in
             "zygote64_32")
                 setprop vendor.rild.libpath "/vendor/lib64/libril-qc-qmi-1.so"
@@ -384,9 +372,9 @@ baseband=`getprop ro.baseband`
 #enable atfwd daemon all targets except sda, apq, qcs
 case "$baseband" in
     "apq" | "sda" | "qcs" )
-        setprop persist.radio.atfwd.start false;;
+        setprop persist.vendor.radio.atfwd.start false;;
     *)
-        setprop persist.radio.atfwd.start true;;
+        setprop persist.vendor.radio.atfwd.start true;;
 esac
 
 #set default lcd density
@@ -463,14 +451,12 @@ then
         # Fujisan posts panel B via CPU copy to /dev/graphics/fb1 in the HWC
         # wrapper. UBWC client targets map as snow on that path, so keep linear
         # GPU buffers even when MDP advertises ubwc (primary stays correct).
-        setprop debug.gralloc.gfx_ubwc_disable 1
-        setprop debug.gralloc.enable_fb_ubwc 0
+        # Both Fujisan UBWC overrides are static system properties.
         cat $file | while read line; do
           case "$line" in
                     *"ubwc"*)
                     # Intentionally do NOT re-enable UBWC on fujisan.
-                    setprop debug.gralloc.enable_fb_ubwc 0
-                    setprop debug.gralloc.gfx_ubwc_disable 1
+                    :
                 esac
         done
     fi
@@ -500,20 +486,16 @@ then
 fi
 
 boot_reason=`cat /proc/sys/kernel/boot_reason`
-reboot_reason=`getprop ro.boot.alarmboot`
 power_off_alarm_file=`cat /persist/alarm/powerOffAlarmSet`
-if [ "$boot_reason" = "3" ] || [ "$reboot_reason" = "true" ]; then
+# The kernel boot reason is the authoritative alarm-boot signal.  Avoid the
+# legacy vendor shell reading the framework boot property during early init.
+if [ "$boot_reason" = "3" ]; then
     if [ "$power_off_alarm_file" = "1" ]
     then
-        setprop ro.alarm_boot true
         setprop debug.sf.nobootanimation 1
     fi
 else
-    setprop ro.alarm_boot false
+    :
 fi
 
-# copy GPU frequencies to system property
-if [ -f /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies ]; then
-    gpu_freq=`cat /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies` 2> /dev/null
-    setprop ro.gpu.available_frequencies "$gpu_freq"
-fi
+# No in-tree consumer uses the legacy ro.gpu.available_frequencies property.

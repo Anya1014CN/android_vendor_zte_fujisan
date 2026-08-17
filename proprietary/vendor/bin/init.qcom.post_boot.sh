@@ -3077,7 +3077,7 @@ case "$target" in
         echo 512 > /sys/block/mmcblk0/bdi/read_ahead_kb
     ;;
     "msm8994" | "msm8992" | "msm8996" | "msm8998" | "sdm660" | "apq8098_latv" | "sdm845")
-        setprop sys.post_boot.parsed 1
+        :
     ;;
     "apq8084")
         rm /data/system/perfd/default_values
@@ -3169,20 +3169,10 @@ if [ -f /sys/devices/soc0/select_image ]; then
     echo $oem_version > /sys/devices/soc0/image_crm_version
 fi
 
-# Change console log level as per console config property
-console_config=`getprop persist.console.silent.config`
-case "$console_config" in
-    "1")
-        echo "Enable console config to $console_config"
-        echo 0 > /proc/sys/kernel/printk
-        ;;
-    *)
-        echo "Enable console config to $console_config"
-        ;;
-esac
+# Fujisan does not define the legacy framework-owned console property; retain
+# the kernel's normal console log level.
 
 # Parse misc partition path and set property
 misc_link=$(ls -l /dev/block/bootdevice/by-name/misc)
 real_path=${misc_link##*>}
 setprop persist.vendor.mmi.misc_dev_path $real_path
-

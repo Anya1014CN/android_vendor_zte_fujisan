@@ -946,7 +946,7 @@ service atfwd /vendor/bin/ATFWD-daemon
     group system radio
     disabled
 
-on property:persist.radio.atfwd.start=true && property:ro.vendor.fujisan.enable_legacy_radio=1
+on property:persist.vendor.radio.atfwd.start=true && property:ro.vendor.fujisan.enable_legacy_radio=1
     start atfwd
 
 service hostapd_fst /vendor/bin/hostapd -dd -g /data/vendor/wifi/hostapd/global /data/misc/wifi/hostapd.conf

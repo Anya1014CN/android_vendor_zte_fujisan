@@ -149,7 +149,9 @@ init_DMM()
 # For controlling console and shell on console on 8960 - perist.serial.enable 8960
 # On other target use default ro.debuggable property.
 #
-serial=`getprop persist.serial.enable`
+# persist.serial.enable only controls the msm8960/8610/8974 branches below;
+# Fujisan is msm8996 and must not read this legacy framework property.
+serial=
 dserial=`getprop ro.debuggable`
 case "$target" in
     "msm8960")
