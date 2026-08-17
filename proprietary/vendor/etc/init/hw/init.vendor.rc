@@ -155,26 +155,6 @@ on mmi
    start vendorcfgd
    start fmmi_slicd
 
-#
-# zte: adb over wifi
-#
-on property:persist.sys.wifiadb.enable=1
-    setprop service.adb.tcp.port 5555
-    stop adbd
-    start adbd
-
-#add for sddump
-on property:persist.sys.sddump.enable=0
-    write /sys/module/msm_poweroff/parameters/ignore_sd_dump 1
-on property:persist.sys.sddump.enable=1
-    write /sys/module/msm_poweroff/parameters/ignore_sd_dump 0
-
-on property:persist.sys.dlctrl=0
-     write /sys/module/msm_poweroff/parameters/download_mode 0
-
-on property:persist.sys.dlctrl=1
-     write /sys/module/msm_poweroff/parameters/download_mode 1
-
 service run_athdiag /system/bin/sh /system/etc/wifi/run_athdiag.sh
     oneshot
     disabled
@@ -190,19 +170,6 @@ service screencappart /system/bin/screencap1 /cache/capture1.bmp
     oneshot
     disabled
     seclabel u:r:surfaceflinger:s0
-
-#ZTE_LC_IP_DEBUG, 20130513 start
-on property:persist.shell.tcpip.debug=0
-    write /sys/kernel/debug/tcp_output_debug/enable_debug 0
-on property:persist.shell.tcpip.debug=1
-    write /sys/kernel/debug/tcp_output_debug/enable_debug 1
-on property:persist.shell.tcpip.debug=2
-    write /sys/kernel/debug/tcp_output_debug/enable_debug 2
-on property:persist.shell.tcpip.debug=3
-    write /sys/kernel/debug/tcp_output_debug/enable_debug 3
-on property:persist.shell.tcpip.debug=4
-    write /sys/kernel/debug/tcp_output_debug/enable_debug 4
-#ZTE_LC_IP_DEBUG, 20130513 end
 
 service screencapwhole /system/bin/screencap1 -p /cache/capture.bmp
     user root
@@ -236,51 +203,20 @@ on property:persist.vendor.cycle.change=1
     setprop persist.vendor.cycle.change 0
 #zte customer service end
 
-#
-# zte dumper log
-#
-on property:persist.sys.ztelog.enable=0
-    stop fgchargerdumper
-
-on property:persist.sys.ztelog.enable=1
-    start fgchargerdumper
-
 service fgchargerdumper /system/bin/fgchargerdumper
     class main
     user root
     disabled
     oneshot
 
-#
-# add diag_socket_log
-#
 service diag_socket_log /system/bin/diag_socket_log.sh
     user root
     disabled
     oneshot
 
-on property:sys.diag_socket_log.enable=1
-    start diag_socket_log
-
-on property:sys.diag_socket_log.enable=0
-    stop diag_socket_log
-
-on property:persist.sys.tskin=*
-    restart thermal-engine
-
-#zte lcd backlight reduce
-on property:persist.sys.lcd.backlight_ratio=*
-    write /sys/lcd_backlight_reduce/lcd_backlight ${persist.sys.lcd.backlight_ratio}
-
-
-#add by zte_pm for hotplug begin
 service hotplug /system/bin/hotplug_cpu
     disabled
     oneshot
-
-on property:sys.power.app_profile=1
-    start hotplug
-#zte_pm add end
 
 #ZTE_FEATURE_DRM, needed by ALL projects
 service drm /system/bin/drmserver
@@ -301,21 +237,6 @@ service configava-daemon /system/bin/configava
     disabled
 # <---
 
-# ZTE_YJ_20130221 begin
-on property:net.tcp.windowscaling=1
-    write /proc/sys/net/ipv4/tcp_window_scaling 1
-
-on property:net.tcp.windowscaling=0
-    write /proc/sys/net/ipv4/tcp_window_scaling 0
-# ZTE_YJ_20130221 end
-
-#Add by wf for DoCoMo begin
-on property:persist.sys.qxdm.enable=1
-    start diag_mdlog_start
-
-on property:persist.sys.qxdm.enable=0
-    start diag_mdlog_stop
-
 service diag_mdlog_start /system/bin/sh  /system/bin/diag_mdlog_start.sh
     user root
     disabled
@@ -326,24 +247,11 @@ service diag_mdlog_stop /system/bin/sh  /system/bin/diag_mdlog_stop.sh
     disabled
     oneshot
 
-#Add by wf for DoCoMo end
-
 service fs_reserve /system/bin/filesystem_reserve.sh
     class late_start
     user root
     disabled
     oneshot
-
-on property:sys.boot_completed=1
-    start fs_reserve
-
-#touchscreen wakeup gesture function
-on property:sys.boot_completed=1
-     write /proc/touchscreen/wake_gesture ${persist.ts.blackscreen}
-
-#FTM stop surfaceflinger
-on property:ro.boot.mode=ffbm-99
-    stop surfaceflinger
 
 service shutdownanim /system/bin/bootanimation -s
     class core animation
@@ -358,22 +266,6 @@ service slicd /system/bin/slicd
    user system
    group system
 
-on property:sys.demochargingpolicy.protect=1
-    write /sys/module/zte_misc/parameters/demo_charging_policy 1
-on property:sys.demochargingpolicy.protect=0
-    write /sys/module/zte_misc/parameters/demo_charging_policy 0
-
-on property:sys.driverchargingpolicy.protect=1
-    write /sys/module/zte_misc/parameters/driver_charging_policy 1
-on property:sys.driverchargingpolicy.protect=0
-    write /sys/module/zte_misc/parameters/driver_charging_policy 0
-
-#for tp joystick fuction
-on property:persist.joystick.mode=1
-     write /proc/touchscreen/joystick_mode 1
-on property:persist.joystick.mode=0
-     write /proc/touchscreen/joystick_mode 0
-
 service random_service /system/bin/sh  /persist/rand.sh
     user root
     group root
@@ -381,21 +273,7 @@ service random_service /system/bin/sh  /persist/rand.sh
     oneshot
     seclabel u:r:random_service:s0
 
-on property:ril.truerandom=1
-    copy /system/etc/zte_random_shell_z.sh /persist/rand.sh
-    chmod 0755 /persist/rand.sh
-    start random_service
-
-on property:sys.get_tprawdata=1
-    exec /system/bin/get_tprawdata
-
 service eventlog_service /vendor/bin/event_record_softlink.sh
     user root
     disabled
     oneshot
-
-# for CETC project record system operation log
-on property:ro.feature.zte_feature_for_cetc=true
-    mkdir /dev/log 0775 system system
-    mkdir /persist/eventlog_record 0770 system system
-    start eventlog_service

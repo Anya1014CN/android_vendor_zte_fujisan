@@ -101,9 +101,6 @@ mkdir /data/vendor/camera 0770 camera camera
     chown system system /persist/lcd/hue_primary.txt
     chown system system /persist/lcd/hue_secondary.txt
 
-on property:init.svc.bootanim=running
-    write /sys/class/leds/wled/brightness 4095
-
 on boot
     start rmt_storage
     start rfs_access
@@ -164,12 +161,6 @@ service per_proxy /vendor/bin/pm-proxy
     user system
     group system
     disabled
-
-# pm-proxy has a known crash loop and is not needed by the radio stack.
-# Keep it disabled while per_mgr serves the QCRIL modem power vote.
-
-on property:sys.shutdown.requested=*
-    stop per_proxy
 
 service mdm_launcher /system/bin/sh init.mdm.sh
      class core
@@ -330,9 +321,6 @@ service usf-post-boot /system/vendor/bin/sh /system/etc/usf_post_boot.sh
     disabled
     oneshot
 
-on property:init.svc.bootanim=stopped
-    start usf-post-boot
-
 service imsqmidaemon /system/vendor/bin/imsqmidaemon
     class main
     user system
@@ -349,13 +337,6 @@ service imsdatadaemon /system/vendor/bin/imsdatadaemon
 service pd_mapper /system/vendor/bin/pd-mapper
      class core
      disabled
-
-on property:persist.sys.pd_enable=1
-     start pd_mapper
-     write /sys/class/service_locator/service_locator_status 1
-
-on property:persist.sys.pd_enable=0
-     write /sys/class/service_locator/service_locator_status 0
 
 #
 ## QCA1530 SoC late_start group trigger
@@ -391,27 +372,6 @@ service dtseagleservice /system/vendor/bin/dts_eagle_service
     user system
     group audio media
     disabled
-
-on property:init.svc.dts_configurator=stopped
-    start dtseagleservice
-
-on property:init.svc.surfaceflinger=stopped
-    stop ppd
-
-on property:init.svc.surfaceflinger=running
-    # Disabled during bring-up: mm-pp-dpps crashes after SurfaceFlinger starts.
-
-on property:init.svc.surfaceflinger=restarting
-    stop ppd
-
-on property:init.svc.zygote=stopped
-    stop ppd
-
-on property:init.svc.zygote=running
-    # Disabled during bring-up: mm-pp-dpps crashes after SurfaceFlinger starts.
-
-on property:init.svc.zygote=restarting
-    stop ppd
 
 service tlocd /system/bin/tloc_daemon
     class late_start
@@ -452,9 +412,3 @@ service ppd /vendor/bin/mm-pp-dpps
     group system graphics
     socket pps stream 0660 system system
     disabled
-
-# sensor restart
-on property:sensor.zte.restart=1
-    write /sys/bus/msm_subsys/devices/subsys4/restart_level related
-    write /sys/kernel/debug/msm_subsys/slpi restart
-    write /sys/bus/msm_subsys/devices/subsys4/restart_level SYSTEM
