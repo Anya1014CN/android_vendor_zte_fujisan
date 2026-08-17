@@ -25,7 +25,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-service usbconfig /system/bin/usbconfig
+service usbconfig /vendor/bin/usbconfig
     class main
     user root
     oneshot
