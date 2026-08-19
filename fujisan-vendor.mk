@@ -8,6 +8,12 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/lib/libstdc++.so:$(TARGET_COPY_OUT_VENDOR)/lib/libstdc++.so
 
+# The legacy camera HAL links framework img_utils from the vendor linker
+# namespace. Keep the verified system builds as explicit vendor prebuilts.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/vendor/lib/libimg_utils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libimg_utils.so \
+    $(LOCAL_PATH)/proprietary/vendor/lib64/libimg_utils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libimg_utils.so
+
 # Keep manifest and compatibility matrix under VINTF packaging control.
 # This file intentionally lists only the blobs we actually install.
 
@@ -45,12 +51,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/lib/libtfa9890.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtfa9890.so \
     $(LOCAL_PATH)/proprietary/system/lib/libtfa9890.so:$(TARGET_COPY_OUT_VENDOR)/lib/libtfa9890.so \
     $(LOCAL_PATH)/proprietary/system/lib/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libtrueportrait.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libtrueportrait.so:$(TARGET_COPY_OUT_VENDOR)/lib/libtrueportrait.so \
     $(LOCAL_PATH)/proprietary/system/lib/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vendor.qti.gnss@1.0.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libqmi_cci_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libqmi_cci_system.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libqmi_cci_system.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libqmi_cci_system.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libtfa9890.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libtfa9890.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libtfa9890.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libtfa9890.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libtrueportrait.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libtrueportrait.so \
+    $(LOCAL_PATH)/proprietary/system/lib64/libtrueportrait.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libtrueportrait.so \
     $(LOCAL_PATH)/proprietary/system/lib64/libzte_zcore.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libzte_zcore.so \
     $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.gnss@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.gnss@1.0.so \
     $(LOCAL_PATH)/proprietary/system/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.wigig.netperftuner@1.0.so \
