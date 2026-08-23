@@ -30,7 +30,7 @@
 target=`getprop ro.board.platform`
 
 function configure_zram_parameters() {
-    # Keep this device on a fixed 2 GiB compressed swap. The kernel exposes
+    # Keep this device on a fixed 4 GiB compressed swap. The kernel exposes
     # lzo-rle and lzo; prefer lzo-rle for Android's zero-heavy anonymous pages
     # and retain lzo as a compatibility fallback.
     zram_enable=`getprop ro.vendor.qti.config.zram`
@@ -52,6 +52,13 @@ function configure_zram_parameters() {
     zram_disksize=`cat /sys/block/zram0/disksize`
     if [ "$zram_disksize" != "0" ]; then
         echo 1 > /sys/block/zram0/reset
+    fi
+
+    # Enable kernel ZRAM deduplication. It must be selected before
+    # writing disksize; older kernels expose this node read-only, so leave
+    # their legacy ZRAM setup untouched.
+    if [ -w /sys/block/zram0/use_dedup ]; then
+        echo 1 > /sys/block/zram0/use_dedup
     fi
 
     zram_algorithms=`cat /sys/block/zram0/comp_algorithm`
