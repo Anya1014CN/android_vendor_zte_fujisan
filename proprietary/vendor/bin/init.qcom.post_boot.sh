@@ -30,30 +30,45 @@
 target=`getprop ro.board.platform`
 
 function configure_zram_parameters() {
-    MemTotalStr=`cat /proc/meminfo | grep MemTotal`
-    MemTotal=${MemTotalStr:16:8}
-
-    low_ram=`getprop ro.config.low_ram`
-
-    # Zram disk - 75% for Go devices.
-    # For 512MB Go device, size = 192MB
-    # For 1GB Go device, size = 768MB
-    # Others - 1G size
-    # And enable lz4 zram compression for Go devices
+    # Keep this device on a fixed 2 GiB compressed swap. The kernel exposes
+    # lzo-rle and lzo; prefer lzo-rle for Android's zero-heavy anonymous pages
+    # and retain lzo as a compatibility fallback.
     zram_enable=`getprop ro.vendor.qti.config.zram`
-    if [ "$zram_enable" == "true" ]; then
-        if [ $MemTotal -le 524288 ] && [ "$low_ram" == "true" ]; then
-            echo lz4 > /sys/block/zram0/comp_algorithm
-            echo $((192*1024*1024)) > /sys/block/zram0/disksize
-        elif [ $MemTotal -le 1048576 ] && [ "$low_ram" == "true" ]; then
-            echo lz4 > /sys/block/zram0/comp_algorithm
-            echo 805306368 > /sys/block/zram0/disksize
-        else
-            echo lz4 > /sys/block/zram0/comp_algorithm
-            echo 1073741824 > /sys/block/zram0/disksize
-        fi
-        mkswap /dev/block/zram0
-        swapon /dev/block/zram0 -p 32758
+    if [ "$zram_enable" != "true" ]; then
+        return
+    fi
+
+    # qcom-post-boot is oneshot, but keep the setup idempotent in case the
+    # service is restarted manually during bring-up.
+    if grep -q "zram0" /proc/swaps; then
+        echo 100 > /proc/sys/vm/swappiness
+        echo 0 > /proc/sys/vm/page-cluster
+        return
+    fi
+
+    # Compression can only be selected before the device is initialized.
+    # Reset a stale, inactive setup first so a manually restarted service can
+    # still apply the requested algorithm and size.
+    zram_disksize=`cat /sys/block/zram0/disksize`
+    if [ "$zram_disksize" != "0" ]; then
+        echo 1 > /sys/block/zram0/reset
+    fi
+
+    zram_algorithms=`cat /sys/block/zram0/comp_algorithm`
+    if echo "$zram_algorithms" | grep -qw "lzo-rle" && \
+            echo lzo-rle > /sys/block/zram0/comp_algorithm; then
+        :
+    elif echo "$zram_algorithms" | grep -qw "lzo" && \
+            echo lzo > /sys/block/zram0/comp_algorithm; then
+        :
+    else
+        return
+    fi
+
+    echo 4294967296 > /sys/block/zram0/disksize
+    if mkswap /dev/block/zram0 && swapon /dev/block/zram0 -p 32758; then
+        echo 100 > /proc/sys/vm/swappiness
+        echo 0 > /proc/sys/vm/page-cluster
     fi
 }
 
