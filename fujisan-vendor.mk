@@ -28,10 +28,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/vendor/lib64/hw/vendor.qti.gnss@1.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.gnss@1.0-impl.so \
     $(LOCAL_PATH)/proprietary/vendor/lib64/vendor.qti.gnss@1.0_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.gnss@1.0_vendor.so
 
-# The source-built standard HIDL bridge links these two SONAMEs.  Register the
-# OEM 64-bit pair as modules so product packaging resolves the same libraries
-# used by the proprietary GNSS/Izat stack, without a destination-file clash.
+# Keep the standard HIDL bridge, LocationAPI, and libgnss runtime paired with
+# the OEM libloc_core/libgps.utils implementation.  Mixing source and OEM
+# versions loses GNSS SV/CN0 callbacks even though location tracking succeeds.
 PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl-qti \
+    libgnss \
+    liblocation_api \
     libgps.utils \
     libgnsspps \
     libloc_core

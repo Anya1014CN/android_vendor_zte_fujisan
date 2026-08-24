@@ -40,6 +40,49 @@ LOCAL_CHECK_ELF_FILES := false
 LOCAL_STRIP_MODULE := false
 include $(BUILD_PREBUILT)
 
+# The ZTE Oreo GNSS service dynamically loads this bridge together with
+# liblocation_api.  Use the factory pair so the LocationCallbacks/SV ABI
+# matches the OEM libloc_core runtime.
+include $(CLEAR_VARS)
+LOCAL_MODULE := liblocation_api
+LOCAL_MODULE_OWNER := zte
+LOCAL_SRC_FILES_32 := proprietary/vendor/lib/liblocation_api.so
+LOCAL_SRC_FILES_64 := proprietary/vendor/lib64/liblocation_api.so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MULTILIB := both
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+LOCAL_STRIP_MODULE := false
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libgnss
+LOCAL_MODULE_OWNER := zte
+LOCAL_SRC_FILES_32 := proprietary/vendor/lib/libgnss.so
+LOCAL_SRC_FILES_64 := proprietary/vendor/lib64/libgnss.so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MULTILIB := both
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+LOCAL_STRIP_MODULE := false
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := android.hardware.gnss@1.0-impl-qti
+LOCAL_MODULE_OWNER := zte
+LOCAL_SRC_FILES_32 := proprietary/vendor/lib/hw/android.hardware.gnss@1.0-impl-qti.so
+LOCAL_SRC_FILES_64 := proprietary/vendor/lib64/hw/android.hardware.gnss@1.0-impl-qti.so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_RELATIVE_PATH := hw
+LOCAL_MULTILIB := both
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+LOCAL_STRIP_MODULE := false
+include $(BUILD_PREBUILT)
+
 ifeq ($(TARGET_USES_FUJISAN_SOURCE_QCAMERA),false)
 include $(CLEAR_VARS)
 LOCAL_MODULE := camera.msm8996
