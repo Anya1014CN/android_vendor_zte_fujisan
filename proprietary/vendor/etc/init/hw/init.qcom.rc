@@ -307,13 +307,6 @@ on post-fs-data
     mkdir /data/connectivity 0771 system system
     chown system system /data/connectivity
 
-    # Create the directories used by DPM subsystem
-    mkdir /data/dpm 0771 system system
-    chown system system /data/dpm
-
-    mkdir /data/dpm/nsrm 0771 system system
-    chown system system /data/dpm/nsrm
-
     # Create directory used by audio subsystem
     mkdir /data/vendor/misc/audio 0770 audio audio
 
@@ -715,11 +708,14 @@ service wifi_ftmd /system/vendor/bin/wifi_ftmd
     disabled
     oneshot
 
-service cnss_diag /system/vendor/bin/cnss_diag -q -f
+# -f writes to the framework-owned /data/misc/wifi hierarchy.  Retain QXDM
+# diagnostics without crossing the core/vendor data boundary.
+service cnss_diag /system/vendor/bin/cnss_diag -q
     class main
     seclabel u:r:wcnss_service:s0
     user system
     group system wifi inet net_admin sdcard_rw media_rw diag
+    disabled
     oneshot
 
 service cnss-daemon /system/vendor/bin/cnss-daemon -n -l
