@@ -12,4 +12,5 @@ service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.
     class late_start
     user system
     group system input uhid
+    interface android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprint default
     setenv LD_PRELOAD /vendor/lib64/libhidlbase_fujisan_legacy_map_shim.so
