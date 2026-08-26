@@ -36,3 +36,20 @@ cc_prebuilt_library_shared {
     check_elf_files: false,
     installable: false,
 }
+
+// The stock FPC service uses Android 8's deprecated HIDL constructor-map ABI.
+// Prefer this patched OEM binary over the generic AOSP 2.1 default service so
+// Soong has exactly one owner for the installed vendor/hw destination.
+cc_prebuilt_binary {
+    name: "android.hardware.biometrics.fingerprint@2.1-service",
+    srcs: ["proprietary/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service"],
+    stem: "android.hardware.biometrics.fingerprint@2.1-service",
+    vendor: true,
+    relative_install_path: "hw",
+    prefer: true,
+    check_elf_files: false,
+    strip: {
+        none: true,
+    },
+    init_rc: ["proprietary/vendor/etc/init/fujisan.fingerprint.rc"],
+}
