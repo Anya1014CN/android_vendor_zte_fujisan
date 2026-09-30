@@ -1,3 +1,8 @@
+// Declare a Soong namespace so the CAF MSM8996 media HAL (hardware/qcom-caf/
+// msm8996) can import this tree and link the qdMetaData ABI below.
+soong_namespace {
+}
+
 // VIDC uses the frame-metadata ABI implemented by Fujisan's OEM MSM8996
 // gralloc stack. Declare the already-packaged ABI libraries for Soong so the
 // source-built Qualcomm V4L2 OMX implementation can link against them.
